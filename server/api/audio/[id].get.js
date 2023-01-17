@@ -1,24 +1,20 @@
-// import cars from "@/data/cars.json";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   const { id } = event.context.params;
 
-  // const car = cars.find((c) => {
-  //   return c.id === parseInt(id);
-  // });
-  const car = await prisma.AudioListings.findUnique({
+  const audio = await prisma.AudioListings.findUnique({
     where: {
       id: parseInt(id),
     },
   });
 
-  if (!car) {
+  if (!audio) {
     throw createError({
       statusCode: 404,
-      statusMessage: `Car with ID of ${id} does not exist`,
+      statusMessage: `Audio with ID of ${id} does not exist`,
     });
   }
-  return car;
+  return audio;
 });

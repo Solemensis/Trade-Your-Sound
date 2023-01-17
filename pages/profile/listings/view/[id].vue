@@ -7,13 +7,13 @@ definePageMeta({
 const route = useRoute();
 
 const { data: messages } = useFetch(
-  `/api/car/listings/${route.params.id}/message`
+  `/api/audio/listings/${route.params.id}/message`
 );
 </script>
 
 <template>
   <div class="rounded shadow mt-20">
-    <CarMessageCard
+    <AudioMessageCard
       v-for="message in messages"
       :key="message.id"
       :message="message"

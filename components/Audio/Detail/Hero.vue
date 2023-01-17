@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  car: Object,
+  audio: Object,
 });
 
 const config = useRuntimeConfig();
@@ -8,19 +8,19 @@ const config = useRuntimeConfig();
 <template>
   <div class="mt-10">
     <NuxtImg
-      :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.audio}`"
+      :src="`${config.public.supabase.url}/storage/v1/object/public/images/${audio.audio}`"
       class="w-full"
       alt=""
     />
-    <h1 class="mt-10 text-4xl">{{ car.name }}</h1>
+    <h1 class="mt-10 text-4xl">{{ audio.name }}</h1>
     <div class="text-slate-500 flex text-lg mt-3 border-b pb-5 justify-between">
       <div class="flex">
-        <p class="mr-2">{{ car.numberOfSeats }} seats</p>
+        <p class="mr-2">{{ audio.numberOfSeats }} seats</p>
         <p class="mr-2">|</p>
-        <p class="mr-2">{{ car.miles }} miles</p>
+        <p class="mr-2">{{ audio.miles }} miles</p>
       </div>
       <div>
-        <p class="font-bold text-2xl">${{ car.price }}</p>
+        <p class="font-bold text-2xl">${{ audio.price }}</p>
       </div>
     </div>
   </div>

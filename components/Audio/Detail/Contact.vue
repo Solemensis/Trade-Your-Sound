@@ -21,7 +21,7 @@ const disableButton = computed(() => {
 async function onSubmit() {
   try {
     const response = await $fetch(
-      `/api/car/listings/${route.params.id}/message`,
+      `/api/audio/listings/${route.params.id}/message`,
       {
         method: "post",
         body: message.value,

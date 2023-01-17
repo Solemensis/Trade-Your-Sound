@@ -4,7 +4,7 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const { categories } = useCars();
+const { categories } = useAudios();
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
@@ -74,7 +74,7 @@ async function handleSubmit() {
   }
 
   try {
-    const response = await $fetch("/api/car/listings", {
+    const response = await $fetch("/api/audio/listings", {
       method: "post",
       body,
     });

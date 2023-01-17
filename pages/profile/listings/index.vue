@@ -4,16 +4,14 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-// const { listings } = useCars();
-
 const user = useSupabaseUser();
 
 const { data: listings } = await useFetch(
-  `/api/car/listings/user/${user.value.id}`
+  `/api/audio/listings/user/${user.value.id}`
 );
 
 async function handleDelete(id) {
-  await $fetch(`/api/car/listings/${id}`, {
+  await $fetch(`/api/audio/listings/${id}`, {
     method: "delete",
   });
 
