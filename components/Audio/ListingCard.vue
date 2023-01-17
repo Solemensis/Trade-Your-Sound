@@ -5,7 +5,7 @@ const props = defineProps({
 
 const emits = defineEmits(["deleteClick"]);
 
-// to get supabase image endpoint
+// to get supabase audio endpoint
 const config = useRuntimeConfig();
 </script>
 

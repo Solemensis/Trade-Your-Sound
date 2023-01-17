@@ -4,11 +4,11 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const { categories } = useAudios();
+const { categories } = useCategories();
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
-const info = useState("adInfo", () => {
+const info = useState("addInfo", () => {
   return {
     name: "",
     price: "",
@@ -68,10 +68,6 @@ async function handleSubmit() {
     listerId: user.value.id,
     audio: data.path,
   };
-
-  if (body.seats) {
-    delete body.seats;
-  }
 
   try {
     const response = await $fetch("/api/audio/listings", {

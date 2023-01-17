@@ -14,9 +14,9 @@ function onChangeCategory(category) {
 }
 function onResetCategory() {
   if (route.query.price != undefined) {
-    navigateTo(`/shop/everything?price=${route.query.price}`);
+    navigateTo(`/shop/all-categories?price=${route.query.price}`);
   } else {
-    navigateTo(`/shop/everything/`);
+    navigateTo(`/shop/all-categories/`);
   }
 }
 
@@ -34,7 +34,7 @@ function onChangePrice(price) {
     <div class="p-5 relative cursor-pointer border-b">
       <h3>Category</h3>
       <ul class="border top-1 m-1 bg-white">
-        <li @click="onResetCategory()">everything</li>
+        <li @click="onResetCategory()">All Categories</li>
         <li v-for="category in categories" @click="onChangeCategory(category)">
           {{ category }}
         </li>

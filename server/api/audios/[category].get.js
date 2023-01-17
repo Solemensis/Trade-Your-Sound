@@ -28,7 +28,7 @@ export default defineEventHandler((event) => {
         lte: 200,
       };
       break;
-    case "200+":
+    case "200>":
       filters.price = {
         gte: 200,
         lte: 5000,
@@ -36,9 +36,9 @@ export default defineEventHandler((event) => {
       break;
   }
 
-  if (category == "everything" && !price) {
+  if (category == "all-categories" && !price) {
     return prisma.AudioListings.findMany();
-  } else if (category == "everything" && price) {
+  } else if (category == "all-categories" && price) {
     return prisma.AudioListings.findMany({
       where: {
         price: filters.price,

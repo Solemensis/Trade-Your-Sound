@@ -1,6 +1,6 @@
 <script setup>
 const { categories } = useCategories();
-const category = ref("everything");
+const category = ref("all-categories");
 
 function handleSearch() {
   if (category.value) {
@@ -14,7 +14,7 @@ function handleSearch() {
     class="font-serif w-[1000px] text-2xl rounded-full bg-white flex justify-between overflow-hidden drop-shadow-2xl mx-auto"
   >
     <select class="p-2 border w-100 rounded" v-model="category">
-      <option value="everything" selected>Any Category</option>
+      <option value="all-categories" selected>Any Category</option>
       <option
         v-for="category in categories"
         :key="category.id"
