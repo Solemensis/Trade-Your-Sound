@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   // const car = cars.find((c) => {
   //   return c.id === parseInt(id);
   // });
-  const car = await prisma.car.findUnique({
+  const car = await prisma.AudioListings.findUnique({
     where: {
       id: parseInt(id),
     },

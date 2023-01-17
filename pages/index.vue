@@ -1,11 +1,11 @@
 <script setup>
 useHead({
-  title: "Cartrader",
+  title: "Audio Trader",
 });
 </script>
 
 <template>
   <div>
-    <CarHero />
+    <AudioHero />
   </div>
 </template>

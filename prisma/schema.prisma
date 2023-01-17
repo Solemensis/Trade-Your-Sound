@@ -11,28 +11,16 @@ datasource db {
 }
 
 
-model Car {
+
+model AudioListings {
   id              Int    @id @default(autoincrement())
   name            String
-  numberOfSeats   Int
-  miles           Int
   price           Int
-  image           String
-  features        String[]
+  category        String
+  channels        String
   description     String
-  city            String
-  model           String
-  make            String
   listerId        String
-  messages        Message[]
+  audio           String
 }
 
-model Message {
-  id              Int    @id @default(autoincrement())
-  name            String
-  email           String
-  phone           String
-  message         String
-  listingId       Int
-  listing         Car    @relation(fields: [listingId], references:[id], onDelete: Cascade)
-}
+ 

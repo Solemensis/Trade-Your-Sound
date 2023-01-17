@@ -8,7 +8,7 @@ const config = useRuntimeConfig();
 <template>
   <div class="mt-10">
     <NuxtImg
-      :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
+      :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.audio}`"
       class="w-full"
       alt=""
     />

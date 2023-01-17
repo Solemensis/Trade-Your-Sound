@@ -1,10 +1,20 @@
 <script setup>
 const route = useRoute();
 useHead({
-  title: `${route.params.make ? route.params.make : "Cars"} in ${
-    route.params.city
+  title: `${
+    route.params.category ? "Category: " + route.params.category : "Audios"
   }`,
 });
+
+const price = computed(() => route.query.price);
+
+const { data: audios, refresh } = await useFetchAudios(route.params.category, {
+  price: price,
+});
+watch(
+  () => route.query,
+  () => refresh()
+);
 </script>
 
 <template>
@@ -14,8 +24,13 @@ useHead({
     >
       <div class="mt-32 flex">
         <NuxtErrorBoundary>
-          <CarSideBar />
-          <NuxtPage />
+          <AudioSideBar />
+          <div>
+            <AudioCards v-if="audios.length" :audios="audios" />
+            <h1 v-else class="text-red-600">
+              No Audios Found With These Filters
+            </h1>
+          </div>
           <template #error="{ error }">
             <div class="text-center mx-auto flex flex-col">
               <h1 class="text-5xl text-red-600 mb-4">

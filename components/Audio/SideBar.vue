@@ -1,0 +1,61 @@
+<script setup>
+const { categories } = useCategories();
+const { prices } = useCategories();
+
+const route = useRoute();
+const router = useRouter();
+
+function onChangeCategory(category) {
+  if (route.query.price != undefined) {
+    navigateTo(`/shop/${category}?price=${route.query.price}`);
+  } else {
+    navigateTo(`/shop/${category}/`);
+  }
+}
+function onResetCategory() {
+  if (route.query.price != undefined) {
+    navigateTo(`/shop/everything?price=${route.query.price}`);
+  } else {
+    navigateTo(`/shop/everything/`);
+  }
+}
+
+function onChangePrice(price) {
+  router.push({
+    query: {
+      price: price,
+    },
+  });
+}
+</script>
+
+<template>
+  <div>
+    <div class="p-5 relative cursor-pointer border-b">
+      <h3>Category</h3>
+      <ul class="border top-1 m-1 bg-white">
+        <li @click="onResetCategory()">everything</li>
+        <li v-for="category in categories" @click="onChangeCategory(category)">
+          {{ category }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="p-5 relative cursor-pointer border-b">
+      <h3>Price</h3>
+
+      <ul class="border top-1 m-1 bg-white">
+        <li @click="onChangePrice(price)" v-for="price in prices">
+          {{ price }}
+        </li>
+      </ul>
+    </div>
+
+    <button
+      @click="onFilterApply"
+      class="bg-blue-400 w-full mt-2 rounded text-white p-1"
+    >
+      Apply
+    </button>
+  </div>
+</template>

@@ -12,14 +12,9 @@ const config = useRuntimeConfig();
 <template>
   <div class="shadow rounded overflow-hidden flex justify-between mb-4">
     <div class="flex">
-      <!-- <img
-        class="w-80 mr-3 h-44"
-        :src="`${config.public.supabase.url}/storage/v1/object/public/images/${listing.image}`"
-        alt=""
-      /> -->
       <audio controls>
         <source
-          src="https://wjfywtvnvjbposklgxzj.supabase.co/storage/v1/object/public/audios/public/untitled.mp3"
+          :src="`${config.public.supabase.url}/storage/v1/object/public/audios/${listing.audio}`"
           type="audio/mpeg"
         />
       </audio>
@@ -30,6 +25,11 @@ const config = useRuntimeConfig();
       </div>
     </div>
     <div class="p-3 flex">
+      <NuxtLink
+        class="text-green-400 mr-4"
+        :to="`/profile/listings/view/${listing.id}`"
+        >Edit</NuxtLink
+      >
       <NuxtLink
         class="text-blue-400 mr-4"
         :to="`/profile/listings/view/${listing.id}`"

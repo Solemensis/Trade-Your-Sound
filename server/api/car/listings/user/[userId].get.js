@@ -5,12 +5,12 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   const { userId } = event.context.params;
 
-  return prisma.car.findMany({
+  return prisma.AudioListings.findMany({
     where: {
       listerId: userId,
     },
     select: {
-      image: true,
+      audio: true,
       id: true,
       name: true,
       price: true,

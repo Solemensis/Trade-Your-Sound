@@ -4,21 +4,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const schema = Joi.object({
-  make: Joi.string().required(),
-  model: Joi.string().required(),
-  year: Joi.number()
-    .min(1886)
-    .max(new Date().getFullYear() + 1)
-    .required(),
-  miles: Joi.number().required().min(0),
-  city: Joi.string().min(2).required(),
-  numberOfSeats: Joi.number().max(1000).min(1).required(),
-  description: Joi.string().min(10).required(),
-  features: Joi.array().items(Joi.string()).required(),
-  image: Joi.string().required(),
-  listerId: Joi.string().required(),
-  price: Joi.number().min(0).required(),
   name: Joi.string().required(),
+  price: Joi.number().min(0).required(),
+  category: Joi.string().required(),
+  channels: Joi.string().required(),
+  description: Joi.string().min(10).required(),
+  listerId: Joi.string().required(),
+  audio: Joi.string().required(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -34,35 +26,20 @@ export default defineEventHandler(async (event) => {
   }
 
   //body destructure'ı ile yapmak
-  const {
-    image,
-    name,
-    numberOfSeats,
-    miles,
-    price,
-    features,
-    description,
-    listerId,
-    city,
-    make,
-    model,
-  } = body;
+  const { name, price, category, channels, description, listerId, audio } =
+    body;
 
-  const car = await prisma.car.create({
+  const AudioListing = await prisma.AudioListings.create({
     data: {
-      image,
       name,
-      numberOfSeats,
-      miles,
       price,
-      features,
+      category,
+      channels,
       description,
       listerId,
-      city: city.toLowerCase(),
-      make,
-      model,
+      audio,
     },
   });
 
-  return car;
+  return AudioListing;
 });

@@ -32,7 +32,7 @@ async function handleDelete(id) {
       >
     </div>
     <div class="shadow rounded p-3 mt-5">
-      <CarListingCard
+      <AudioListingCard
         v-for="listing in listings"
         :key="listing.id"
         :listing="listing"

@@ -4,22 +4,18 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const { makes } = useCars();
+const { categories } = useCars();
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
 const info = useState("adInfo", () => {
   return {
-    make: "",
-    model: "",
-    year: "",
-    miles: "",
+    name: "",
     price: "",
-    city: "",
-    seats: "",
-    features: "",
+    category: "",
+    channels: "",
     description: "",
-    image: null,
+    audio: null,
   };
 });
 
@@ -32,45 +28,15 @@ const onChangeInput = (data, name) => {
 const inputs = [
   {
     id: 1,
-    title: "Model *",
-    name: "model",
-    placeholder: "Civic",
+    title: "Name *",
+    name: "name",
+    placeholder: "Fireball Sound",
   },
   {
     id: 2,
-    title: "Year *",
-    name: "year",
-    placeholder: "2019",
-  },
-  {
-    id: 3,
     title: "Price *",
     name: "price",
     placeholder: "1000",
-  },
-  {
-    id: 4,
-    title: "Miles *",
-    name: "miles",
-    placeholder: "10000",
-  },
-  {
-    id: 5,
-    title: "City *",
-    name: "city",
-    placeholder: "Austin",
-  },
-  {
-    id: 6,
-    title: "Number of Seats *",
-    name: "seats",
-    placeholder: "5",
-  },
-  {
-    id: 7,
-    title: "Features *",
-    name: "features",
-    placeholder: "Leather Interior, No Accidents",
   },
 ];
 
@@ -82,40 +48,42 @@ const isButtonDisabled = computed(() => {
 });
 
 async function handleSubmit() {
-  //image bucket logic
+  //audio bucket logic
   const fileName = Math.floor(Math.random() * 999999999999);
   const { data, error } = await supabase.storage
-    .from("images")
-    .upload("public/" + fileName, info.value.image);
+    .from("audios")
+    .upload("public/" + fileName, info.value.audio);
 
   if (error) {
-    return (errorMessage.value = "Cannot upload image");
+    return (errorMessage.value = "Cannot upload audio");
   }
 
   const body = {
     ...info.value,
-    city: info.value.city.toLowerCase(),
-    features: info.value.features.split(", "),
-    numberOfSeats: parseInt(info.value.seats),
-    miles: parseInt(info.value.miles),
+    name: info.value.name,
     price: parseInt(info.value.price),
-    year: parseInt(info.value.year),
-    name: `${info.value.make} ${info.value.model}`,
+    category: info.value.category,
+    channels: info.value.channels,
+    description: info.value.description,
     listerId: user.value.id,
-    image: data.path,
+    audio: data.path,
   };
 
-  delete body.seats;
+  if (body.seats) {
+    delete body.seats;
+  }
 
   try {
     const response = await $fetch("/api/car/listings", {
       method: "post",
       body,
     });
+
     navigateTo("/profile/listings");
   } catch (err) {
     errorMessage.value = err.statusMessage;
-    await supabase.storage.from("images").remove(data.path);
+
+    await supabase.storage.from("audios").remove(data.path);
   }
 }
 </script>
@@ -126,27 +94,30 @@ async function handleSubmit() {
       <h1 class="text-6xl">Create a New Listing</h1>
     </div>
     <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
-      <CarAdSelect
-        title="Make *"
-        :options="makes"
-        name="make"
-        @change-input="onChangeInput"
-      />
-      <CarAdInput
+      <AudioAddInput
         v-for="input in inputs"
         :key="input.id"
         :title="input.title"
         :name="input.name"
         :placeholder="input.placeholder"
         @change-input="onChangeInput"
+      /><AudioAddSelect
+        title="Category *"
+        :options="categories"
+        name="category"
+        @change-input="onChangeInput"
+      /><AudioAddSelect2
+        title="Channels *"
+        name="channels"
+        @change-input="onChangeInput"
       />
-      <CarAdTextarea
+      <AudioAddTextarea
         title="Description *"
         name="description"
         placeholder=""
         @change-input="onChangeInput"
       />
-      <CarAdImage @change-input="onChangeInput" />
+      <AudioAddFile @change-input="onChangeInput" />
       <div>
         <button
           @click="handleSubmit"

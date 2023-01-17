@@ -26,7 +26,7 @@ async function logout() {
     <header
       class="sticky top-0 z-50 flex justify-between items-center space-x-1 border-b bg-white p-4 shadow-md"
     >
-      <NuxtLink to="/" class="text-3xl font-mono">cartrader</NuxtLink>
+      <NuxtLink to="/" class="text-3xl font-mono">audio trader</NuxtLink>
       <div v-if="user" class="flex">
         <NuxtLink to="/profile/listings" class="mr-5">profile</NuxtLink>
         <p @click="logout" class="cursor-pointer">Logout</p>
