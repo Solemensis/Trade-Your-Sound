@@ -48,7 +48,7 @@ const isButtonDisabled = computed(() => {
 });
 
 async function handleSubmit() {
-  //audio bucket logic
+  //audio bucket file creation logic
   const fileName = Math.floor(Math.random() * 999999999999);
   const { data, error } = await supabase.storage
     .from("audios")
@@ -58,6 +58,7 @@ async function handleSubmit() {
     return (errorMessage.value = "Cannot upload audio");
   }
 
+  //creation of the body(data) object which will be sent to backend
   const body = {
     ...info.value,
     name: info.value.name,
@@ -69,6 +70,7 @@ async function handleSubmit() {
     audio: data.path,
   };
 
+  //http post request to send body object to backend
   try {
     const response = await $fetch("/api/audio/listings", {
       method: "post",
@@ -79,6 +81,7 @@ async function handleSubmit() {
   } catch (err) {
     errorMessage.value = err.statusMessage;
 
+    //if error, delete uploaded audio
     await supabase.storage.from("audios").remove(data.path);
   }
 }

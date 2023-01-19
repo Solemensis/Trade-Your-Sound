@@ -9,8 +9,6 @@ const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const route = useRoute();
 
-// const { data: listing } = useFetch(`/api/audio/${route.params.id}/`);
-
 const info = useState("addInfo", () => {
   return {
     name: "",
@@ -43,24 +41,34 @@ const inputs = [
   },
 ];
 
-// const isButtonDisabled = computed(() => {
-//   for (let key in info.value) {
-//     if (!info.value[key]) return true;
-//   }
-//   return false;
-// });
+const isButtonDisabled = computed(() => {
+  for (let key in info.value) {
+    if (!info.value[key]) return true;
+  }
+  return false;
+});
 
 async function handleSubmit() {
-  //audio bucket logic
+  //audio bucket file edit logic
+  const audio = await useFetchAudio(route.params.id);
+
   const fileName = Math.floor(Math.random() * 999999999999);
   const { data, error } = await supabase.storage
     .from("audios")
     .upload("public/" + fileName, info.value.audio);
 
   if (error) {
+    //if error, delete uploaded audio and return function
+    await supabase.storage.from("audios").remove(data.path);
     return (errorMessage.value = "Cannot upload audio");
   }
 
+  //removing the old audio
+  const { oldData, error2 } = await supabase.storage
+    .from("audios")
+    .remove([audio.value.audio]);
+
+  //creation of the new body(data) object which will be sent to backend
   const body = {
     ...info.value,
     name: info.value.name,
@@ -72,20 +80,19 @@ async function handleSubmit() {
     audio: data.path,
   };
 
+  //http put request to send new body object to backend
   try {
     const response = await $fetch(
       `/api/audio/listings/${route.params.id}/edit`,
       {
         method: "put",
-        body,
+        body: body,
       }
     );
 
     navigateTo("/profile/listings");
   } catch (err) {
     errorMessage.value = err.statusMessage;
-
-    await supabase.storage.from("audios").remove(data.path);
   }
 }
 </script>

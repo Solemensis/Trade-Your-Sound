@@ -18,6 +18,7 @@ const config = useRuntimeConfig();
           type="audio/mpeg"
         />
       </audio>
+
       <div class="p-3">
         <h1 class="text-2xl">{{ listing.name }}</h1>
 

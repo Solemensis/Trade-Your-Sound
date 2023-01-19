@@ -14,6 +14,8 @@ const schema = Joi.object({
 });
 
 export default defineEventHandler(async (event) => {
+  const { listingId } = event.context.params;
+
   const body = await readBody(event);
 
   const { error, value } = await schema.validate(body);
@@ -29,7 +31,10 @@ export default defineEventHandler(async (event) => {
   const { name, price, category, channels, description, listerId, audio } =
     body;
 
-  const AudioListing = await prisma.AudioListings.updateMany({
+  const AudioListing = await prisma.AudioListings.update({
+    where: {
+      id: parseInt(listingId),
+    },
     data: {
       name,
       price,
