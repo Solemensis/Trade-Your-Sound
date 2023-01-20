@@ -21,6 +21,34 @@ model AudioListings {
   description     String
   listerId        String
   audio           String
+  created_at      String
+}
+
+model ProducerProfile {
+  id              Int    @id @default(autoincrement())
+  userName        String
+  category        String
+  description     String
+  listerId        String
+  created_at      String
 }
 
  
+model ChatRooms {
+id                Int @id @default(autoincrement())
+name              String
+user1_id          String
+user2_id          String
+created_at        String
+related_messages  Messages[]
+}
+
+
+model Messages {
+id                Int @id @default(autoincrement())
+message           String
+userName          String
+userId            String
+created_at        String
+related_chatRoom  ChatRooms @relation(fields: [id], references:[id], onDelete: Cascade)
+}
