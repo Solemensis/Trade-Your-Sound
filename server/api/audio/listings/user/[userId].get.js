@@ -5,9 +5,10 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   const { userId } = event.context.params;
 
+  //database event
   return prisma.AudioListings.findMany({
     where: {
-      listerId: userId,
+      lister_id: userId,
     },
     select: {
       audio: true,

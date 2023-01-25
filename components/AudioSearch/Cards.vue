@@ -5,6 +5,6 @@ const props = defineProps({
 </script>
 <template>
   <div class="w-full">
-    <AudioCard v-for="audio in audios" :key="audio.id" :audio="audio" />
+    <AudioSearchCard v-for="audio in audios" :key="audio.id" :audio="audio" />
   </div>
 </template>

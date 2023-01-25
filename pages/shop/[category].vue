@@ -24,13 +24,15 @@ watch(
     >
       <div class="mt-32 flex">
         <NuxtErrorBoundary>
-          <AudioSideBar />
+          <AudioSearchSideBar />
+
           <div>
-            <AudioCards v-if="audios.length" :audios="audios" />
+            <AudioSearchCards v-if="audios.length" :audios="audios" />
             <h1 v-else class="text-red-600">
               No Audios Found With These Filters
             </h1>
           </div>
+
           <template #error="{ error }">
             <div class="text-center mx-auto flex flex-col">
               <h1 class="text-5xl text-red-600 mb-4">

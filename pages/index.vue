@@ -6,6 +6,6 @@ useHead({
 
 <template>
   <div>
-    <AudioHero />
+    <MainPageHero />
   </div>
 </template>

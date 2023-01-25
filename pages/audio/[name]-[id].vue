@@ -1,11 +1,11 @@
 <script setup>
 const route = useRoute();
 
-const audio = await useFetchAudio(route.params.id);
-
 useHead({
   title: route.params.name,
 });
+
+const audio = await useFetchAudio(route.params.id);
 
 if (!audio.value) {
   throw createError({
@@ -23,7 +23,8 @@ if (!audio.value) {
       <AudioDetailHero :audio="audio" />
       <AudioDetailAttributes :features="audio.features" />
       <AudioDetailDescription :description="audio.description" />
-      <AudioDetailContact />
+      <AudioDetailContactButton :audio="audio" />
+      <AudioDetailFile :audio="audio" />
     </div>
   </div>
 </template>

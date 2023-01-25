@@ -5,7 +5,7 @@
     <div class="z-10 absolute w-full h-full flex justify-center items-center">
       <div class="text-center w-1/2">
         <h1 class="text-8xl font-serif mb-10 text-white">Find your drive</h1>
-        <AudioSearchBar />
+        <MainPageSearchBar />
       </div>
     </div>
 

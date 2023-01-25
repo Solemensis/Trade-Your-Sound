@@ -7,7 +7,7 @@ definePageMeta({
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
-const { data: listings } = await useFetch(
+const { data: listings } = useFetch(
   `/api/audio/listings/user/${user.value.id}`
 );
 
@@ -40,8 +40,9 @@ async function handleDelete(id) {
         >+</NuxtLink
       >
     </div>
-    <div class="shadow rounded p-3 mt-5">
-      <AudioListingCard
+    <div v-if="!listings">loading...</div>
+    <div v-else class="shadow rounded p-3 mt-5">
+      <UserListingsListingCard
         v-for="listing in listings"
         :key="listing.id"
         :listing="listing"

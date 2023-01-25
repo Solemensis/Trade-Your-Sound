@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   const { id } = event.context.params;
 
+  //database event
   const audio = await prisma.AudioListings.findUnique({
     where: {
       id: parseInt(id),

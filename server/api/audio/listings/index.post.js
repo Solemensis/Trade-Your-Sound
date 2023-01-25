@@ -7,9 +7,9 @@ const schema = Joi.object({
   name: Joi.string().required(),
   price: Joi.number().min(0).required(),
   category: Joi.string().required(),
-  channels: Joi.string().required(),
+  processing: Joi.string().required(),
   description: Joi.string().min(10).required(),
-  listerId: Joi.string().required(),
+  lister_id: Joi.string().required(),
   audio: Joi.string().required(),
 });
 
@@ -26,17 +26,18 @@ export default defineEventHandler(async (event) => {
   }
 
   //body destructure'ı ile yapmak
-  const { name, price, category, channels, description, listerId, audio } =
+  const { name, price, category, processing, description, lister_id, audio } =
     body;
 
+  //database event
   const AudioListing = await prisma.AudioListings.create({
     data: {
       name,
       price,
       category,
-      channels,
+      processing,
       description,
-      listerId,
+      lister_id,
       audio,
     },
   });

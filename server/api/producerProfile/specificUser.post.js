@@ -1,14 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const { listingId } = event.context.params;
+  const body = await readBody(event);
 
   //database event
-  return prisma.AudioListings.delete({
+  const producerProfile = await prisma.ProducerProfile.findUnique({
     where: {
-      id: parseInt(listingId),
+      lister_id: body.userId,
     },
   });
+
+  return producerProfile;
 });

@@ -13,42 +13,51 @@ datasource db {
 
 
 model AudioListings {
-  id              Int    @id @default(autoincrement())
+  id              Int         @id @default(autoincrement())
   name            String
   price           Int
   category        String
-  channels        String
+  processing      String
   description     String
-  listerId        String
+  lister_id       String      
   audio           String
-  created_at      String
+  created_at      DateTime    @default(now()) @db.Date
+  updated_at      DateTime    @updatedAt @db.Date
 }
 
 model ProducerProfile {
-  id              Int    @id @default(autoincrement())
-  userName        String
-  category        String
-  description     String
-  listerId        String
-  created_at      String
+  id                  Int         @id @default(autoincrement())
+  user_name           String      @unique
+  categories          String[]
+  equipment           String[]
+  related_link1_desc  String?
+  related_link2_desc  String?
+  related_link1       String?
+  related_link2       String?
+  description         String?
+  lister_id           String      @unique
+  created_at          DateTime    @default(now()) @db.Date
+  updated_at          DateTime    @updatedAt  @db.Date
 }
 
  
+
 model ChatRooms {
-id                Int @id @default(autoincrement())
-name              String
+id                Int         @id @default(autoincrement())
+created_at        DateTime    @default(now()) @db.Date
+room_name         String
 user1_id          String
 user2_id          String
-created_at        String
-related_messages  Messages[]
+messages          Messages[]
 }
-
-
 model Messages {
-id                Int @id @default(autoincrement())
-message           String
-userName          String
-userId            String
-created_at        String
-related_chatRoom  ChatRooms @relation(fields: [id], references:[id], onDelete: Cascade)
+id                Int         @id @default(autoincrement())
+created_at        DateTime    @default(now()) @db.Date
+content           String
+lister_id         String
+room_id           Int
+chat_room         ChatRooms   @relation(fields:[room_id], references:[id], onDelete: Cascade)
 }
+
+
+

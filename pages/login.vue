@@ -10,10 +10,15 @@ async function login() {
   //   const { error } = supabase.auth.signInWithOAuth({
   //     provider: "google",
   //   });
-  const { error } = await client.auth.signInWithOAuth({
+  const { data, error } = await client.auth.signInWithOAuth({
     provider: "google",
   });
 
+  if (data) {
+    const user = useSupabaseUser();
+
+    console.log(user.value.id);
+  }
   if (error) {
     console.log(error);
   }

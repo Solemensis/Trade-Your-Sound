@@ -8,15 +8,15 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.0.0"
+    "nuxt": "3.0.0",
+    "prisma": "^4.9.0"
   },
   "dependencies": {
     "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
     "@nuxtjs/supabase": "^0.3.0",
     "@nuxtjs/tailwindcss": "^6.2.0",
-    "@prisma/client": "^4.8.1",
+    "@prisma/client": "^4.9.0",
     "@vueuse/nuxt": "^9.10.0",
-    "joi": "^17.7.0",
-    "prisma": "^4.8.1"
+    "joi": "^17.7.0"
   }
 }

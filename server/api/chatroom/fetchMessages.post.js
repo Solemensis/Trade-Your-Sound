@@ -1,14 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const { listingId } = event.context.params;
+  const chatroom_id = await readBody(event);
 
   //database event
-  return prisma.AudioListings.delete({
+  const fetchMessage = await prisma.Messages.findMany({
     where: {
-      id: parseInt(listingId),
+      room_id: chatroom_id,
     },
   });
+
+  return fetchMessage;
 });

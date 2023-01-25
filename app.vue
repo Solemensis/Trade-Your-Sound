@@ -13,6 +13,10 @@
   box-sizing: border-box;
   font-family: sans-serif !important;
 }
+body {
+  background-color: rgb(62, 62, 62);
+  color: #ccc;
+}
 
 /* html {
    font-size: 62.5%; 

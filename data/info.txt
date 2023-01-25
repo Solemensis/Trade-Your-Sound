@@ -8,15 +8,17 @@ bu ikisini anla sonra yetebilir bile galiba
 
 ---
 
-"mesaj at" butonuyla"Chatrooms" table'ında 2 user arasında yeni chatroom row'u oluştur,
-ve chatrooms page'ine yönel.
+
 
 chatrooms page'i ilk render'da, 
-supabaseuser id'den yararlanarak o user'ın chatroom'larını fetchlesin. ya da pages'ın içinde [id]
-olur route.params.id'den fetchleriz. bu daha mantıklı olabilir, backend'e id parametresi
-gönderebilmek için. ama bilemedim. pages'a [id] vermek istemiyor olabilirim.
+supabaseuser id'den yararlanarak o user'ın chatroom'larını fetchlesin. 
 ilgili endpointte şu olcak:
 fetch where:supabaseid ==user1_id OR user2_id
+
+
+
+
+
 
 
 

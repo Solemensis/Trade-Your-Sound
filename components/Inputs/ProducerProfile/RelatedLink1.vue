@@ -3,10 +3,13 @@ const props = defineProps({
   title: String,
   name: String,
   placeholder: String,
+  data: String,
 });
 
 const emits = defineEmits(["changeInput"]);
-const state = ref("");
+
+const state = ref(`${props.data}`);
+
 const onChange = () => {
   emits("changeInput", state.value, props.name);
 };
@@ -20,7 +23,6 @@ const onChange = () => {
       class="p-2 border w-100 rounded"
       :placeholder="placeholder"
       v-model="state"
-      :name="name"
       @input="onChange"
     />
   </div>

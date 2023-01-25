@@ -36,6 +36,7 @@ export default defineEventHandler((event) => {
       break;
   }
 
+  //database event
   if (category == "all-categories" && !price) {
     return prisma.AudioListings.findMany();
   } else if (category == "all-categories" && price) {

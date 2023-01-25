@@ -4,7 +4,6 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const { categories } = useCategories();
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const route = useRoute();
@@ -14,7 +13,7 @@ const info = useState("addInfo", () => {
     name: "",
     price: "",
     category: "",
-    channels: "",
+    processing: "",
     description: "",
     audio: null,
   };
@@ -25,21 +24,6 @@ const errorMessage = ref("");
 const onChangeInput = (data, name) => {
   info.value[name] = data;
 };
-
-const inputs = [
-  {
-    id: 1,
-    title: "Name *",
-    name: "name",
-    placeholder: "Fireball Sound",
-  },
-  {
-    id: 2,
-    title: "Price *",
-    name: "price",
-    placeholder: "1000",
-  },
-];
 
 const isButtonDisabled = computed(() => {
   for (let key in info.value) {
@@ -74,9 +58,9 @@ async function handleSubmit() {
     name: info.value.name,
     price: parseInt(info.value.price),
     category: info.value.category,
-    channels: info.value.channels,
+    processing: info.value.processing,
     description: info.value.description,
-    listerId: user.value.id,
+    lister_id: user.value.id,
     audio: data.path,
   };
 
@@ -103,30 +87,35 @@ async function handleSubmit() {
       <h1 class="text-6xl">Edit Listing</h1>
     </div>
     <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
-      <AudioEditInput
-        v-for="input in inputs"
-        :key="input.id"
-        :title="input.title"
-        :name="input.name"
-        :placeholder="input.placeholder"
+      <InputsAudioInput
+        :key="1"
+        title="Name *"
+        name="name"
+        placeholder="Fireball Sound"
         @change-input="onChangeInput"
-      /><AudioEditSelect
+      /><InputsAudioInput
+        :key="2"
+        title="Price *"
+        name="price"
+        placeholder="1000"
+        @change-input="onChangeInput"
+      /><InputsAudioCategories
         title="Category *"
-        :options="categories"
         name="category"
         @change-input="onChangeInput"
-      /><AudioEditSelect2
-        title="Channels *"
-        name="channels"
+      />
+      <InputsAudioProcessing
+        title="Processing *"
+        name="processing"
         @change-input="onChangeInput"
       />
-      <AudioEditTextarea
+      <InputsAudioDescription
         title="Description *"
         name="description"
-        placeholder=""
+        placeholder="When a beautiful fireball erupted, I pressed record and captured its deep rumble and sharp crack perfectly. Back in my studio, I spent hours editing and mastering the recording to ensure it sounded just as incredible on the recording as it did in the forest."
         @change-input="onChangeInput"
       />
-      <AudioEditFile @change-input="onChangeInput" />
+      <InputsAudioFile @change-input="onChangeInput" />
       <div>
         <button
           @click="handleSubmit"
