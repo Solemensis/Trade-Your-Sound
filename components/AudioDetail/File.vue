@@ -1,7 +1,8 @@
 <script setup>
 const props = defineProps({
-  audio: Object,
+  audio: String,
 });
+
 const config = useRuntimeConfig();
 </script>
 
@@ -9,7 +10,7 @@ const config = useRuntimeConfig();
   <div>
     <audio controls>
       <source
-        :src="`${config.public.supabase.url}/storage/v1/object/public/audios/${audio.audio}`"
+        :src="`${config.public.supabase.url}/storage/v1/object/public/audios/${audio}`"
         type="audio/mpeg"
       />
     </audio>

@@ -26,14 +26,14 @@ const config = useRuntimeConfig();
       </div>
     </div>
     <div class="p-3 flex">
-      <NuxtLink
+      <!-- <NuxtLink
         class="text-green-400 mr-4"
         :to="`/profile/listings/edit/${listing.id}`"
         >Edit</NuxtLink
-      >
+      > -->
       <NuxtLink
         class="text-blue-400 mr-4"
-        :to="`/profile/listings/view/${listing.id}`"
+        :to="`/audio/${listing.name}-${listing.id}`"
         >View</NuxtLink
       >
       <p

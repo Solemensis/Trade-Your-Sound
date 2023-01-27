@@ -39,8 +39,7 @@ const isChecked = {
           v-model="isChecked.first"
           @click="onChange"
           type="checkbox"
-          :key="1"
-          :value="'sound-effects'"
+          value="sound-effects"
         />
         <label>Sound Effects</label>
       </div>
@@ -49,7 +48,6 @@ const isChecked = {
           v-model="isChecked.second"
           @click="onChange"
           type="checkbox"
-          :key="2"
           value="environmental-sounds"
         />
         <label>Environmental Sounds</label>
@@ -59,7 +57,6 @@ const isChecked = {
           v-model="isChecked.third"
           @click="onChange"
           type="checkbox"
-          :key="3"
           value="ui-sounds"
         />
         <label>UI Sounds</label>
@@ -69,7 +66,6 @@ const isChecked = {
           v-model="isChecked.fourth"
           @click="onChange"
           type="checkbox"
-          :key="4"
           value="foley-sounds"
         />
         <label>Foley Sounds</label>
@@ -79,7 +75,6 @@ const isChecked = {
           v-model="isChecked.fifth"
           @click="onChange"
           type="checkbox"
-          :key="5"
           value="dialogue"
         />
         <label>Dialogue</label>
@@ -89,7 +84,6 @@ const isChecked = {
           v-model="isChecked.sixth"
           @click="onChange"
           type="checkbox"
-          :key="6"
           value="soundscapes"
         />
         <label>Soundscapes</label>

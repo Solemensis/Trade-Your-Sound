@@ -1,6 +1,7 @@
 <script setup>
 const { categories } = useCategories();
 const { prices } = useCategories();
+const { processing } = useCategories();
 
 const route = useRoute();
 const router = useRouter();
@@ -27,6 +28,14 @@ function onChangePrice(price) {
     },
   });
 }
+
+function onChangeProcessing(option) {
+  router.push({
+    query: {
+      processing: option,
+    },
+  });
+}
 </script>
 
 <template>
@@ -36,7 +45,7 @@ function onChangePrice(price) {
       <ul class="border top-1 m-1 bg-white">
         <li @click="onResetCategory()">All Categories</li>
         <li v-for="category in categories" @click="onChangeCategory(category)">
-          {{ category }}
+          {{ formatString(category) }}
         </li>
       </ul>
     </div>
@@ -51,11 +60,14 @@ function onChangePrice(price) {
       </ul>
     </div>
 
-    <button
-      @click="onFilterApply"
-      class="bg-blue-400 w-full mt-2 rounded text-white p-1"
-    >
-      Apply
-    </button>
+    <div class="p-5 relative cursor-pointer border-b">
+      <h3>Processing</h3>
+
+      <ul class="border top-1 m-1 bg-white">
+        <li @click="onChangeProcessing(option)" v-for="option in processing">
+          {{ option }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>

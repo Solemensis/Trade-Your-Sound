@@ -4,13 +4,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const schema = Joi.object({
-  categories: Joi.array().items(Joi.string()).required(),
-  equipment: Joi.array().items(Joi.string()).required(),
+  categories: Joi.array().items(Joi.string().required()),
+  equipment: Joi.array().items(Joi.string().required()),
   related_link1: Joi.string().allow("", null),
   related_link2: Joi.string().allow("", null),
   related_link1_desc: Joi.string().allow("", null),
   related_link2_desc: Joi.string().allow("", null),
-  description: Joi.string().required(),
+  description: Joi.string().min(10).required(),
   lister_id: Joi.string().required(),
 });
 

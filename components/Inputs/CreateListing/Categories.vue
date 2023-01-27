@@ -1,15 +1,15 @@
 <script setup>
-const props = defineProps({
-  title: String,
-  name: String,
-});
+  const props = defineProps({
+    title: String,
+    name: String,
+  });
 
-const emits = defineEmits(["changeInput"]);
-const state = ref("");
+  const emits = defineEmits(["changeInput"]);
+  const state = ref("");
 
-const onChange = () => {
-  emits("changeInput", state.value, props.name);
-};
+  const onChange = () => {
+    emits("changeInput", state.value, props.name);
+  };
 </script>
 
 <template>

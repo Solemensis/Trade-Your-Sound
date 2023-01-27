@@ -5,7 +5,7 @@ const props = defineProps({
 
 const user = useSupabaseUser();
 
-const info = useState("addInfo", () => {
+const info = useState("info", () => {
   return {
     categories: [...props.data.categories],
     equipment: [...props.data.equipment],
@@ -43,7 +43,7 @@ async function handleSubmit() {
         method: "put",
         body,
       });
-      editToggle.value = !editToggle.value;
+      profileEditToggle.value = !profileEditToggle.value;
       carryRefetchSignal.value = !carryRefetchSignal.value;
     } catch (err) {
       errorMessage.value = err.statusMessage;
@@ -51,7 +51,7 @@ async function handleSubmit() {
   } else return;
 }
 
-const editToggle = useState("editToggle");
+const profileEditToggle = useState("profileEditToggle");
 
 const carryRefetchSignal = useState("carryRefetchSignal", () => false);
 </script>

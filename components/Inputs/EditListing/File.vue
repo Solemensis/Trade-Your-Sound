@@ -1,0 +1,93 @@
+<script setup>
+const props = defineProps({
+  data: String,
+});
+
+const audio = useState("audioAudio", () => {
+  return {
+    audio: null,
+  };
+});
+
+const emits = defineEmits(["changeInput"]);
+
+function removePublic(str) {
+  if (str.startsWith("public/")) {
+    return str.substring("public/".length);
+  } else {
+    return str;
+  }
+}
+
+const uploadedAudio = ref(removePublic(props.data));
+
+const onAudioUpload = (event) => {
+  const input = event.target;
+
+  if (input.files) {
+    audio.value.audio = input.files[0];
+    emits("changeInput", input.files[0], "audio");
+
+    uploadedAudio.value = input.files[0].name;
+  }
+};
+
+//Bottom code is about showing old audio of the listing on the edit page.
+// AND making it emit's value (which is the actual mp3 file)
+const supabase = useSupabaseClient();
+
+const { data, error } = await supabase.storage
+  .from("audios")
+  .download(props.data);
+
+let file = new File([data], removePublic(props.data), { type: "audio/mpeg" });
+
+const fileinput = ref(null);
+
+onMounted(() => {
+  const dataTransfer = new DataTransfer();
+  dataTransfer.items.add(file);
+  fileinput.value.files = dataTransfer.files;
+
+  audio.value.audio = dataTransfer.files[0];
+
+  emits("changeInput", dataTransfer.files[0], "audio");
+});
+</script>
+
+<template>
+  <div class="col-md-5 offset-md-1 mt-2 w-[100%]">
+    <label for="" class="text-cyan-500 mb-1 text-sm">Audio *</label>
+    <form class="mt-2">
+      <div class="form-group">
+        <div class="relative">
+          <div
+            style="
+              height: 100px;
+              width: 200px;
+              border: green dashed 2px;
+              border-radius: 1rem;
+              font-size: 3rem;
+              color: blueviolet;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <input
+              type="file"
+              ref="fileinput"
+              accept="audio/mpeg"
+              class="opacity-0 absolute cursor-pointer"
+              @change="onAudioUpload"
+            />
+
+            <p v-if="!uploadedAudio" style="font-size: 1rem">+ drop audio...</p>
+            <p v-else style="font-size: 1rem">{{ uploadedAudio }} is placed.</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>

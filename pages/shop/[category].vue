@@ -10,6 +10,7 @@ const price = computed(() => route.query.price);
 
 const { data: audios, refresh } = await useFetchAudios(route.params.category, {
   price: price,
+  processing: "editedd",
 });
 watch(
   () => route.query,

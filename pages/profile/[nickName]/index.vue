@@ -11,15 +11,7 @@ const { data, refresh, error } = await useFetch(
   `/api/producerProfile/${route.params.nickName}`
 );
 
-function cutString(str) {
-  let index = str.indexOf("T");
-  if (index === -1) {
-    return str;
-  }
-  return str.slice(0, index);
-}
-
-const editToggle = useState("editToggle", () => false);
+const profileEditToggle = useState("profileEditToggle", () => false);
 
 const carryRefetchSignal = useState("carryRefetchSignal");
 watch(
@@ -33,13 +25,13 @@ watch(
 <template>
   <div>
     <div class="mt-24">
-      <h1 class="text-6xl">My Profile</h1>
+      <h1 class="text-6xl">profile: {{ data.user_name }}</h1>
       <div
-        @click="editToggle = !editToggle"
+        @click="profileEditToggle = !profileEditToggle"
         v-if="user && user.id === data.lister_id"
       >
         <button
-          v-if="!editToggle"
+          v-if="!profileEditToggle"
           class="bg-purple-400 text-white rounded py-2 px-7 mt-3"
         >
           edit page
@@ -51,7 +43,7 @@ watch(
 
     <!-- editable data -->
     <div
-      v-if="!editToggle"
+      v-if="!profileEditToggle"
       class="shadow rounded p-3 mt-5 flex flex-wrap justify-between"
     >
       <h2>{{ data.user_name }}</h2>

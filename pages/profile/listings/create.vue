@@ -24,16 +24,19 @@ const onChangeInput = (data, name) => {
   info.value[name] = data;
 };
 
-// const isButtonDisabled = computed(() => {
-//   for (let key in info.value) {
-//     if (!info.value[key]) return true;
-//   }
-//   return false;
-// });
+const isButtonDisabled = computed(() => {
+  for (let key in info.value) {
+    if (!info.value[key]) return true;
+  }
+  return false;
+});
 
 async function handleSubmit() {
   //audio bucket file creation logic
-  const fileName = Math.floor(Math.random() * 999999999999);
+  const fileName =
+    replaceSpacesAndTrChars(info.value.name) +
+    "_" +
+    Math.floor(Math.random() * 9999);
   const { data, error } = await supabase.storage
     .from("audios")
     .upload("public/" + fileName, info.value.audio);
@@ -77,35 +80,33 @@ async function handleSubmit() {
       <h1 class="text-6xl">Create a New Listing</h1>
     </div>
     <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
-      <InputsAudioInput
-        :key="1"
+      <InputsCreateListingName
         title="Name *"
         name="name"
         placeholder="Fireball Sound"
         @change-input="onChangeInput"
-      /><InputsAudioInput
-        :key="2"
+      /><InputsCreateListingPrice
         title="Price *"
         name="price"
         placeholder="1000"
         @change-input="onChangeInput"
-      /><InputsAudioCategories
+      /><InputsCreateListingCategories
         title="Category *"
         name="category"
         @change-input="onChangeInput"
       />
-      <InputsAudioProcessing
+      <InputsCreateListingProcessing
         title="Processing *"
         name="processing"
         @change-input="onChangeInput"
       />
-      <InputsAudioDescription
+      <InputsCreateListingDescription
         title="Description *"
         name="description"
         placeholder="When a beautiful fireball erupted, I pressed record and captured its deep rumble and sharp crack perfectly. Back in my studio, I spent hours editing and mastering the recording to ensure it sounded just as incredible on the recording as it did in the forest."
         @change-input="onChangeInput"
       />
-      <InputsAudioFile @change-input="onChangeInput" />
+      <InputsCreateListingFile @change-input="onChangeInput" />
       <div>
         <button
           @click="handleSubmit"
