@@ -21,8 +21,8 @@ model AudioListings {
   description     String
   lister_id       String      
   audio           String
-  created_at      DateTime    @default(now()) @db.Date
-  updated_at      DateTime    @updatedAt @db.Date
+  created_at      DateTime    @default(now()) 
+  updated_at      DateTime    @updatedAt 
 }
 
 model ProducerProfile {
@@ -36,15 +36,15 @@ model ProducerProfile {
   related_link2       String?
   description         String?
   lister_id           String      @unique
-  created_at          DateTime    @default(now()) @db.Date
-  updated_at          DateTime    @updatedAt  @db.Date
+  created_at          DateTime    @default(now()) 
+  updated_at          DateTime    @updatedAt  
 }
 
  
 
 model ChatRooms {
 id                Int         @id @default(autoincrement())
-created_at        DateTime    @default(now()) @db.Date
+created_at        DateTime    @default(now())
 room_name         String
 user1_id          String
 user2_id          String
@@ -52,7 +52,7 @@ messages          Messages[]
 }
 model Messages {
 id                Int         @id @default(autoincrement())
-created_at        DateTime    @default(now()) @db.Date
+created_at        DateTime    @default(now()) 
 content           String
 lister_id         String
 room_id           Int

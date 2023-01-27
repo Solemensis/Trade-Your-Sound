@@ -3,36 +3,45 @@ const { categories } = useCategories();
 const { prices } = useCategories();
 const { processing } = useCategories();
 
-const route = useRoute();
 const router = useRouter();
 
+//route queries
+const queries = reactive({});
+
 function onChangeCategory(category) {
-  if (route.query.price != undefined) {
-    navigateTo(`/shop/${category}?price=${route.query.price}`);
-  } else {
-    navigateTo(`/shop/${category}/`);
-  }
-}
-function onResetCategory() {
-  if (route.query.price != undefined) {
-    navigateTo(`/shop/all-categories?price=${route.query.price}`);
-  } else {
-    navigateTo(`/shop/all-categories/`);
-  }
+  queries.category = category;
+  onFilterApply();
 }
 
 function onChangePrice(price) {
+  queries.price = price;
+  onFilterApply();
+}
+
+function onChangeProcessing(option) {
+  queries.processing = option;
+  onFilterApply();
+}
+
+//function to start the search
+function onFilterApply() {
+  const pureObject = { ...queries };
+
   router.push({
     query: {
-      price: price,
+      category: pureObject.category,
+      price: pureObject.price,
+      processing: pureObject.processing,
     },
   });
 }
 
-function onChangeProcessing(option) {
+function removeAllFilters() {
   router.push({
     query: {
-      processing: option,
+      category: undefined,
+      price: undefined,
+      processing: undefined,
     },
   });
 }
@@ -43,7 +52,7 @@ function onChangeProcessing(option) {
     <div class="p-5 relative cursor-pointer border-b">
       <h3>Category</h3>
       <ul class="border top-1 m-1 bg-white">
-        <li @click="onResetCategory()">All Categories</li>
+        <li @click="onChangeCategory(undefined)">All Categories</li>
         <li v-for="category in categories" @click="onChangeCategory(category)">
           {{ formatString(category) }}
         </li>
@@ -54,6 +63,7 @@ function onChangeProcessing(option) {
       <h3>Price</h3>
 
       <ul class="border top-1 m-1 bg-white">
+        <li @click="onChangePrice(undefined)">All Prices</li>
         <li @click="onChangePrice(price)" v-for="price in prices">
           {{ price }}
         </li>
@@ -64,10 +74,17 @@ function onChangeProcessing(option) {
       <h3>Processing</h3>
 
       <ul class="border top-1 m-1 bg-white">
+        <li @click="onChangeProcessing(undefined)">All Processings</li>
         <li @click="onChangeProcessing(option)" v-for="option in processing">
           {{ option }}
         </li>
       </ul>
     </div>
+    <button
+      @click="removeAllFilters"
+      class="bg-blue-400 w-full mt-2 rounded text-white p-1"
+    >
+      remove all filters
+    </button>
   </div>
 </template>

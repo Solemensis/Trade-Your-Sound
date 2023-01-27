@@ -1,11 +1,21 @@
 <script setup>
+const route = useRoute();
+
+const category = computed(() => route.query.category);
+
 const { data: profiles, error } = await useFetch(
-  "/api/producerProfile/getAllProfiles"
+  "/api/producerProfile/getProfiles",
+  {
+    query: {
+      category: category,
+    },
+  }
 );
 </script>
 
 <template>
-  <div>
+  <div class="mt-32 flex">
+    <FindProducerSideBar />
     <div v-for="profile in profiles" :key="profile.id">
       <NuxtLink :to="`/profile/${profile.user_name}`"
         ><div

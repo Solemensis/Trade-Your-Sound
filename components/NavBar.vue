@@ -17,6 +17,7 @@ async function logout() {
     >
       <NuxtLink to="/" class="text-3xl font-mono">audio trader</NuxtLink>
       <div v-if="user" class="flex">
+        <NuxtLink to="/shop" class="mr-5">shop</NuxtLink>
         <NuxtLink to="/find-producer/" class="mr-5">producer profiles</NuxtLink>
         <NuxtLink to="/chat" class="mr-5">chat</NuxtLink>
         <NuxtLink to="/profile/listings" class="mr-5">my listings</NuxtLink>
