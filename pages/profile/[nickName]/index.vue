@@ -24,28 +24,20 @@ watch(
 
 <template>
   <div>
-    <div class="mt-24">
-      <h1 class="text-6xl">profile: {{ data.user_name }}</h1>
+    <div>
+      <h1>profile: {{ data.user_name }}</h1>
       <div
         @click="profileEditToggle = !profileEditToggle"
         v-if="user && user.id === data.lister_id"
       >
-        <button
-          v-if="!profileEditToggle"
-          class="bg-purple-400 text-white rounded py-2 px-7 mt-3"
-        >
-          edit page
-        </button>
+        <button v-if="!profileEditToggle">edit page</button>
       </div>
       <h3>created: {{ cutString(data.created_at) }}</h3>
       <h3>updated: {{ cutString(data.updated_at) }}</h3>
     </div>
 
     <!-- editable data -->
-    <div
-      v-if="!profileEditToggle"
-      class="shadow rounded p-3 mt-5 flex flex-wrap justify-between"
-    >
+    <div v-if="!profileEditToggle">
       <h2>{{ data.user_name }}</h2>
       <div>
         <p v-for="category in data.categories">✔️{{ category }}</p>

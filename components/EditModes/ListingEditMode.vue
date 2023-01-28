@@ -52,13 +52,10 @@ async function handleSubmit() {
 
     // http post request to send body object to backend
     try {
-      const response = await $fetch(
-        `/api/audio/listings/${route.params.id}/edit`,
-        {
-          method: "put",
-          body,
-        }
-      );
+      const response = await $fetch(`/api/audio/listings/${route.params.id}/`, {
+        method: "put",
+        body,
+      });
 
       //as that put request was a pure edit and the audio file will always be uploaded,
       //the old audio shall be eleminated:
@@ -84,7 +81,7 @@ const listingEditRefetchSignal = useState(
 </script>
 
 <template>
-  <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
+  <div>
     <InputsEditListingName
       title="Name *"
       name="name"
@@ -118,13 +115,8 @@ const listingEditRefetchSignal = useState(
     />
     <InputsEditListingFile :data="audio.audio" @change-input="onChangeInput" />
     <div>
-      <button
-        @click="handleSubmit"
-        class="bg-blue-400 text-white rounded py-2 px-7 mt-3"
-      >
-        Submit
-      </button>
-      <p v-if="errorMessage" class="mt-3 text-red-400">{{ errorMessage }}</p>
+      <button @click="handleSubmit">Submit</button>
+      <p v-if="errorMessage">{{ errorMessage }}</p>
     </div>
   </div>
 </template>

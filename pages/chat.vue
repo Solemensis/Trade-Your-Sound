@@ -58,7 +58,7 @@ async function postMessage() {
     </div>
     <h3 v-else>no chat rooms</h3>
 
-    <div class="messageBox">
+    <div>
       <p
         v-for="message in messages"
         :key="message.id"
@@ -66,18 +66,9 @@ async function postMessage() {
       >
         {{ message.content }}
       </p>
-      <input
-        style="border: black 1px solid"
-        v-model="textMessage"
-        type="text"
-      />
+      <input v-model="textMessage" type="text" />
 
-      <button
-        style="border: purple 2px solid; padding: 1rem; background-color: gray"
-        @click="postMessage"
-      >
-        send
-      </button>
+      <button @click="postMessage">send</button>
     </div>
   </div>
 </template>

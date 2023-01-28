@@ -10,8 +10,8 @@ const config = useRuntimeConfig();
 </script>
 
 <template>
-  <div class="shadow rounded overflow-hidden flex justify-between mb-4">
-    <div class="flex">
+  <div>
+    <div>
       <audio controls>
         <source
           :src="`${config.public.supabase.url}/storage/v1/object/public/audios/${listing.audio}`"
@@ -19,29 +19,15 @@ const config = useRuntimeConfig();
         />
       </audio>
 
-      <div class="p-3">
-        <h1 class="text-2xl">{{ listing.name }}</h1>
+      <div>
+        <h1>{{ listing.name }}</h1>
 
-        <p class="text-blue-400">${{ listing.price }}</p>
+        <p>${{ listing.price }}</p>
       </div>
     </div>
-    <div class="p-3 flex">
-      <!-- <NuxtLink
-        class="text-green-400 mr-4"
-        :to="`/profile/listings/edit/${listing.id}`"
-        >Edit</NuxtLink
-      > -->
-      <NuxtLink
-        class="text-blue-400 mr-4"
-        :to="`/audio/${listing.name}-${listing.id}`"
-        >View</NuxtLink
-      >
-      <p
-        @click="emits('deleteClick', listing.id)"
-        class="text-red-400 cursor-pointer"
-      >
-        Delete
-      </p>
+    <div>
+      <NuxtLink :to="`/audio/${listing.name}-${listing.id}`">View</NuxtLink>
+      <p @click="emits('deleteClick', listing.id)">Delete</p>
     </div>
   </div>
 </template>

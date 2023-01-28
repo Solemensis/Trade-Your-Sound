@@ -25,14 +25,9 @@ const onClick = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col w-[48%] mt-2">
-    <label class="text-cyan-500 mb-1 text-sm">Pick a username</label>
-    <input
-      type="text"
-      class="p-2 border w-100 rounded"
-      placeholder="SoundMage31"
-      v-model="username.user_name"
-    />
+  <div>
+    <label>Pick a username</label>
+    <input type="text" placeholder="SoundMage31" v-model="username.user_name" />
     <button @click="onClick">accept</button>
   </div>
 </template>

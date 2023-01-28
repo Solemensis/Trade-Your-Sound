@@ -29,31 +29,20 @@ const handleDelete = (value) => {
 </script>
 
 <template>
-  <div class="flex flex-col w-[48%] mt-2">
-    <label for="" class="text-cyan-500 mb-1 text-sm">{{ title }}</label>
+  <div>
+    <label for="">{{ title }}</label>
 
     <div>
       <h3
         @click="handleDelete(equipment)"
-        style="border: 2px purple solid; display: inline-block"
         v-for="equipment in equipments"
         :key="equipment"
       >
         {{ equipment }}❌
       </h3>
 
-      <input
-        type="text"
-        class="p-2 border w-100 rounded"
-        placeholder="sm57 (add 1 by 1)"
-        v-model="state"
-      />
-      <button
-        @click="onAdd"
-        style="border: 2px purple solid; background-color: gray; padding: 1rem"
-      >
-        add
-      </button>
+      <input type="text" placeholder="sm57 (add 1 by 1)" v-model="state" />
+      <button @click="onAdd">add</button>
     </div>
   </div>
 </template>

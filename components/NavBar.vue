@@ -1,35 +1,45 @@
 <script setup>
 const user = useSupabaseUser();
-
 const client = useSupabaseAuthClient();
 
 async function logout() {
   client.auth.signOut();
-
   navigateTo("/");
 }
 </script>
 
 <template>
   <div>
-    <header
-      class="sticky top-0 z-50 flex justify-between items-center space-x-1 border-b bg-white p-4 shadow-md"
-    >
-      <NuxtLink to="/" class="text-3xl font-mono">audio trader</NuxtLink>
-      <div v-if="user" class="flex">
-        <NuxtLink to="/shop" class="mr-5">shop</NuxtLink>
-        <NuxtLink to="/find-producer/" class="mr-5">producer profiles</NuxtLink>
-        <NuxtLink to="/chat" class="mr-5">chat</NuxtLink>
-        <NuxtLink to="/profile/listings" class="mr-5">my listings</NuxtLink>
-        <NuxtLink to="/profile/" class="mr-5">my profile</NuxtLink>
-        <p @click="logout" class="cursor-pointer">Logout</p>
+    <header>
+      <div class="nav-link-container" v-if="user">
+        <div class="logo"><NuxtLink to="/">audio trader</NuxtLink></div>
+
+        <NuxtLink to="/shop">shop</NuxtLink>
+        <NuxtLink to="/find-producer/">producer profiles</NuxtLink>
+        <NuxtLink to="/chat">chat</NuxtLink>
+        <NuxtLink to="/profile/listings">my listings</NuxtLink>
+        <NuxtLink to="/profile/">my profile</NuxtLink>
+        <p @click="logout">Logout</p>
       </div>
-      <NuxtLink v-else to="/login">Login</NuxtLink>
+      <div class="nav-link-container" v-else>
+        <NuxtLink to="/shop">shop</NuxtLink>
+        <NuxtLink to="/find-producer/">producer profiles</NuxtLink>
+        <NuxtLink to="/login">Login</NuxtLink>
+      </div>
     </header>
   </div>
 </template>
 <style scoped>
 header {
-  background-color: rgb(54, 54, 54);
+  background-color: #1c1c1c;
+  border-bottom: #262626 1px solid;
+  height: 6rem;
+}
+.nav-link-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 100%;
+  background-color: gray;
 }
 </style>

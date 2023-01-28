@@ -76,10 +76,10 @@ async function handleSubmit() {
 
 <template>
   <div>
-    <div class="mt-24">
-      <h1 class="text-6xl">Create a New Listing</h1>
+    <div>
+      <h1>Create a New Listing</h1>
     </div>
-    <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
+    <div>
       <InputsCreateListingName
         title="Name *"
         name="name"
@@ -108,14 +108,10 @@ async function handleSubmit() {
       />
       <InputsCreateListingFile @change-input="onChangeInput" />
       <div>
-        <button
-          @click="handleSubmit"
-          :disabled="isButtonDisabled"
-          class="bg-blue-400 text-white rounded py-2 px-7 mt-3"
-        >
+        <button @click="handleSubmit" :disabled="isButtonDisabled">
           Submit
         </button>
-        <p v-if="errorMessage" class="mt-3 text-red-400">{{ errorMessage }}</p>
+        <p v-if="errorMessage">{{ errorMessage }}</p>
       </div>
     </div>
   </div>

@@ -53,12 +53,8 @@ async function onSubmit() {
 }
 </script>
 <template>
-  <div v-if="user" class="mt-10">
-    <button
-      v-if="user.id != props.audio.lister_id"
-      @click="onSubmit"
-      class="bg-blue-400 text-white px-10 py-3 rounded mt-4"
-    >
+  <div v-if="user">
+    <button v-if="user.id != props.audio.lister_id" @click="onSubmit">
       Send Message
     </button>
     <h3 v-else>Reminder: This is your listing.</h3>

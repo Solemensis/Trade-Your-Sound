@@ -1,21 +1,21 @@
 <script setup>
-  const props = defineProps({
-    title: String,
-    name: String,
-  });
+const props = defineProps({
+  title: String,
+  name: String,
+});
 
-  const emits = defineEmits(["changeInput"]);
-  const state = ref("");
+const emits = defineEmits(["changeInput"]);
+const state = ref("");
 
-  const onChange = () => {
-    emits("changeInput", state.value, props.name);
-  };
+const onChange = () => {
+  emits("changeInput", state.value, props.name);
+};
 </script>
 
 <template>
-  <div class="flex flex-col w-[48%] mt-2">
-    <label class="text-cyan-500 mb-1 text-sm">{{ title }}</label>
-    <select class="p-2 border w-100 rounded" @change="onChange" v-model="state">
+  <div>
+    <label>{{ title }}</label>
+    <select @change="onChange" v-model="state">
       <option :key="1" value="sound-effects">Sound Effects</option>
       <option :key="2" value="environmental-sounds">
         Environmental Sounds

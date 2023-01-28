@@ -57,7 +57,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
 </script>
 
 <template>
-  <div class="shadow rounded p-3 mt-5 flex flex-wrap justify-between">
+  <div>
     <InputsProducerProfileCategories
       title="Categories *"
       name="categories"
@@ -105,13 +105,8 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       @change-input="onChangeInput"
     />
     <div>
-      <button
-        @click="handleSubmit"
-        class="bg-blue-400 text-white rounded py-2 px-7 mt-3"
-      >
-        Submit
-      </button>
-      <p v-if="errorMessage" class="mt-3 text-red-400">{{ errorMessage }}</p>
+      <button @click="handleSubmit">Submit</button>
+      <p v-if="errorMessage">{{ errorMessage }}</p>
     </div>
   </div>
 </template>

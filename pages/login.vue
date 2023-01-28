@@ -26,10 +26,8 @@ async function login() {
 </script>
 
 <template>
-  <div class="mt-10">
-    <h1 class="text-5xl font-bold md-7">Login</h1>
+  <div>
+    <h1>Login</h1>
   </div>
-  <button @click="login" class="bg-red-400 p-3 rounded text-white font-bold">
-    Login with Google
-  </button>
+  <button @click="login">Login with Google</button>
 </template>

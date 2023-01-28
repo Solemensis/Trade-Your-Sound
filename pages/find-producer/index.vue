@@ -14,15 +14,12 @@ const { data: profiles, error } = await useFetch(
 </script>
 
 <template>
-  <div class="mt-32 flex">
+  <div>
     <FindProducerSideBar />
     <div v-for="profile in profiles" :key="profile.id">
       <NuxtLink :to="`/profile/${profile.user_name}`"
-        ><div
-          style="text-align: center"
-          class="relative shadow border w-full overflow-hidden mb-5 cursor-pointer h-[200px]"
-        >
-          <h2 style="font-size: 2rem">
+        ><div>
+          <h2>
             {{ profile.user_name }}
           </h2>
           <div>

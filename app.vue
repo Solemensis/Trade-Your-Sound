@@ -11,14 +11,13 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: sans-serif !important;
+  font-family: sans-serif;
 }
 body {
-  background-color: rgb(62, 62, 62);
-  color: #ccc;
+  background-color: #1c1c1c;
+  color: #a8a8a8;
 }
-
-/* html {
-   font-size: 62.5%; 
-} */
+html {
+  font-size: 62.5%;
+}
 </style>

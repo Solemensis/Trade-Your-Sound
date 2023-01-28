@@ -56,35 +56,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="col-md-5 offset-md-1 mt-2 w-[100%]">
-    <label for="" class="text-cyan-500 mb-1 text-sm">Audio *</label>
-    <form class="mt-2">
-      <div class="form-group">
-        <div class="relative">
-          <div
-            style="
-              height: 100px;
-              width: 200px;
-              border: green dashed 2px;
-              border-radius: 1rem;
-              font-size: 3rem;
-              color: blueviolet;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-            "
-          >
+  <div>
+    <label for="">Audio *</label>
+    <form>
+      <div>
+        <div>
+          <div>
             <input
               type="file"
               ref="fileinput"
               accept="audio/mpeg"
-              class="opacity-0 absolute cursor-pointer"
               @change="onAudioUpload"
             />
 
-            <p v-if="!uploadedAudio" style="font-size: 1rem">+ drop audio...</p>
-            <p v-else style="font-size: 1rem">{{ uploadedAudio }} is placed.</p>
+            <p v-if="!uploadedAudio">+ drop audio...</p>
+            <p v-else>{{ uploadedAudio }} is placed.</p>
           </div>
         </div>
       </div>

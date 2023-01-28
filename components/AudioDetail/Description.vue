@@ -5,8 +5,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="mt-5">
-    <p class="mb-10">
+  <div>
+    <p>
       {{ description }}
     </p>
   </div>

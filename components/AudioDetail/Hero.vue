@@ -6,17 +6,17 @@ const props = defineProps({
 const config = useRuntimeConfig();
 </script>
 <template>
-  <div class="mt-10">
+  <div>
     <!-- <input type="audio"> -->
-    <h1 class="mt-10 text-4xl">{{ audio.name }}</h1>
-    <div class="text-slate-500 flex text-lg mt-3 border-b pb-5 justify-between">
-      <div class="flex">
-        <p class="mr-2">{{ audio.category }}</p>
-        <p class="mr-2">|</p>
-        <p class="mr-2">{{ audio.channels }}</p>
+    <h1>{{ audio.name }}</h1>
+    <div>
+      <div>
+        <p>{{ audio.category }}</p>
+        <p>|</p>
+        <p>{{ audio.channels }}</p>
       </div>
       <div>
-        <p class="font-bold text-2xl">${{ audio.price }}</p>
+        <p>${{ audio.price }}</p>
       </div>
     </div>
   </div>

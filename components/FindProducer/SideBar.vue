@@ -33,9 +33,9 @@ function removeAllFilters() {
 
 <template>
   <div>
-    <div class="p-5 relative cursor-pointer border-b">
+    <div>
       <h3>Category</h3>
-      <ul class="border top-1 m-1 bg-white">
+      <ul>
         <li @click="onChangeCategory()">All Categories</li>
         <li v-for="category in categories" @click="onChangeCategory(category)">
           {{ formatString(category) }}
@@ -43,11 +43,6 @@ function removeAllFilters() {
       </ul>
     </div>
 
-    <button
-      @click="removeAllFilters"
-      class="bg-blue-400 w-full mt-2 rounded text-white p-1"
-    >
-      remove all filters
-    </button>
+    <button @click="removeAllFilters">remove all filters</button>
   </div>
 </template>
