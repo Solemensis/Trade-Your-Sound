@@ -19,6 +19,8 @@ if (error.value) {
   });
 }
 
+//edit penceresinde database'deki datanın güncellenmesinin ardından, orada dönen
+//boolean sinyaline burada erişilmesi, ve datanın burda yeniden fetch edilmesi için:
 const listingEditRefetchSignal = useState("listingEditRefetchSignal");
 
 watch(
@@ -26,26 +28,25 @@ watch(
   () => {
     refresh();
 
-    //audio dosyasının da refreshlenmesi için, componenti dom'dan silip hemen
-    //geri kurmaya dair bi trick
+    //audio dosyasının da yeni fetch'i algılamasını sağlamak için,
+    //componenti dom'dan silip hemen geri kurmaya dair bi trick
     reRenderComponent.value = !reRenderComponent.value;
     setTimeout(() => {
       reRenderComponent.value = !reRenderComponent.value;
     }, 300);
   }
 );
-
-const listingEditToggle = useState("listingEditToggle", () => false);
-
+//hemen false ve ardından true dönüp audioyu re-render'layan boolean
 const reRenderComponent = ref(true);
+
+//bu, sadece, 2 pencere (yani view-edit) arasını tetikleyen boolean
+const listingEditToggle = useState("listingEditToggle", () => false);
 </script>
 <template>
-  <div>
+  <div class="container">
     <div v-if="audio">
       <div v-if="!listingEditToggle">
         <AudioDetailHero :audio="audio" />
-        <AudioDetailAttributes :features="audio.features" />
-        <AudioDetailDescription :description="audio.description" />
         <AudioDetailContactButton :audio="audio" />
         <AudioDetailFile :audio="audio.audio" v-if="reRenderComponent" />
         <div @click="listingEditToggle = !listingEditToggle">
@@ -58,3 +59,13 @@ const reRenderComponent = ref(true);
     </div>
   </div>
 </template>
+
+<style scoped>
+.container {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 20%;
+  top: 20%;
+}
+</style>

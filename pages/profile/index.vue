@@ -25,9 +25,15 @@ const onClick = async () => {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <label>Pick a username</label>
     <input type="text" placeholder="SoundMage31" v-model="username.user_name" />
     <button @click="onClick">accept</button>
   </div>
 </template>
+
+<style scoped>
+.container {
+  padding-top: 20rem;
+}
+</style>

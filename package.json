@@ -7,14 +7,13 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "devDependencies": {
-    "nuxt": "3.0.0"
-  },
   "dependencies": {
-    "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
+    "@formkit/nuxt": "^1.0.0-beta.15-15bdeb4",
+    "@nuxt/image-edge": "^1.0.0-27913696.5d122a3",
     "@nuxtjs/supabase": "^0.3.0",
     "@prisma/client": "^4.9.0",
     "@vueuse/nuxt": "^9.10.0",
-    "joi": "^17.7.0"
+    "joi": "^17.7.0",
+    "nuxt": "^3.1.1"
   }
 }

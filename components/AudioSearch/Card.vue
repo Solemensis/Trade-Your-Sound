@@ -11,13 +11,13 @@ const config = useRuntimeConfig();
 </script>
 <template>
   <div>
-    <img
-      :src="favored ? heartFilled : heartOutline"
-      @click="favored = !favored"
-    />
-
-    <div @click="navigateTo(`/audio/${audio.name}-${audio.id}`)">
-      <audio controls>
+    <div class="card" @click="navigateTo(`/audio/${audio.name}-${audio.id}`)">
+      <!-- <img
+        :src="favored ? heartFilled : heartOutline"
+        @click="favored = !favored"
+      /> -->
+      <input type="text" />
+      <audio class="listing-audio" controls>
         <source
           :src="`${config.public.supabase.url}/storage/v1/object/public/audios/${audio.audio}`"
           type="audio/mpeg"
@@ -25,14 +25,20 @@ const config = useRuntimeConfig();
       </audio>
 
       <div>
-        <div>
-          <h1>{{ audio.name }}</h1>
-          <p>
-            {{ audio.description }}
-          </p>
-        </div>
-        <h1>${{ audio.price }}</h1>
+        <h1 class="listing-name">{{ audio.name }}</h1>
+        <h1 class="listing-price">${{ audio.price }}</h1>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+/* .card {
+}
+.listing-name {
+}
+.listing-audio {
+}
+.listing-price {
+} */
+</style>

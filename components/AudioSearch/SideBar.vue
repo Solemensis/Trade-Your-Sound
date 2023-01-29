@@ -49,37 +49,49 @@ function removeAllFilters() {
 
 <template>
   <div>
-    <div>
-      <h3>Category</h3>
-      <ul>
-        <li @click="onChangeCategory(undefined)">All Categories</li>
-        <li v-for="category in categories" @click="onChangeCategory(category)">
-          {{ formatString(category) }}
-        </li>
-      </ul>
+    <div class="search-bar">
+      <div>
+        <h3>Category</h3>
+        <ul>
+          <li @click="onChangeCategory(undefined)">All Categories</li>
+          <li
+            v-for="category in categories"
+            @click="onChangeCategory(category)"
+          >
+            {{ formatString(category) }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Price</h3>
+        <ul>
+          <li @click="onChangePrice(undefined)">All Prices</li>
+          <li @click="onChangePrice(price)" v-for="price in prices">
+            {{ price }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Processing</h3>
+        <ul>
+          <li @click="onChangeProcessing(undefined)">All Processings</li>
+          <li @click="onChangeProcessing(option)" v-for="option in processing">
+            {{ option }}
+          </li>
+        </ul>
+      </div>
+      <button @click="removeAllFilters">remove all filters</button>
     </div>
-
-    <div>
-      <h3>Price</h3>
-
-      <ul>
-        <li @click="onChangePrice(undefined)">All Prices</li>
-        <li @click="onChangePrice(price)" v-for="price in prices">
-          {{ price }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Processing</h3>
-
-      <ul>
-        <li @click="onChangeProcessing(undefined)">All Processings</li>
-        <li @click="onChangeProcessing(option)" v-for="option in processing">
-          {{ option }}
-        </li>
-      </ul>
-    </div>
-    <button @click="removeAllFilters">remove all filters</button>
   </div>
 </template>
+
+<style scoped>
+.search-bar {
+  position: fixed;
+  left: 5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</style>

@@ -11,6 +11,7 @@ const schema = Joi.object({
   description: Joi.string().min(10).required(),
   lister_id: Joi.string().required(),
   audio: Joi.string().required(),
+  user_name: Joi.string().required(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -26,8 +27,16 @@ export default defineEventHandler(async (event) => {
   }
 
   //body destructure'ı ile yapmak
-  const { name, price, category, processing, description, lister_id, audio } =
-    body;
+  const {
+    name,
+    price,
+    category,
+    processing,
+    description,
+    lister_id,
+    audio,
+    user_name,
+  } = body;
 
   //database event
   const AudioListing = await prisma.AudioListings.create({
@@ -39,6 +48,7 @@ export default defineEventHandler(async (event) => {
       description,
       lister_id,
       audio,
+      user_name,
     },
   });
 

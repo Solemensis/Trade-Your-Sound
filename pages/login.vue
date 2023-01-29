@@ -31,3 +31,10 @@ async function login() {
   </div>
   <button @click="login">Login with Google</button>
 </template>
+
+<style scoped>
+button {
+  width: 20rem;
+  height: 20rem;
+}
+</style>

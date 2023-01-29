@@ -23,6 +23,7 @@ model AudioListings {
   audio           String
   created_at      DateTime    @default(now()) 
   updated_at      DateTime    @updatedAt 
+  user_name       String      @unique
 }
 
 model ProducerProfile {

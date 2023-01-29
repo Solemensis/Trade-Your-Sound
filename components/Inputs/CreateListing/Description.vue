@@ -16,6 +16,7 @@ const onChange = () => {
   <div>
     <label for="">{{ title }}</label>
     <textarea
+      class="input"
       type="text"
       :placeholder="placeholder"
       v-model="state"
