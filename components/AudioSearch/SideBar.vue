@@ -82,7 +82,9 @@ function removeAllFilters() {
           </li>
         </ul>
       </div>
-      <button @click="removeAllFilters">remove all filters</button>
+      <button class="filter-remove" @click="removeAllFilters">
+        Remove Filters
+      </button>
     </div>
   </div>
 </template>
@@ -90,8 +92,43 @@ function removeAllFilters() {
 <style scoped>
 .search-bar {
   position: fixed;
-  left: 5rem;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: 4rem;
+  height: 100vh;
+  gap: 3rem;
+  font-size: 1.5rem;
+}
+.search-bar h3 {
+  margin-bottom: 1rem;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+  border-bottom: white 1px solid;
+  color: #3fcf8e;
+}
+
+ul {
+  list-style: none;
+}
+ul li {
+  color: #989898;
+  transition: 0.1s;
+}
+ul li:hover {
+  color: #3fcf8e;
+  cursor: pointer;
+}
+.filter-remove {
+  border: none;
+  background-color: #5d1919;
+  border-radius: 1rem;
+  padding: 0.7rem 1.5rem;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.filter-remove:hover {
+  background-color: #852020;
 }
 </style>

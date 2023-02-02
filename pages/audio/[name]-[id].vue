@@ -38,20 +38,14 @@ watch(
 );
 //hemen false ve ardından true dönüp audioyu re-render'layan boolean
 const reRenderComponent = ref(true);
-
-//bu, sadece, 2 pencere (yani view-edit) arasını tetikleyen boolean
-const listingEditToggle = useState("listingEditToggle", () => false);
+const listingEditToggle = useState("listingEditToggle");
 </script>
 <template>
   <div class="container">
     <div v-if="audio">
       <div v-if="!listingEditToggle">
         <AudioDetailHero :audio="audio" />
-        <AudioDetailContactButton :audio="audio" />
-        <AudioDetailFile :audio="audio.audio" v-if="reRenderComponent" />
-        <div @click="listingEditToggle = !listingEditToggle">
-          <button>Edit listing</button>
-        </div>
+        <AudioDetailButtons :audio="audio" />
       </div>
       <div v-else>
         <EditModesListingEditMode :audio="audio" />
@@ -62,10 +56,10 @@ const listingEditToggle = useState("listingEditToggle", () => false);
 
 <style scoped>
 .container {
-  height: 100vh;
-  width: 100vw;
   position: absolute;
-  left: 20%;
-  top: 20%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  width: 50%;
 }
 </style>

@@ -1,14 +1,28 @@
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <NavBar />
+    <!-- <NuxtLayout> -->
+    <NuxtPage />
+    <!-- </NuxtLayout> -->
   </div>
 </template>
 
 <style>
-/* GENERAL */
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+
+/* transitions */
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+/* GENERAL */
 
 * {
   padding: 0;
@@ -27,21 +41,27 @@ html {
 a {
   text-decoration: none;
 }
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* SPANS */
-.w400-yellow-span {
+.w400-green-span {
   color: #3fcf8e;
   font-weight: 400;
 }
 
-.yellow-span {
+.green-span {
   color: #3fcf8e;
 }
 
 /* BUTTONS */
 .hero-button {
   background-color: transparent;
-  padding: 0.8rem 2.7rem;
+  padding: 0.9rem 2.9rem;
   color: white;
   border: #2c9163 2px solid;
   border-radius: 0.5rem;
@@ -53,8 +73,50 @@ a {
   transform: translateY(-3%);
 }
 
-/* INPUT */
-.input {
-  background-color: red;
+.delete-button {
+  background-color: transparent;
+  padding: 0.9rem 2.9rem;
+  color: white;
+  border: #d81a1a 2px solid;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+}
+
+.delete-button:hover {
+  border: #ec0c0c 2px solid;
+  transform: translateY(-3%);
+}
+
+/* INPUTS */
+input[type="text"],
+textarea,
+select,
+input[type="file"] {
+  height: 2.8rem;
+  width: 100%;
+  background-color: #313131;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus {
+  outline: #8c00ffa7 2px solid;
+}
+
+textarea {
+  height: 10rem;
+  width: 50rem;
+  background-color: #313131;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+label {
+  font-size: 1.3rem;
+  color: #989898;
 }
 </style>

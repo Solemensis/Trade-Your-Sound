@@ -1,8 +1,4 @@
 <script setup>
-definePageMeta({
-  layout: "custom",
-});
-
 // const supabase = useSupabaseClient();
 const client = useSupabaseAuthClient();
 

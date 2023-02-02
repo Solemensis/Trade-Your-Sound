@@ -9,6 +9,8 @@ export default defineEventHandler(async (event) => {
     data: {
       user_name: body.user_name,
       lister_id: body.lister_id,
+      admin: false,
+      LFopportunity: false,
     },
   });
 });

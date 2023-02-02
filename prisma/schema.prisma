@@ -23,7 +23,7 @@ model AudioListings {
   audio           String
   created_at      DateTime    @default(now()) 
   updated_at      DateTime    @updatedAt 
-  user_name       String      @unique
+  user_name       String
 }
 
 model ProducerProfile {
@@ -33,12 +33,18 @@ model ProducerProfile {
   equipment           String[]
   related_link1_desc  String?
   related_link2_desc  String?
+  related_link3_desc  String?
   related_link1       String?
   related_link2       String?
+  related_link3       String?
   description         String?
   lister_id           String      @unique
   created_at          DateTime    @default(now()) 
   updated_at          DateTime    @updatedAt  
+  admin               Boolean
+  LFopportunity       Boolean
+  whatsappCountry     String?
+  whatsappGsm         String?
 }
 
  

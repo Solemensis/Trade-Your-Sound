@@ -41,6 +41,7 @@ header {
   width: 100%;
   padding: 0 10rem;
   position: fixed;
+  z-index: 100;
 }
 header,
 a,

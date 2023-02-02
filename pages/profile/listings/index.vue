@@ -1,6 +1,5 @@
 <script setup>
 definePageMeta({
-  layout: "custom",
   middleware: ["auth"],
 });
 
@@ -31,13 +30,13 @@ async function handleDelete(id) {
 </script>
 
 <template>
-  <div>
-    <div>
-      <h1>My Listings</h1>
-      <NuxtLink to="/profile/listings/create">+</NuxtLink>
-    </div>
+  <div class="listing-box">
+    <NuxtLink class="create-button" to="/profile/listings/create"
+      ><button class="hero-button">New Listing</button></NuxtLink
+    >
+
     <div v-if="!listings">loading...</div>
-    <div v-else>
+    <div v-else class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
         :key="listing.id"
@@ -47,3 +46,22 @@ async function handleDelete(id) {
     </div>
   </div>
 </template>
+
+<style scoped>
+.create-button {
+  margin-bottom: 4rem;
+}
+.listing-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15rem;
+  gap: 2rem;
+  position: relative;
+}
+.listings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4rem;
+}
+</style>

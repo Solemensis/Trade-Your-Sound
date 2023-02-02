@@ -8,6 +8,8 @@ const config = useRuntimeConfig();
 function landToListerPage() {
   navigateTo(`/profile/${props.audio.user_name}`);
 }
+
+const reRenderComponent = ref(true);
 </script>
 <template>
   <div>
@@ -29,8 +31,11 @@ function landToListerPage() {
       </div>
     </div>
     <div>
-      <p class="price"><span class="dollar-sign">$</span>{{ audio.price }}</p>
+      <div class="price-file-box">
+        <p class="price"><span class="dollar-sign">$</span>{{ audio.price }}</p>
 
+        <AudioDetailFile :audio="audio.audio" v-if="reRenderComponent" />
+      </div>
       <p class="description">
         {{ audio.description }}
       </p>
@@ -44,19 +49,26 @@ function landToListerPage() {
   align-items: center;
 }
 .listing-name {
-  font-size: 4.8rem;
-  margin-right: 2rem;
+  font-size: 4rem;
+  margin-right: 1rem;
+  margin-bottom: 4rem;
 }
 
 .creator-tag {
-  border: #267c55 1px solid;
+  border: #353535 1px solid;
   border-radius: 1rem;
   text-align: center;
   padding: 1.6rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.audio-box {
+  border: #525252 1px solid;
 }
 .creator-box {
-  font-size: 2rem;
-  margin-bottom: 0.7rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
 }
 .creator {
   color: #c5f;
@@ -73,6 +85,7 @@ function landToListerPage() {
   display: flex;
   font-size: 1.6rem;
   color: #a8a8a8;
+  margin-bottom: 1.5rem;
 }
 
 .dollar-sign {
@@ -91,12 +104,18 @@ function landToListerPage() {
   padding: 1.1rem 1.5rem;
   border-radius: 1rem;
   font-weight: 700;
-  margin-bottom: 4rem;
   padding-left: 2.3rem;
   position: relative;
+}
+.price-file-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rem;
+  justify-content: space-between;
 }
 
 .description {
   font-size: 1.7rem;
+  margin-bottom: 4.5rem;
 }
 </style>

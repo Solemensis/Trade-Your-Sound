@@ -4,11 +4,11 @@
       <div class="hero-text-box">
         <h1 class="hero-secondary-heading">Audio Trading App</h1>
         <h3 class="hero-heading">
-          Find your <span class="yellow-span">sound</span>
+          Find your <span class="green-span">sound</span>
         </h3>
 
         <p class="hero-description">
-          <span class="yellow-span">Sell</span> your sounds, contact producers
+          <span class="green-span">Sell</span> your sounds, contact producers
           across the globe. <br />Just click the button to learn more!
         </p>
         <button class="hero-button">What is This?</button>

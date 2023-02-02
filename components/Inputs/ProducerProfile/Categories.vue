@@ -30,12 +30,13 @@ const isChecked = {
 </script>
 
 <template>
-  <div>
+  <div class="categories-box">
     <label for="">{{ title }}</label>
 
-    <form>
+    <form class="categories">
       <div>
         <input
+          class="checkbox"
           v-model="isChecked.first"
           @click="onChange"
           type="checkbox"
@@ -45,6 +46,7 @@ const isChecked = {
       </div>
       <div>
         <input
+          class="checkbox"
           v-model="isChecked.second"
           @click="onChange"
           type="checkbox"
@@ -54,6 +56,7 @@ const isChecked = {
       </div>
       <div>
         <input
+          class="checkbox"
           v-model="isChecked.third"
           @click="onChange"
           type="checkbox"
@@ -63,6 +66,7 @@ const isChecked = {
       </div>
       <div>
         <input
+          class="checkbox"
           v-model="isChecked.fourth"
           @click="onChange"
           type="checkbox"
@@ -72,6 +76,7 @@ const isChecked = {
       </div>
       <div>
         <input
+          class="checkbox"
           v-model="isChecked.fifth"
           @click="onChange"
           type="checkbox"
@@ -81,6 +86,7 @@ const isChecked = {
       </div>
       <div>
         <input
+          class="checkbox"
           v-model="isChecked.sixth"
           @click="onChange"
           type="checkbox"
@@ -91,3 +97,24 @@ const isChecked = {
     </form>
   </div>
 </template>
+
+<style scoped>
+.categories-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem !important;
+  text-align: start;
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+/* .checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+} */
+</style>

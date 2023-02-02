@@ -19,13 +19,20 @@ watch(
 </script>
 
 <template>
-  <div>
-    <div>
-      <AudioSearchSideBar />
+  <div class="root">
+    <AudioSearchSideBar />
+    <div class="flex-box">
       <AudioSearchCards v-if="audios && audios.length" :audios="audios" />
-      <h2 v-else>No Audios Found With These Filters</h2>
+      <h2 style="color: #ff4545" v-else>No Audios Found With These Filters</h2>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.flex-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 17rem;
+  margin-left: 5rem;
+}
+</style>

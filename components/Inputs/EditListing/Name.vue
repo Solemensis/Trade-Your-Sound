@@ -14,8 +14,8 @@ const onChange = () => {
 </script>
 
 <template>
-  <div>
-    <label for="">{{ title }}</label>
+  <div class="label-and-input">
+    <label for="">{{ title }} <span class="green-span">*</span></label>
     <input
       type="text"
       :placeholder="placeholder"
@@ -24,3 +24,15 @@ const onChange = () => {
     />
   </div>
 </template>
+
+<style scoped>
+.label-and-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+input {
+  padding-left: 0.8rem;
+}
+</style>

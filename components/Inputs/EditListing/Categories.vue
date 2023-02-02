@@ -14,8 +14,8 @@ const onChange = () => {
 </script>
 
 <template>
-  <div>
-    <label>{{ title }}</label>
+  <div class="label-and-input">
+    <label>{{ title }} <span class="green-span">*</span></label>
     <select @change="onChange" v-model="state">
       <option :key="1" value="sound-effects">Sound Effects</option>
       <option :key="2" value="environmental-sounds">
@@ -28,3 +28,12 @@ const onChange = () => {
     </select>
   </div>
 </template>
+
+<style scoped>
+.label-and-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+</style>

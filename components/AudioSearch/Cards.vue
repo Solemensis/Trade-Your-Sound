@@ -4,7 +4,7 @@ const props = defineProps({
 });
 </script>
 <template>
-  <div class="container">
+  <div>
     <div class="cards">
       <AudioSearchCard v-for="audio in audios" :key="audio.id" :audio="audio" />
     </div>
@@ -12,12 +12,6 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;

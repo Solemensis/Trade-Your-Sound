@@ -14,12 +14,21 @@ const onChange = () => {
 </script>
 
 <template>
-  <div>
-    <label for="">{{ title }}</label>
-    <select class="input" @change="onChange" v-model="state">
+  <div class="label-and-input">
+    <label for="">{{ title }} <span class="green-span">*</span></label>
+    <select @change="onChange" v-model="state">
       <option :key="1" value="raw">Raw</option>
-      <option :key="2" value="edited">Just Edited</option>
+      <option :key="2" value="edited">Edited</option>
       <option :key="3" value="mastered">Mastered</option>
     </select>
   </div>
 </template>
+
+<style scoped>
+.label-and-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+</style>
