@@ -119,4 +119,58 @@ label {
   font-size: 1.3rem;
   color: #989898;
 }
+
+/* checkbox style */
+/* input style logic */
+.categories div label {
+  font-size: 1.3rem;
+}
+.categories div {
+  position: relative;
+}
+
+.checkbox {
+  position: relative;
+  top: 0.2rem;
+  margin-right: 0.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 3px;
+  appearance: none;
+  background-color: #888;
+  transition: all 0.1s;
+}
+.checkbox:hover {
+  background-color: #555;
+}
+
+.checkbox::before {
+  content: "";
+  position: absolute;
+  border: solid #fff;
+  display: block;
+  width: 0.3em;
+  height: 0.6em;
+  border-width: 0 0.2em 0.2em 0;
+  z-index: 1;
+  opacity: 0;
+  right: calc(50% - 0.3em);
+  top: calc(50% - 0.6em);
+  transform: rotate(0deg);
+  transition: all 0.2s;
+  transform-origin: center center;
+}
+
+.checkbox:checked {
+  animation: a 0.3s ease-in forwards;
+  background-color: #a753bc;
+}
+.checkbox:checked:hover {
+  background-color: #781f8f;
+}
+
+.checkbox:checked::before {
+  opacity: 1;
+  transform: rotate(405deg);
+}
 </style>

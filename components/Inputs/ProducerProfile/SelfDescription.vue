@@ -16,8 +16,8 @@ const onChange = () => {
 </script>
 
 <template>
-  <div>
-    <label for="">{{ title }}</label>
+  <div class="self-description">
+    <label for="">{{ title }} <span class="green-span">*</span></label>
     <textarea
       type="text"
       :placeholder="placeholder"
@@ -26,3 +26,23 @@ const onChange = () => {
     ></textarea>
   </div>
 </template>
+
+<style scoped>
+.self-description {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5rem;
+}
+textarea {
+  width: 100%;
+  height: 20rem;
+}
+label {
+  font-size: 1.8rem;
+  color: #ddd;
+  margin-bottom: 2rem;
+}
+</style>

@@ -31,7 +31,9 @@ const isChecked = {
 
 <template>
   <div class="categories-box">
-    <label for="">{{ title }}</label>
+    <label class="heading" for="">
+      Which categories you are in? <span class="green-span">*</span>
+    </label>
 
     <form class="categories">
       <div>
@@ -81,6 +83,7 @@ const isChecked = {
           @click="onChange"
           type="checkbox"
           value="dialogue"
+          style=""
         />
         <label>Dialogue</label>
       </div>
@@ -99,22 +102,22 @@ const isChecked = {
 </template>
 
 <style scoped>
+.heading {
+  font-size: 1.8rem;
+  color: #ddd;
+  margin-bottom: 2rem;
+}
 .categories-box {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
-  gap: 1rem !important;
-  text-align: start;
+  gap: 2rem;
+  margin-bottom: 6rem;
 }
 .categories {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: start;
+  align-items: center;
+  grid-gap: 0.3rem;
 }
-/* .checkbox {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-} */
 </style>

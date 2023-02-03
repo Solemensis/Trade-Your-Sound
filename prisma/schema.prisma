@@ -45,6 +45,7 @@ model ProducerProfile {
   LFopportunity       Boolean
   whatsappCountry     String?
   whatsappGsm         String?
+  terms               Boolean
 }
 
  

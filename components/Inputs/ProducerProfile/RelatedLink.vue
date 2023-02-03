@@ -16,7 +16,7 @@ const onChange = () => {
 </script>
 
 <template>
-  <div>
+  <div class="link-box">
     <label for="">{{ title }}</label>
     <input
       type="text"
@@ -26,3 +26,11 @@ const onChange = () => {
     />
   </div>
 </template>
+
+<style scoped>
+.link-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+</style>

@@ -24,12 +24,12 @@ watch(
       <h2 v-if="!profileEditToggle">
         Profile of <span style="color: #3fcf8e">{{ data.user_name }}</span>
       </h2>
-      <h2 v-else>
+      <h2 v-else style="margin-top: 80rem">
         You're editing <span style="color: #3fcf8e">your profile</span>
       </h2>
       <div v-if="!profileEditToggle">
         <p class="update">updated: {{ cutString(data.updated_at) }}</p>
-        <p class="opportunity">
+        <p v-if="data.opportunity" class="opportunity">
           <span style="font-size: 2rem">🔥</span> This user is currently
           <span style="color: #3fcf8e">open</span> to opportunities.
           <span style="font-size: 2rem">🔥</span>
@@ -103,8 +103,8 @@ watch(
         </h2>
       </div>
     </div>
-    <div v-else>
-      <EditModesProfileEditMode :data="data" />
+    <div v-if="profileEditToggle">
+      <EditModesProfileEditMode class="editmode" :data="data" />
     </div>
   </div>
 </template>
@@ -116,6 +116,7 @@ watch(
   top: 50%;
   transform: translate(-50%, -45%);
   text-align: center;
+  width: 53%;
 }
 .update {
   margin-bottom: 1.3rem;
@@ -125,7 +126,7 @@ watch(
 }
 .description {
   font-size: 1.7rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   color: #bbb;
 }
 .user-data {
@@ -144,6 +145,7 @@ watch(
   font-size: 1.6rem;
   font-weight: 500;
   text-align: start;
+  color: #ddd;
 }
 .user-data ul {
   text-align: center;

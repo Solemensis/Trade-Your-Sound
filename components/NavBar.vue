@@ -42,6 +42,7 @@ header {
   padding: 0 10rem;
   position: fixed;
   z-index: 100;
+  backdrop-filter: blur(0.3rem);
 }
 header,
 a,

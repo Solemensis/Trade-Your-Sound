@@ -4,32 +4,127 @@ definePageMeta({
   middleware: ["specificuser"],
 });
 const user = useSupabaseUser();
+
+const errorMessage = ref("");
+const termsAccepted = ref(false);
+
 const username = reactive({
   lister_id: user.value.id,
   user_name: "",
+  terms: termsAccepted.value,
 });
+
 const onClick = async () => {
   //instead of creating an object in here to get rid of proxy object;
   //i'm just using "toRaw" built-in function of vue.js
   const body = toRaw(username);
-  const response = await $fetch("/api/producerProfile/usernameEnter", {
-    method: "post",
-    body: body,
-  });
-  navigateTo(`/profile/${username.user_name}`);
+  try {
+    const response = await $fetch("/api/producerProfile/usernameEnter", {
+      method: "post",
+      body: body,
+    });
+    navigateTo(`/profile/${username.user_name}`);
+  } catch (error) {
+    errorMessage.value =
+      "You need to pick a username & accept our terms of concern. If you have done both, please try refreshing the page.";
+    setTimeout(() => {
+      errorMessage.value = "";
+    }, 6000);
+  }
 };
+
+function checkChange() {
+  username.terms = Boolean(termsAccepted.value);
+}
 </script>
 
 <template>
   <div class="container">
-    <label>Pick a username</label>
-    <input type="text" placeholder="SoundMage31" v-model="username.user_name" />
-    <button @click="onClick">accept</button>
+    <h2 class="pick-username">
+      <span style="color: #3fcf8e">First</span> step...
+    </h2>
+    <div class="username">
+      <label>Pick a username</label>
+      <input
+        type="text"
+        placeholder="SoundMage31"
+        v-model="username.user_name"
+      />
+    </div>
+    <div class="terms-button">
+      <div class="terms">
+        <label for=""
+          >Do you accept our terms of concern?
+          <span style="color: #3fcf8e">*</span></label
+        >
+        <input
+          @change="checkChange"
+          v-model="termsAccepted"
+          class="checkbox"
+          type="checkbox"
+        />
+      </div>
+      <button style="margin-bottom: 1rem" class="hero-button" @click="onClick">
+        Initiate Profile
+      </button>
+      <p
+        v-if="errorMessage"
+        style="
+          position: absolute;
+          bottom: -6rem;
+          font-size: 1.2rem;
+          color: #aaa;
+        "
+      >
+        <span style="color: #ff4545">Error:</span> {{ errorMessage }}
+      </p>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.pick-username {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  margin-bottom: 5rem;
+  color: #ddd;
+}
 .container {
-  padding-top: 20rem;
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  text-align: center;
+}
+
+.username {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.username label {
+  font-size: 1.4rem;
+}
+.username input {
+  width: 60%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+.terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.terms label {
+  font-size: 1.3rem;
+}
+.terms-button {
+  display: flex;
+  flex-direction: column;
 }
 </style>

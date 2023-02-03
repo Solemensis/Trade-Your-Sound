@@ -8,10 +8,15 @@ const schema = Joi.object({
   equipment: Joi.array().items(Joi.string().required()),
   related_link1: Joi.string().allow("", null),
   related_link2: Joi.string().allow("", null),
+  related_link3: Joi.string().allow("", null),
   related_link1_desc: Joi.string().allow("", null),
   related_link2_desc: Joi.string().allow("", null),
+  related_link3_desc: Joi.string().allow("", null),
   description: Joi.string().min(10).required(),
   lister_id: Joi.string().required(),
+  LFopportunity: Joi.boolean().required(),
+  whatsappCountry: Joi.string().allow("", null),
+  whatsappGsm: Joi.string().allow("", null),
 });
 
 export default defineEventHandler(async (event) => {
@@ -32,10 +37,15 @@ export default defineEventHandler(async (event) => {
     equipment,
     related_link1,
     related_link2,
+    related_link3,
     related_link1_desc,
     related_link2_desc,
+    related_link3_desc,
     description,
     lister_id,
+    LFopportunity,
+    whatsappCountry,
+    whatsappGsm,
   } = body;
 
   //database event
@@ -48,9 +58,14 @@ export default defineEventHandler(async (event) => {
       equipment,
       related_link1,
       related_link2,
+      related_link3,
       related_link1_desc,
       related_link2_desc,
+      related_link3_desc,
       description,
+      LFopportunity,
+      whatsappCountry,
+      whatsappGsm,
     },
   });
 
