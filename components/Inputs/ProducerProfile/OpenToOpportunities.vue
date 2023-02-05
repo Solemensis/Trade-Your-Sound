@@ -16,10 +16,7 @@ function checkChange() {
 <template>
   <div>
     <div class="opportunity-check">
-      <label for=""
-        >Are you open to opportunities from other people?
-        <span class="green-span">*</span></label
-      >
+      <label for="">Are you open to opportunities from other people? </label>
       <input
         v-model="value"
         @change="checkChange"

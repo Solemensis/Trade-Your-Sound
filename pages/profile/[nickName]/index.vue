@@ -7,8 +7,7 @@ const { data, refresh, error } = await useFetch(
   `/api/producerProfile/${route.params.nickName}`
 );
 
-const profileEditToggle = useState("profileEditToggle", () => false);
-
+const profileEditToggle = ref(false);
 const carryRefetchSignal = useState("carryRefetchSignal");
 watch(
   () => carryRefetchSignal.value,
@@ -24,12 +23,15 @@ watch(
       <h2 v-if="!profileEditToggle">
         Profile of <span style="color: #3fcf8e">{{ data.user_name }}</span>
       </h2>
-      <h2 v-else style="margin-top: 80rem">
+      <h2
+        v-else
+        style="margin-top: 80rem; margin-bottom: 8rem; font-size: 4rem"
+      >
         You're editing <span style="color: #3fcf8e">your profile</span>
       </h2>
       <div v-if="!profileEditToggle">
         <p class="update">updated: {{ cutString(data.updated_at) }}</p>
-        <p v-if="data.opportunity" class="opportunity">
+        <p v-if="data.LFopportunity" class="opportunity">
           <span style="font-size: 2rem">🔥</span> This user is currently
           <span style="color: #3fcf8e">open</span> to opportunities.
           <span style="font-size: 2rem">🔥</span>
@@ -38,7 +40,7 @@ watch(
     </div>
 
     <div v-if="!profileEditToggle">
-      <p class="description">
+      <p v-if="data.description" class="description">
         <span style="color: #3fcf8e">" </span>{{ data.description
         }}<span style="color: #3fcf8e"> "</span>
       </p>
@@ -47,16 +49,28 @@ watch(
           <div>
             <h3>Categories</h3>
             <div class="categories">
-              <ul>
-                <li v-for="category in data.categories">✔️ {{ category }}</li>
+              <ul v-if="data.categories && data.categories.length">
+                <li v-for="category in data.categories">
+                  ✔️ {{ formatString(category) }}
+                </li>
+              </ul>
+              <ul v-else>
+                <li>...</li>
+                <li>...</li>
+                <li>...</li>
               </ul>
             </div>
           </div>
           <div>
             <h3>Equipment</h3>
             <div class="items">
-              <ul>
+              <ul v-if="data.equipment && data.equipment.length">
                 <li v-for="item in data.equipment">✔️ {{ item }}</li>
+              </ul>
+              <ul v-else>
+                <li>...</li>
+                <li>...</li>
+                <li>...</li>
               </ul>
             </div>
           </div>
@@ -68,7 +82,8 @@ watch(
               v-if="data.related_link1_desc"
               target="_blank"
               :href="data.related_link1"
-              >✔️ {{ data.related_link1_desc }}</a
+            >
+              ✔️ {{ data.related_link1_desc }}</a
             >
             <a
               v-if="data.related_link2_desc"
@@ -94,17 +109,21 @@ watch(
           >
             Edit page
           </button>
-          <button class="hero-button" v-if="user && user.id !== data.lister_id">
-            Send message
-          </button>
         </div>
+        <button class="hero-button" v-if="user && user.id !== data.lister_id">
+          Send message
+        </button>
         <h2 class="no-user" v-if="!user">
           You have to be a user to send a message.
         </h2>
       </div>
     </div>
     <div v-if="profileEditToggle">
-      <EditModesProfileEditMode class="editmode" :data="data" />
+      <EditModesProfileEditMode
+        class="editmode"
+        :data="data"
+        @toggle-close="(response) => (profileEditToggle = response)"
+      />
     </div>
   </div>
 </template>
@@ -116,7 +135,7 @@ watch(
   top: 50%;
   transform: translate(-50%, -45%);
   text-align: center;
-  width: 53%;
+  width: 55%;
 }
 .update {
   margin-bottom: 1.3rem;
@@ -125,9 +144,10 @@ watch(
   font-size: 1.4rem !important;
 }
 .description {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  line-height: 1.3;
   margin-bottom: 4rem;
-  color: #bbb;
+  color: #aaa;
 }
 .user-data {
   display: flex;
@@ -142,8 +162,8 @@ watch(
 }
 .user-data h3 {
   margin-bottom: 0.8rem;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 1.7rem;
+  font-weight: 400;
   text-align: start;
   color: #ddd;
 }
@@ -186,6 +206,6 @@ watch(
 }
 
 .no-user {
-  color: #ff4545;
+  color: #bb3232;
 }
 </style>

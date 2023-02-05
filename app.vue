@@ -1,15 +1,12 @@
 <template>
   <div>
     <NavBar />
-    <!-- <NuxtLayout> -->
     <NuxtPage />
-    <!-- </NuxtLayout> -->
   </div>
 </template>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
-
 /* transitions */
 
 .page-enter-active,
@@ -41,12 +38,6 @@ html {
 a {
   text-decoration: none;
 }
-.container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 
 /* SPANS */
 .w400-green-span {
@@ -58,6 +49,9 @@ a {
   color: #3fcf8e;
 }
 
+.purple-span {
+  color: #a753bc;
+}
 /* BUTTONS */
 .hero-button {
   background-color: transparent;
@@ -89,6 +83,7 @@ a {
 
 /* INPUTS */
 input[type="text"],
+input[type="password"],
 textarea,
 select,
 input[type="file"] {
@@ -101,6 +96,7 @@ input[type="file"] {
 }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus,
 select:focus,
 input[type="file"]:focus {
@@ -122,19 +118,13 @@ label {
 
 /* checkbox style */
 /* input style logic */
-.categories div label {
-  font-size: 1.3rem;
-}
-.categories div {
-  position: relative;
-}
 
 .checkbox {
   position: relative;
-  top: 0.2rem;
+  top: 0.1rem;
   margin-right: 0.5rem;
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 3px;
   appearance: none;
   background-color: #888;

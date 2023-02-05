@@ -13,7 +13,8 @@ const config = useRuntimeConfig();
   <div class="listing-boxy">
     <NuxtLink class="edit-but" :to="`/audio/${listing.name}-${listing.id}`"
       ><h3 class="heading">
-        {{ listing.name }} | ${{ listing.price }}
+        {{ truncateShorterString(listing.name) }}
+        <span class="green-span">|</span> ${{ listing.price }}
       </h3></NuxtLink
     >
     <div class="listing-content">
@@ -35,23 +36,29 @@ const config = useRuntimeConfig();
 
 <style scoped>
 .heading {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #c3c3c3;
   position: absolute;
-  top: 1.2rem;
-  left: 2rem;
+  top: 1.3rem;
+  left: 1.5rem;
+  transition: 0.1s;
+  font-weight: 500;
+}
+.heading:hover {
+  color: #3fcf8e;
 }
 .listing-boxy {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding-bottom: 2.7rem;
+  padding-bottom: 2.5rem;
   padding-top: 6.5rem;
   padding-right: 1.5rem;
   padding-left: 3rem;
   position: relative;
-  border: #545454 2px dashed;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
+  background-color: #232323;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .listing-content {
   display: flex;

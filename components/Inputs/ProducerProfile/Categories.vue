@@ -32,7 +32,8 @@ const isChecked = {
 <template>
   <div class="categories-box">
     <label class="heading" for="">
-      Which categories you are in? <span class="green-span">*</span>
+      Select your favourite categories to work with
+      <span class="green-span">*</span>
     </label>
 
     <form class="categories">
@@ -105,7 +106,7 @@ const isChecked = {
 .heading {
   font-size: 1.8rem;
   color: #ddd;
-  margin-bottom: 2rem;
+  margin-bottom: 3.8rem;
 }
 .categories-box {
   display: flex !important;
@@ -113,11 +114,20 @@ const isChecked = {
   gap: 2rem;
   margin-bottom: 6rem;
 }
+.checkbox {
+  top: 0.2rem;
+}
 .categories {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: start;
   align-items: center;
   grid-gap: 0.3rem;
+}
+.categories div label {
+  font-size: 1.4rem;
+}
+.categories div {
+  position: relative;
 }
 </style>

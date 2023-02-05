@@ -1,6 +1,5 @@
 <script setup>
 definePageMeta({
-  layout: "custom",
   middleware: ["specificuser"],
 });
 const user = useSupabaseUser();
@@ -12,6 +11,13 @@ const username = reactive({
   lister_id: user.value.id,
   user_name: "",
   terms: termsAccepted.value,
+  related_link1: "",
+  related_link2: "",
+  related_link3: "",
+  related_link1_desc: "",
+  related_link2_desc: "",
+  related_link3_desc: "",
+  description: "",
 });
 
 const onClick = async () => {
@@ -41,10 +47,9 @@ function checkChange() {
 <template>
   <div class="container">
     <h2 class="pick-username">
-      <span style="color: #3fcf8e">First</span> step...
+      <span style="color: #3fcf8e">Pick a</span> Username
     </h2>
     <div class="username">
-      <label>Pick a username</label>
       <input
         type="text"
         placeholder="SoundMage31"
@@ -84,18 +89,23 @@ function checkChange() {
 
 <style scoped>
 .pick-username {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 400;
   margin-bottom: 0.2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 10rem;
   color: #ddd;
 }
 .container {
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 3rem;
-  text-align: center;
+  height: 100vh;
+}
+.checkbox {
+  margin-right: 0;
 }
 
 .username {
@@ -109,22 +119,26 @@ function checkChange() {
   font-size: 1.4rem;
 }
 .username input {
-  width: 60%;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  height: 3.5rem;
 }
 .terms {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 2rem;
 }
 .terms label {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+}
+.checkbox {
+  top: 0;
 }
 .terms-button {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 </style>

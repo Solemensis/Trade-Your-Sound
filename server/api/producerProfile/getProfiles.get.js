@@ -3,41 +3,33 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   const { category } = getQuery(event);
+  const { opportunity } = getQuery(event);
 
-  let filters = {};
+  let filters = {
+    //this is just to make sure that user filled his/her profile's necessery inputs
+    description: {
+      not: "",
+    },
+  };
 
-  switch (category) {
-    case "sound-effects":
-      filters.categories = "sound-effects";
+  switch (opportunity) {
+    case "looking":
+      filters.LFopportunity = true;
       break;
-    case "environmental-sounds":
-      filters.categories = "environmental-sounds";
-      break;
-    case "ui-sounds":
-      filters.categories = "ui-sounds";
-      break;
-    case "foley-sounds":
-      filters.categories = "foley-sounds";
-      break;
-    case "dialogue":
-      filters.categories = "dialogue";
-      break;
-    case "soundscapes":
-      filters.categories = "soundscapes";
+    case "not-looking":
+      filters.LFopportunity = false;
       break;
   }
 
-  let producerProfile;
-  if (category != undefined) {
-    producerProfile = await prisma.ProducerProfile.findMany({
-      where: {
-        categories: {
-          has: category,
-        },
-      },
-    });
-  } else {
-    producerProfile = await prisma.ProducerProfile.findMany();
+  if (Boolean(category) == true) {
+    filters.categories = {
+      has: category,
+    };
   }
+
+  const producerProfile = await prisma.ProducerProfile.findMany({
+    where: filters,
+  });
+
   return producerProfile;
 });

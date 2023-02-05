@@ -24,6 +24,9 @@ model AudioListings {
   created_at      DateTime    @default(now()) 
   updated_at      DateTime    @updatedAt 
   user_name       String
+
+  // producerProfId  Int
+  // producerProf    ProducerProfile   @relation(fields:[producerProfId], references:[id], onDelete: Cascade)
 }
 
 model ProducerProfile {
@@ -46,6 +49,9 @@ model ProducerProfile {
   whatsappCountry     String?
   whatsappGsm         String?
   terms               Boolean
+
+  // audio_listings        AudioListings[]
+
 }
 
  
@@ -56,6 +62,7 @@ created_at        DateTime    @default(now())
 room_name         String
 user1_id          String
 user2_id          String
+
 messages          Messages[]
 }
 model Messages {
@@ -63,6 +70,7 @@ id                Int         @id @default(autoincrement())
 created_at        DateTime    @default(now()) 
 content           String
 lister_id         String
+
 room_id           Int
 chat_room         ChatRooms   @relation(fields:[room_id], references:[id], onDelete: Cascade)
 }

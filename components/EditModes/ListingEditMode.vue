@@ -57,7 +57,7 @@ async function handleSubmit() {
       //the old audio shall be eleminated:
       await supabase.storage.from("audios").remove(props.audio.audio);
 
-      listingEditToggle.value = !listingEditToggle.value;
+      closeEdit();
       listingEditRefetchSignal.value = !listingEditRefetchSignal.value;
     } catch (err) {
       errorMessage.value = err.statusMessage;
@@ -68,7 +68,11 @@ async function handleSubmit() {
   } else return;
 }
 
-const listingEditToggle = useState("listingEditToggle");
+const emit = defineEmits(["toggle-close"]);
+
+function closeEdit() {
+  emit("toggle-close", false);
+}
 
 const listingEditRefetchSignal = useState(
   "listingEditRefetchSignal",
@@ -127,12 +131,7 @@ const listingEditRefetchSignal = useState(
     <div>
       <div class="buttons">
         <button class="hero-button" @click="handleSubmit">Submit</button>
-        <button
-          class="delete-button"
-          @click="listingEditToggle = !listingEditToggle"
-        >
-          Cancel
-        </button>
+        <button class="delete-button" @click="closeEdit">Cancel</button>
       </div>
 
       <p v-if="errorMessage">{{ errorMessage }}</p>

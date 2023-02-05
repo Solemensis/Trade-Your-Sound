@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   //database event
   const userRelatedChatRooms = await prisma.ChatRooms.findMany({
     where: {
-      user1_id: userId,
+      OR: [{ user1_id: userId }, { user2_id: userId }],
     },
   });
 

@@ -37,6 +37,7 @@ const handleDelete = (value) => {
     <div class="input-and-items">
       <div class="items">
         <p
+          v-if="equipments && equipments.length"
           class="item"
           @click="handleDelete(equipment)"
           v-for="equipment in equipments"
@@ -44,6 +45,7 @@ const handleDelete = (value) => {
         >
           {{ equipment }}❌
         </p>
+        <p style="color: #bb4545; font-size: 1.5rem" v-else>add at least 1</p>
       </div>
       <div class="input-button">
         <input type="text" placeholder="sm57 x2" v-model="state" />
@@ -57,7 +59,7 @@ const handleDelete = (value) => {
 .equipment-box {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.7rem;
   text-align: center;
   margin-bottom: 6rem;
 }
@@ -70,6 +72,7 @@ const handleDelete = (value) => {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
+  align-items: center;
 }
 .item {
   font-size: 1.3rem;
@@ -92,12 +95,13 @@ const handleDelete = (value) => {
   align-items: center;
 }
 .input-button input {
+  height: 3.1rem;
 }
 .input-button button {
   background-color: #333;
   border: none;
   transition: 0.1s;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 0.5rem;
   color: #3fcf8e;
   font-weight: 500;

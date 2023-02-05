@@ -11,13 +11,11 @@ const config = useRuntimeConfig();
 </script>
 <template>
   <div>
-    <div
-      @click="navigateTo(`/audio/${audio.name}-${audio.id}`)"
-      class="listing-boxy"
-    >
+    <div class="listing-boxy">
       <NuxtLink class="edit-but" :to="`/audio/${audio.name}-${audio.id}`"
         ><h3 class="heading">
-          {{ audio.name }} | ${{ audio.price }}
+          {{ truncateShorterString(audio.name) }}
+          <span class="green-span">|</span> ${{ audio.price }}
         </h3></NuxtLink
       >
       <div class="listing-content">
@@ -40,11 +38,13 @@ const config = useRuntimeConfig();
 
 <style scoped>
 .heading {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #c3c3c3;
   position: absolute;
-  top: 1.2rem;
-  left: 2rem;
+  top: 1.3rem;
+  left: 1.5rem;
+  transition: 0.1s;
+  font-weight: 500;
 }
 .heading:hover {
   color: #3fcf8e;
@@ -59,8 +59,9 @@ const config = useRuntimeConfig();
   padding-right: 1.5rem;
   padding-left: 3rem;
   position: relative;
-  border: #545454 2px dashed;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
+  background-color: #232323;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .listing-content {
   display: flex;

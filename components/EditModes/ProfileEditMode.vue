@@ -51,7 +51,8 @@ async function handleSubmit() {
         method: "put",
         body,
       });
-      profileEditToggle.value = !profileEditToggle.value;
+
+      closeEdit();
       carryRefetchSignal.value = !carryRefetchSignal.value;
     } catch (err) {
       errorMessage.value = err.statusMessage;
@@ -59,7 +60,11 @@ async function handleSubmit() {
   } else return;
 }
 
-const profileEditToggle = useState("profileEditToggle");
+const emit = defineEmits(["toggle-close"]);
+
+function closeEdit() {
+  emit("toggle-close", false);
+}
 
 const carryRefetchSignal = useState("carryRefetchSignal", () => false);
 </script>
@@ -86,21 +91,20 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       :data="data.description"
       @change-input="onChangeInput"
     />
-    {{ info }}
     <InputsProducerProfileOpenToOpportunities
       :data="data.LFopportunity"
       @change-input="onChangeInput"
       name="LFopportunity"
     />
   </div>
-  <h2 style="margin-bottom: 3rem">Show your projects</h2>
-  <div class="links-group">
+  <label style="font-size: 1.8rem; color: #ddd">Show your projects</label>
+  <div style="margin-top: 3.5rem" class="links-group">
     <InputsProducerProfileRelatedLink
       class="link"
       style="width: 150%"
-      title="Describe the link you're going to paste"
+      title="Describe your link"
       name="relatedLink1Desc"
-      placeholder="My open source foley library samples"
+      placeholder="This is a link to my open source foley library samples"
       :data="data.related_link1_desc"
       @change-input="onChangeInput"
     />
@@ -116,9 +120,9 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
     <InputsProducerProfileRelatedLink
       class="link"
       style="width: 150%"
-      title="Describe the link you're going to paste"
+      title="Describe your link"
       name="relatedLink2Desc"
-      placeholder="My track which is currently being used in a game"
+      placeholder="It's my own track which is currently being used in a game"
       :data="data.related_link2_desc"
       @change-input="onChangeInput"
     />
@@ -134,7 +138,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
     <InputsProducerProfileRelatedLink
       class="link"
       style="width: 150%"
-      title="Describe the link you're going to paste"
+      title="Describe your link"
       name="relatedLink3Desc"
       placeholder="My soundcloud profile"
       :data="data.related_link3_desc"
@@ -154,12 +158,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
   <div class="bottom-group">
     <div class="buttons" style="margin-bottom: 6rem">
       <button class="hero-button" @click="handleSubmit">Submit</button>
-      <button
-        @click="profileEditToggle = !profileEditToggle"
-        class="delete-button"
-      >
-        Cancel
-      </button>
+      <button @click="closeEdit" class="delete-button">Cancel</button>
       <p v-if="errorMessage">{{ errorMessage }}</p>
     </div>
   </div>

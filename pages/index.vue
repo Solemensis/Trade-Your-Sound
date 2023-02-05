@@ -7,5 +7,6 @@ useHead({
 <template>
   <div>
     <MainPageHero />
+    <MainPageSection1 />
   </div>
 </template>

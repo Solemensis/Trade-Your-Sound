@@ -53,9 +53,6 @@ async function onSubmit() {
   }
 }
 
-//bu, sadece, 2 pencere (yani view-edit) arasını tetikleyen boolean (kuruluş yeri burası)
-const listingEditToggle = useState("listingEditToggle", () => false);
-
 async function deleteListing() {
   //delete listing from database via backend
   await $fetch(`/api/audio/listings/${props.audio.id}`, {
@@ -70,6 +67,12 @@ async function deleteListing() {
   //leave deleted listing's page
   navigateTo("/profile/listings");
 }
+
+const emit = defineEmits(["toggle-open"]);
+
+function openEdit() {
+  emit("toggle-open", true);
+}
 </script>
 
 <template>
@@ -83,26 +86,21 @@ async function deleteListing() {
         Send Message
       </button>
       <div class="user-buttons" v-else>
-        <button
-          class="hero-button"
-          @click="listingEditToggle = !listingEditToggle"
-        >
-          Edit listing
-        </button>
+        <button class="hero-button" @click="openEdit">Edit listing</button>
         <button class="delete-button" @click="deleteListing">
           Delete listing
         </button>
       </div>
     </div>
     <div v-else>
-      <h3 class="no-user">you need to be a user to message to lister.</h3>
+      <h3 class="no-user">You have to be a user to send a message.</h3>
     </div>
   </div>
 </template>
 
 <style scoped>
 .no-user {
-  color: brown;
+  color: #bb3232;
   font-size: 1.5rem;
 }
 

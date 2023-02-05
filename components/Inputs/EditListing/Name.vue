@@ -14,14 +14,20 @@ const onChange = () => {
 </script>
 
 <template>
-  <div class="label-and-input">
-    <label for="">{{ title }} <span class="green-span">*</span></label>
-    <input
-      type="text"
-      :placeholder="placeholder"
-      v-model="state"
-      @input="onChange"
-    />
+  <div>
+    <div class="label-and-input">
+      <span style="position: absolute; left: -2rem; top: 2.8rem; color: #aaa">{{
+        25 - state.length
+      }}</span>
+      <label for="">{{ title }} <span class="green-span">*</span></label>
+      <input
+        maxlength="25"
+        type="text"
+        :placeholder="placeholder"
+        v-model="state"
+        @input="onChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -31,6 +37,7 @@ const onChange = () => {
   flex-direction: column;
   gap: 0.4rem;
   align-items: center;
+  position: relative;
 }
 input {
   padding-left: 0.8rem;

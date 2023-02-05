@@ -14,8 +14,12 @@ const onChange = () => {
 
 <template>
   <div class="label-and-input">
-    <label for="">{{ title }} <span class="green-span">*</span></label>
+    <label for="">{{ title }} <span class="green-span">*</span></label
+    ><span style="position: absolute; left: 1rem; color: #aaa">{{
+      550 - state.length
+    }}</span>
     <textarea
+      maxlength="550"
       type="text"
       :placeholder="placeholder"
       v-model="state"

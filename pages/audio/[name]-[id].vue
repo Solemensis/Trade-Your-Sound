@@ -36,19 +36,27 @@ watch(
     }, 300);
   }
 );
+
 //hemen false ve ardından true dönüp audioyu re-render'layan boolean
 const reRenderComponent = ref(true);
-const listingEditToggle = useState("listingEditToggle");
+
+const listingEditToggle = ref(false);
 </script>
 <template>
   <div class="container">
     <div v-if="audio">
       <div v-if="!listingEditToggle">
-        <AudioDetailHero :audio="audio" />
-        <AudioDetailButtons :audio="audio" />
+        <AudioDetailHero style="" :audio="audio" />
+        <AudioDetailButtons
+          :audio="audio"
+          @toggle-open="(response) => (listingEditToggle = response)"
+        />
       </div>
       <div v-else>
-        <EditModesListingEditMode :audio="audio" />
+        <EditModesListingEditMode
+          :audio="audio"
+          @toggle-close="(response) => (listingEditToggle = response)"
+        />
       </div>
     </div>
   </div>
@@ -60,6 +68,6 @@ const listingEditToggle = useState("listingEditToggle");
   left: 50%;
   top: 50%;
   transform: translate(-50%, -48%);
-  width: 50%;
+  width: 55%;
 }
 </style>

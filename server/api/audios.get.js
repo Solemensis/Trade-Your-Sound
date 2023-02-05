@@ -42,34 +42,33 @@ export default defineEventHandler((event) => {
   }
 
   switch (price) {
-    case "0-50":
+    case "0-3":
       filters.price = {
         gte: 0,
-        lte: 50,
+        lte: 3,
       };
       break;
-    case "50-100":
+    case "4-10":
       filters.price = {
-        gte: 50,
-        lte: 100,
+        gte: 4,
+        lte: 10,
       };
       break;
-    case "100-200":
+    case "11-20":
       filters.price = {
-        gte: 100,
-        lte: 200,
+        gte: 11,
+        lte: 20,
       };
       break;
-    case "200>":
+    case "21>":
       filters.price = {
-        gte: 200,
+        gte: 21,
         lte: 5000,
       };
       break;
   }
 
   //database event
-
   return prisma.AudioListings.findMany({
     where: filters,
   });

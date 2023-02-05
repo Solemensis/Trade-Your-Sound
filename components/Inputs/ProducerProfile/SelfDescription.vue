@@ -18,7 +18,11 @@ const onChange = () => {
 <template>
   <div class="self-description">
     <label for="">{{ title }} <span class="green-span">*</span></label>
+    <span style="text-align: center; font-size: 1.4rem; color: #989898">{{
+      750 - state.length
+    }}</span>
     <textarea
+      maxlength="750"
       type="text"
       :placeholder="placeholder"
       v-model="state"
@@ -31,7 +35,7 @@ const onChange = () => {
 .self-description {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   width: 100%;
   margin-bottom: 5rem;
@@ -43,6 +47,6 @@ textarea {
 label {
   font-size: 1.8rem;
   color: #ddd;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 </style>

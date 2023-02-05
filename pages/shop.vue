@@ -19,9 +19,13 @@ watch(
 </script>
 
 <template>
-  <div class="root">
+  <div>
     <AudioSearchSideBar />
-    <div class="flex-box">
+
+    <div class="flex-box-center">
+      <h2 class="scroll-audios">
+        Scroll <span class="green-span">Audios</span>
+      </h2>
       <AudioSearchCards v-if="audios && audios.length" :audios="audios" />
       <h2 style="color: #ff4545" v-else>No Audios Found With These Filters</h2>
     </div>
@@ -29,10 +33,21 @@ watch(
 </template>
 
 <style scoped>
-.flex-box {
+.flex-box-center {
   display: flex;
   justify-content: center;
-  padding-top: 17rem;
+  padding-top: 25rem;
   margin-left: 5rem;
+  position: relative;
+}
+
+.scroll-audios {
+  position: absolute;
+  left: 50%;
+  top: 14rem;
+  transform: translateX(-50%);
+  font-weight: 500;
+  font-size: 3.7rem;
+  color: #bbb;
 }
 </style>

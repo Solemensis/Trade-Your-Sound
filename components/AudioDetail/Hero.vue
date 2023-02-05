@@ -49,23 +49,22 @@ const reRenderComponent = ref(true);
   align-items: center;
 }
 .listing-name {
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-right: 1rem;
   margin-bottom: 4rem;
+  font-weight: 500;
 }
 
 .creator-tag {
   border: #353535 1px solid;
   border-radius: 1rem;
   text-align: center;
-  padding: 1.6rem;
+  padding: 1rem;
   position: absolute;
-  right: 0;
+  right: 0.5rem;
   top: 0;
 }
-.audio-box {
-  border: #525252 1px solid;
-}
+
 .creator-box {
   font-size: 1.8rem;
   margin-bottom: 0.6rem;
@@ -115,7 +114,7 @@ const reRenderComponent = ref(true);
 }
 
 .description {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin-bottom: 4.5rem;
 }
 </style>

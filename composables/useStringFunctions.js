@@ -29,3 +29,37 @@ export function formatString(str) {
   }
   return newStr.replace(/-/g, " ");
 }
+
+export function truncateString(str) {
+  if (str.length > 75) {
+    return str.substring(0, 75) + "...";
+  }
+  return str;
+}
+
+export function truncateShortString(str) {
+  if (str.length > 35) {
+    return str.substring(0, 35) + "...";
+  }
+  return str;
+}
+
+export function truncateShorterString(str) {
+  if (str.length > 23) {
+    return str.substring(0, 23) + "...";
+  }
+  return str;
+}
+
+// export function sanitizeInput(input) {
+//   let output = input.replace(/[^0-9.,]/g, "").replace(/,/g, ".");
+//   let dotIndex = output.indexOf(".");
+//   if (dotIndex !== -1) {
+//     let decimal = output.substring(dotIndex + 1);
+//     if (decimal.length > 1) {
+//       decimal = decimal.substring(0, 1);
+//       output = output.substring(0, dotIndex + 1) + decimal;
+//     }
+//   }
+//   return output;
+// }

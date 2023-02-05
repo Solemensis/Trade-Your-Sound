@@ -44,7 +44,7 @@ async function postMessage() {
 </script>
 
 <template lang="">
-  <div>
+  <div class="container">
     <div
       v-if="chatRooms.length"
       @click="fetchMessages(chatroom)"
@@ -73,6 +73,12 @@ async function postMessage() {
 </template>
 
 <style scoped>
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .myMessage {
   color: rgb(70, 255, 70);
 }

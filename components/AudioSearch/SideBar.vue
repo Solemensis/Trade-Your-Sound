@@ -37,6 +37,10 @@ function onFilterApply() {
 }
 
 function removeAllFilters() {
+  queries.category = undefined;
+  queries.price = undefined;
+  queries.processing = undefined;
+
   router.push({
     query: {
       category: undefined,
@@ -68,7 +72,7 @@ function removeAllFilters() {
         <ul>
           <li @click="onChangePrice(undefined)">All Prices</li>
           <li @click="onChangePrice(price)" v-for="price in prices">
-            {{ price }}
+            $ {{ price }}
           </li>
         </ul>
       </div>
@@ -95,11 +99,12 @@ function removeAllFilters() {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 2rem;
-  margin-left: 4rem;
+  gap: 2.5rem;
+  padding-top: 5rem;
   height: 100vh;
-  gap: 3rem;
   font-size: 1.5rem;
+  margin-left: 2rem;
+  z-index: 1000;
 }
 .search-bar h3 {
   margin-bottom: 1rem;
