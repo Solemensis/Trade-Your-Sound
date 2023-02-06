@@ -14,21 +14,31 @@ const chatRoom = useState("addRoom", () => {
   };
 });
 
+const errorMessage = ref("");
 async function onSubmit() {
+  //check if user entered his/her username
+  const response = await $fetch("/api/producerProfile/specificUser", {
+    method: "post",
+    body: { userId: user.value.id },
+  });
+  if (Boolean(response) == false) {
+    errorMessage.value =
+      "You need to fill your profile before sending messages.";
+    return;
+  }
+
   try {
     //populating the object with the already fetched audio
     chatRoom.room_name = `${props.audio.name} - $${props.audio.price}`;
     chatRoom.user1_id = user.value.id;
     chatRoom.user2_id = props.audio.lister_id;
   } catch (err) {
-    console.log(err);
-    return;
+    // console.log(err);
   }
 
   try {
     //creating the body object from earlier populated object
     const body = {
-      // ...chatRoom.value,
       room_name: chatRoom.room_name,
       user1_id: chatRoom.user1_id,
       user2_id: chatRoom.user2_id,
@@ -44,15 +54,9 @@ async function onSubmit() {
       navigateTo("/chat");
     }
   } catch (err) {
-    console.log(err);
-    if (chatRoom.user1_id == chatRoom.user2_id) {
-      console.log("you can't send message to yourself");
-    } else {
-      navigateTo("/chat");
-    }
+    // console.log(err);
   }
 }
-
 async function deleteListing() {
   //delete listing from database via backend
   await $fetch(`/api/audio/listings/${props.audio.id}`, {
@@ -78,13 +82,23 @@ function openEdit() {
 <template>
   <div style="text-align: center">
     <div v-if="user">
-      <button
-        class="hero-button"
-        v-if="user.id != props.audio.lister_id"
-        @click="onSubmit"
-      >
-        Send Message
-      </button>
+      <div style="position: relative" v-if="user.id != props.audio.lister_id">
+        <button class="hero-button" @click="onSubmit">Send Message</button>
+        <p
+          v-if="errorMessage"
+          style="
+            color: orangered;
+            font-size: 1.3rem;
+            position: absolute;
+            left: 50%;
+            top: 180%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+          "
+        >
+          {{ errorMessage }}
+        </p>
+      </div>
       <div class="user-buttons" v-else>
         <button class="hero-button" @click="openEdit">Edit listing</button>
         <button class="delete-button" @click="deleteListing">

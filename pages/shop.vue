@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  middleware: ["auth"],
+});
+
 const route = useRoute();
 
 const category = computed(() => route.query.category);

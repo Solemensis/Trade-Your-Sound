@@ -10,8 +10,8 @@ export default async function defineNuxtRouteMiddleware(to, from) {
     body: userId,
   });
 
-  if (!specificUser.user_name) {
-    return;
+  if (specificUser.user_name) {
+    return navigateTo(`/profile/${specificUser.user_name}`);
   }
-  return navigateTo(`/profile/${specificUser.user_name}`);
+  return;
 }

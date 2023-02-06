@@ -56,6 +56,9 @@ async function handleSubmit() {
       carryRefetchSignal.value = !carryRefetchSignal.value;
     } catch (err) {
       errorMessage.value = err.statusMessage;
+      setTimeout(() => {
+        errorMessage.value = "";
+      }, 4000);
     }
   } else return;
 }
@@ -97,7 +100,9 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       name="LFopportunity"
     />
   </div>
-  <label style="font-size: 1.8rem; color: #ddd">Show your projects</label>
+  <label style="font-size: 1.8rem; color: #ddd"
+    >Show your projects <span style="color: #898989">(optional)</span></label
+  >
   <div style="margin-top: 3.5rem" class="links-group">
     <InputsProducerProfileRelatedLink
       class="link"
@@ -159,7 +164,12 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
     <div class="buttons" style="margin-bottom: 6rem">
       <button class="hero-button" @click="handleSubmit">Submit</button>
       <button @click="closeEdit" class="delete-button">Cancel</button>
-      <p v-if="errorMessage">{{ errorMessage }}</p>
+      <p
+        style="position: absolute; top: -4rem; color: brown; font-size: 1.4rem"
+        v-if="errorMessage"
+      >
+        {{ errorMessage }}
+      </p>
     </div>
   </div>
 </template>
@@ -169,6 +179,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  position: relative;
 }
 .terms {
   display: flex;

@@ -1,8 +1,4 @@
 <script setup>
-definePageMeta({
-  middleware: ["auth"],
-});
-
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
@@ -27,13 +23,29 @@ async function handleDelete(id) {
     .from("audios")
     .remove([audio.value.audio]);
 }
+async function navigateToCreatePage() {
+  const response = await $fetch("/api/producerProfile/specificUser", {
+    method: "post",
+    body: {
+      userId: user.value.id,
+    },
+  });
+
+  if (response.description) {
+    navigateTo("/profile/listings/create");
+  } else {
+    errorMessage.value =
+      "You need to pick a username and fill your profile before listing an audio.";
+  }
+}
+const errorMessage = ref("");
 </script>
 
 <template>
   <div class="listing-box">
-    <NuxtLink class="create-button" to="/profile/listings/create"
-      ><button class="hero-button">New Listing</button></NuxtLink
-    >
+    <button @click="navigateToCreatePage" class="hero-button">
+      New Listing
+    </button>
 
     <div v-if="!listings">loading...</div>
     <div v-else class="listings">
@@ -44,11 +56,14 @@ async function handleDelete(id) {
         @delete-click="handleDelete"
       />
     </div>
+    <p style="font-size: 1.5rem; color: brown" v-if="errorMessage">
+      {{ errorMessage }}
+    </p>
   </div>
 </template>
 
 <style scoped>
-.create-button {
+.hero-button {
   margin-bottom: 4rem;
 }
 .listing-box {

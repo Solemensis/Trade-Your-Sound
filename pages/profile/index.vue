@@ -92,7 +92,7 @@ function checkChange() {
   font-size: 3.5rem;
   font-weight: 400;
   margin-bottom: 0.2rem;
-  margin-bottom: 10rem;
+  margin-bottom: 8rem;
   color: #ddd;
 }
 .container {

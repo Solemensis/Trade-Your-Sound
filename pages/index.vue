@@ -8,5 +8,9 @@ useHead({
   <div>
     <MainPageHero />
     <MainPageSection1 />
+    <MainPageSection2 />
+    <MainPageSection3 />
   </div>
 </template>
+
+<style scoped></style>

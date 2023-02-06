@@ -1,30 +1,29 @@
 <template>
-  <div>
-    <div class="hero-section">
-      <div class="hero-text-box">
-        <h1 class="hero-secondary-heading">Audio Trading App</h1>
-        <h3 class="hero-heading">
-          Find your <span class="green-span">sound</span>
-        </h3>
+  <div class="hero-section">
+    <div class="hero-text-box">
+      <h1 class="hero-secondary-heading">Audio Trading App</h1>
+      <h3 class="hero-heading">
+        Pick your <span class="green-span">sound</span>
+      </h3>
 
-        <p class="hero-description">
-          <span class="green-span">Sell</span> your sounds, contact producers
-          across the globe. <br />Just click the button to learn more!
-        </p>
-        <button class="hero-button">What is This?</button>
-      </div>
-      <img class="hero-img" src="@/assets/images/1.png" alt="" />
+      <p class="hero-description">
+        <span class="green-span">Sell</span> your sounds, contact producers
+        across the globe. <br />Just click the button to learn more!
+      </p>
+      <button class="hero-button">What is This?</button>
     </div>
+    <img class="hero-img" src="@/assets/images/1.png" alt="" />
   </div>
 </template>
 
 <style scoped>
 .hero-section {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 105vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 6rem;
 }
 .hero-text-box {
   color: #ededed;
