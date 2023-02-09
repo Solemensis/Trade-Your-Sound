@@ -7,6 +7,7 @@
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+
 /* transitions */
 
 .page-enter-active,
@@ -79,6 +80,19 @@ a {
 .delete-button:hover {
   border: #ec0c0c 2px solid;
   transform: translateY(-3%);
+}
+
+/* button pop animation */
+@keyframes button-pop {
+  0% {
+    transform: scale(0.94);
+  }
+  40% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* INPUTS */

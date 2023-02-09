@@ -79,7 +79,7 @@ function removeAllFilters() {
   height: 100vh;
   font-size: 1.5rem;
   margin-left: 2rem;
-  z-index: 1000;
+  /* z-index: 1000; */
 }
 
 .search-bar h3 {

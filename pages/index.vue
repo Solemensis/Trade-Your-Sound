@@ -10,6 +10,7 @@ useHead({
     <MainPageSection1 />
     <MainPageSection2 />
     <MainPageSection3 />
+    <MainPageSection4 />
   </div>
 </template>
 

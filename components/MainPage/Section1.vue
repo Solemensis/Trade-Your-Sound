@@ -1,6 +1,6 @@
 <script setup>
-import sword from "@/assets/audios/sword.mp3";
-import armor from "@/assets/audios/armor.mp3";
+import bow from "@/assets/audios2/bow.wav";
+import potion from "@/assets/audios2/potion.mp3";
 import shuriken from "@/assets/audios/shuriken.mp3";
 
 function playAudio(name, audio) {
@@ -10,42 +10,55 @@ function playAudio(name, audio) {
 </script>
 
 <template>
-  <div class="flex">
-    <div @mouseenter="playAudio('sword', sword)" data-aos="zoom-in">
-      <img src="@/assets/audios/sword.svg" alt="" />
+  <div style="position: relative" class="flex">
+    <h2 class="heading">
+      The Things <span class="green-span">You Can Do...</span>
+    </h2>
+    <div @mouseenter="playAudio('bow', bow)" data-aos="zoom-in">
+      <img src="@/assets/audios2/bow.svg" />
       <h3>Create your producer profile</h3>
       <p>
-        Pick a username and fill your profile information to display your
-        producer profile on producer profiles page!
+        Fill your profile to display your producer profile on producer profiles
+        page for potential opportunities!
       </p>
     </div>
 
-    <div @mouseenter="playAudio('shuriken', shuriken)" data-aos="zoom-in">
-      <img src="@/assets/audios/shuriken.svg" alt="" />
+    <div @mouseenter="playAudio('potion', potion)" data-aos="zoom-in">
+      <img src="@/assets/audios2/potion.svg" alt="" />
+
       <h3>Sell your audios</h3>
       <p>
         Sell commercial licences of your audios to people who wanna buy them,
         and make a passive income.
       </p>
     </div>
-    <div @mouseenter="playAudio('armor', armor)" data-aos="zoom-in">
-      <img src="@/assets/audios/armor.svg" alt="" />
+    <div @mouseenter="playAudio('shuriken', shuriken)" data-aos="zoom-in">
+      <img src="@/assets/audios/shuriken.svg" alt="" />
       <h3>Scroll through producer profiles</h3>
       <p>
-        Instead scrolling general social media, scroll here to see who is onto
-        what, and chat with producers like you!
+        Instead scrolling general social media, scroll here to meet people like
+        you, communicate with producers like you!
       </p>
     </div>
   </div>
 </template>
 
 <style scoped>
+.heading {
+  position: absolute;
+  top: -18rem;
+  color: #ddd;
+  font-size: 3.5rem;
+  font-weight: 500;
+}
 .flex {
+  margin-top: 20rem;
   margin-bottom: 27rem;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
+  padding: 3rem;
 }
 .flex div {
   width: 28rem;
@@ -58,21 +71,22 @@ function playAudio(name, audio) {
   justify-content: center;
   padding: 2rem;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
 }
 .flex div:hover img {
-  transform: translateY(-7%);
+  transform: translateY(-8%);
 }
 .flex div img {
   width: 11rem;
-  transition: 0.3s;
+  transition: 0.2s;
   position: absolute;
-  top: -6rem;
+  top: -5rem;
 }
 .flex div h3 {
   text-align: center;
   font-size: 1.7rem;
   font-weight: 500;
-  color: #d14040;
+  color: #da5883;
   margin-bottom: 1rem;
   position: absolute;
   bottom: 8rem;
@@ -83,7 +97,8 @@ function playAudio(name, audio) {
   color: #ddd;
   font-weight: 400;
   position: absolute;
-  bottom: 3.5rem;
+  bottom: 3rem;
   width: 90%;
+  line-height: 1.3;
 }
 </style>

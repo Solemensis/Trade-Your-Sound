@@ -16,8 +16,8 @@ const info = reactive({
   relatedLink1: `${props.data.related_link1}`,
   relatedLink2: `${props.data.related_link2}`,
   relatedLink3: `${props.data.related_link3}`,
-  whatsappCountry: `${props.data.whatsappCountry}`,
-  whatsappGsm: `${props.data.whatsappGsm}`,
+  // whatsappCountry: `${props.data.whatsappCountry}`,
+  // whatsappGsm: `${props.data.whatsappGsm}`,
 });
 
 const errorMessage = ref("");
@@ -40,8 +40,8 @@ async function handleSubmit() {
       related_link2: info.relatedLink2,
       related_link3: info.relatedLink3,
       description: info.description,
-      whatsappCountry: info.whatsappCountry,
-      whatsappGsm: info.whatsappGsm,
+      // whatsappCountry: info.whatsappCountry,
+      // whatsappGsm: info.whatsappGsm,
       lister_id: user.value.id,
     };
 

@@ -46,8 +46,8 @@ model ProducerProfile {
   updated_at          DateTime    @updatedAt  
   admin               Boolean
   LFopportunity       Boolean
-  whatsappCountry     String?
-  whatsappGsm         String?
+  // whatsappCountry     String?
+  // whatsappGsm         String?
   terms               Boolean
 
   // audio_listings        AudioListings[]
