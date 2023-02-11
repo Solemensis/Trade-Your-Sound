@@ -43,6 +43,7 @@ watch(
   padding-top: 25rem;
   margin-left: 5rem;
   position: relative;
+  z-index: -50;
 }
 
 .scroll-audios {

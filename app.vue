@@ -177,4 +177,19 @@ label {
   opacity: 1;
   transform: rotate(405deg);
 }
+
+/* scroll bar  */
+::-webkit-scrollbar {
+  width: 1rem;
+  /* border-radius: 0.5rem; */
+  background-color: #232323;
+  /* position: absolute; */
+}
+::-webkit-scrollbar-thumb {
+  /* border-radius: 0.5rem; */
+  background-color: #454545;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #454545;
+}
 </style>

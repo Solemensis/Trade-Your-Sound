@@ -83,23 +83,23 @@ watch(
           <h3>Projects</h3>
           <div class="links">
             <a
-              v-if="data.related_link1_desc"
+              v-if="data.relatedLinks[0].relatedLink1Desc"
               target="_blank"
-              :href="data.related_link1"
+              :href="data.relatedLinks[0].relatedLink1"
             >
-              ✔️ {{ data.related_link1_desc }}</a
-            >
-            <a
-              v-if="data.related_link2_desc"
-              target="_blank"
-              :href="data.related_link2"
-              >✔️ {{ data.related_link2_desc }}</a
+              ✔️ {{ data.relatedLinks[0].relatedLink1Desc }}</a
             >
             <a
-              v-if="data.related_link3_desc"
+              v-if="data.relatedLinks[0].relatedLink2Desc"
               target="_blank"
-              :href="data.related_link3"
-              >✔️ {{ data.related_link3_desc }}</a
+              :href="data.relatedLinks[0].relatedLink2"
+              >✔️ {{ data.relatedLinks[0].relatedLink2Desc }}</a
+            >
+            <a
+              v-if="data.relatedLinks[0].relatedLink3Desc"
+              target="_blank"
+              :href="data.relatedLinks[0].relatedLink3"
+              >✔️ {{ data.relatedLinks[0].relatedLink3Desc }}</a
             >
           </div>
         </div>

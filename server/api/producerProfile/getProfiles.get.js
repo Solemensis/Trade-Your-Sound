@@ -6,6 +6,8 @@ export default defineEventHandler(async (event) => {
   const { opportunity } = getQuery(event);
 
   let filters = {
+    showProfile: true,
+
     //this is just to make sure that user filled his/her profile's necessery inputs
     description: {
       not: "",

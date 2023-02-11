@@ -11,13 +11,18 @@ const username = reactive({
   lister_id: user.value.id,
   user_name: "",
   terms: termsAccepted.value,
-  related_link1: "",
-  related_link2: "",
-  related_link3: "",
-  related_link1_desc: "",
-  related_link2_desc: "",
-  related_link3_desc: "",
+  relatedLinks: [
+    {
+      relatedLink1: "",
+      relatedLink2: "",
+      relatedLink3: "",
+      relatedLink1Desc: "",
+      relatedLink2Desc: "",
+      relatedLink3Desc: "",
+    },
+  ],
   description: "",
+  showProfile: false,
 });
 
 const onClick = async () => {
@@ -31,8 +36,8 @@ const onClick = async () => {
     });
     navigateTo(`/profile/${username.user_name}`);
   } catch (error) {
-    errorMessage.value =
-      "You need to pick a username & accept our terms of concern. If you have done both, please try refreshing the page.";
+    errorMessage.value = error.statusMessage;
+    console.log(error);
     setTimeout(() => {
       errorMessage.value = "";
     }, 6000);
@@ -77,11 +82,14 @@ function checkChange() {
         style="
           position: absolute;
           bottom: -6rem;
+          width: 100%;
+          text-align: center;
           font-size: 1.2rem;
           color: #aaa;
         "
       >
-        <span style="color: #ff4545">Error:</span> {{ errorMessage }}
+        <span style="color: #ff4545">Error:</span>
+        {{ errorMessage }}
       </p>
     </div>
   </div>

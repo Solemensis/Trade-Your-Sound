@@ -6,8 +6,8 @@ import axeAudio from "@/assets/audios2/axe.mp3";
 import manAudio from "@/assets/audios2/man.wav";
 import womanAudio from "@/assets/audios2/woman.wav";
 import grimReaperAudio from "@/assets/audios2/grimReaper.wav";
-import ui1Audio from "@/assets/audios2/ui1.wav";
-import ui2Audio from "@/assets/audios2/ui2.mp3";
+import ui1Audio from "@/assets/audios2/ui1.mp3";
+import ui2Audio from "@/assets/audios2/ui2.wav";
 import ui3Audio from "@/assets/audios2/ui3.wav";
 import fireSpellAudio from "@/assets/audios2/fireSpell.wav";
 import windyScrollAudio from "@/assets/audios2/windyScroll.wav";
@@ -236,10 +236,11 @@ const playing = reactive({
   justify-items: center;
   margin-inline: auto;
   width: 80%;
-  grid-row-gap: 10rem;
+  grid-row-gap: 15rem;
   grid-column-gap: 2rem;
-  margin-bottom: 20rem;
+  margin-bottom: 27rem;
 }
+
 .text-box {
   text-align: center;
 }
@@ -254,16 +255,21 @@ const playing = reactive({
   list-style: none;
 }
 .text-box ul li {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   color: #bbb;
   width: clamp(1rem, 100%, 45rem);
   margin-inline: auto;
+  line-height: 1.3;
 }
 .ico-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-column-gap: 10rem;
   justify-items: center;
+}
+.ico-grid div:first-child {
+  grid-column-start: span 2;
 }
 
 .ico-grid div {
@@ -273,10 +279,6 @@ const playing = reactive({
   transition: 0.2s;
   /* box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px; */
   box-shadow: #343434 3px 3px 6px 0px inset, #05050580 -3px -3px 6px 1px inset;
-}
-
-.ico-grid div:first-child {
-  grid-column-start: span 2;
 }
 
 .playing {

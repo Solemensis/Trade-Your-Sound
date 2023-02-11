@@ -34,10 +34,10 @@ function playAudio(name, audio) {
     </div>
     <div @mouseenter="playAudio('shuriken', shuriken)" data-aos="zoom-in">
       <img src="@/assets/audios/shuriken.svg" alt="" />
-      <h3>Scroll through producer profiles</h3>
+      <h3>Get inspirations</h3>
       <p>
-        Instead scrolling general social media, scroll here to meet people like
-        you, communicate with producers like you!
+        Instead scrolling general social media; scroll here to get audial
+        inspirations, and meet people like you!
       </p>
     </div>
   </div>

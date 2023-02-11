@@ -9,15 +9,14 @@ const info = reactive({
   categories: [...props.data.categories],
   equipment: [...props.data.equipment],
   LFopportunity: props.data.LFopportunity,
+  showProfile: props.data.showProfile,
   description: `${props.data.description}`,
-  relatedLink1Desc: `${props.data.related_link1_desc}`,
-  relatedLink2Desc: `${props.data.related_link2_desc}`,
-  relatedLink3Desc: `${props.data.related_link3_desc}`,
-  relatedLink1: `${props.data.related_link1}`,
-  relatedLink2: `${props.data.related_link2}`,
-  relatedLink3: `${props.data.related_link3}`,
-  // whatsappCountry: `${props.data.whatsappCountry}`,
-  // whatsappGsm: `${props.data.whatsappGsm}`,
+  relatedLink1Desc: `${props.data.relatedLinks[0].relatedLink1Desc}`,
+  relatedLink2Desc: `${props.data.relatedLinks[0].relatedLink2Desc}`,
+  relatedLink3Desc: `${props.data.relatedLinks[0].relatedLink3Desc}`,
+  relatedLink1: `${props.data.relatedLinks[0].relatedLink1}`,
+  relatedLink2: `${props.data.relatedLinks[0].relatedLink2}`,
+  relatedLink3: `${props.data.relatedLinks[0].relatedLink3}`,
 });
 
 const errorMessage = ref("");
@@ -33,15 +32,18 @@ async function handleSubmit() {
       categories: [...info.categories],
       equipment: [...info.equipment],
       LFopportunity: info.LFopportunity,
-      related_link1_desc: info.relatedLink1Desc,
-      related_link2_desc: info.relatedLink2Desc,
-      related_link3_desc: info.relatedLink3Desc,
-      related_link1: info.relatedLink1,
-      related_link2: info.relatedLink2,
-      related_link3: info.relatedLink3,
+      showProfile: info.showProfile,
+      relatedLinks: [
+        {
+          relatedLink1Desc: info.relatedLink1Desc,
+          relatedLink1: info.relatedLink1,
+          relatedLink2Desc: info.relatedLink2Desc,
+          relatedLink2: info.relatedLink2,
+          relatedLink3Desc: info.relatedLink3Desc,
+          relatedLink3: info.relatedLink3,
+        },
+      ],
       description: info.description,
-      // whatsappCountry: info.whatsappCountry,
-      // whatsappGsm: info.whatsappGsm,
       lister_id: user.value.id,
     };
 
@@ -74,6 +76,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
 
 <template>
   <div class="inputs-group">
+    {{ info }}
     <InputsProducerProfileCategories
       class="categories"
       title="Categories"
@@ -94,10 +97,12 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       :data="data.description"
       @change-input="onChangeInput"
     />
-    <InputsProducerProfileOpenToOpportunities
-      :data="data.LFopportunity"
+    <InputsProducerProfileCheckboxes
+      :LFopportunity="data.LFopportunity"
+      :showProfile="data.showProfile"
       @change-input="onChangeInput"
-      name="LFopportunity"
+      LFopportunityName="LFopportunity"
+      showProfileName="showProfile"
     />
   </div>
   <label style="font-size: 1.8rem; color: #ddd"
@@ -110,7 +115,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       title="Describe your link"
       name="relatedLink1Desc"
       placeholder="This is a link to my open source foley library samples"
-      :data="data.related_link1_desc"
+      :data="data.relatedLinks[0].relatedLink1Desc"
       @change-input="onChangeInput"
     />
     <InputsProducerProfileRelatedLink
@@ -119,7 +124,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       title="Paste link"
       name="relatedLink1"
       placeholder="Link"
-      :data="data.related_link1"
+      :data="data.relatedLinks[0].relatedLink1"
       @change-input="onChangeInput"
     />
     <InputsProducerProfileRelatedLink
@@ -128,7 +133,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       title="Describe your link"
       name="relatedLink2Desc"
       placeholder="It's my own track which is currently being used in a game"
-      :data="data.related_link2_desc"
+      :data="data.relatedLinks[0].relatedLink2Desc"
       @change-input="onChangeInput"
     />
     <InputsProducerProfileRelatedLink
@@ -137,7 +142,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       title="Paste link"
       name="relatedLink2"
       placeholder="Link"
-      :data="data.related_link2"
+      :data="data.relatedLinks[0].relatedLink2"
       @change-input="onChangeInput"
     />
     <InputsProducerProfileRelatedLink
@@ -146,7 +151,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       title="Describe your link"
       name="relatedLink3Desc"
       placeholder="My soundcloud profile"
-      :data="data.related_link3_desc"
+      :data="data.relatedLinks[0].relatedLink3Desc"
       @change-input="onChangeInput"
     />
     <InputsProducerProfileRelatedLink
@@ -155,11 +160,10 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       title="Paste link"
       name="relatedLink3"
       placeholder="Link"
-      :data="data.related_link3"
+      :data="data.relatedLinks[0].relatedLink3"
       @change-input="onChangeInput"
     />
   </div>
-  <div></div>
   <div class="bottom-group">
     <div class="buttons" style="margin-bottom: 6rem">
       <button class="hero-button" @click="handleSubmit">Submit</button>

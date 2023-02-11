@@ -6,17 +6,11 @@ const prisma = new PrismaClient();
 const schema = Joi.object({
   categories: Joi.array().items(Joi.string().required()),
   equipment: Joi.array().items(Joi.string().required()),
-  related_link1: Joi.string().allow("", null),
-  related_link2: Joi.string().allow("", null),
-  related_link3: Joi.string().allow("", null),
-  related_link1_desc: Joi.string().allow("", null),
-  related_link2_desc: Joi.string().allow("", null),
-  related_link3_desc: Joi.string().allow("", null),
+  relatedLinks: Joi.array().required(),
   description: Joi.string().min(10).required(),
   lister_id: Joi.string().required(),
   LFopportunity: Joi.boolean().required(),
-  // whatsappCountry: Joi.string().allow("", null),
-  // whatsappGsm: Joi.string().allow("", null),
+  showProfile: Joi.boolean().required(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -35,17 +29,11 @@ export default defineEventHandler(async (event) => {
   const {
     categories,
     equipment,
-    related_link1,
-    related_link2,
-    related_link3,
-    related_link1_desc,
-    related_link2_desc,
-    related_link3_desc,
+    relatedLinks,
     description,
     lister_id,
     LFopportunity,
-    // whatsappCountry,
-    // whatsappGsm,
+    showProfile,
   } = body;
 
   //database event
@@ -56,16 +44,10 @@ export default defineEventHandler(async (event) => {
     data: {
       categories: categories,
       equipment,
-      related_link1,
-      related_link2,
-      related_link3,
-      related_link1_desc,
-      related_link2_desc,
-      related_link3_desc,
+      relatedLinks,
       description,
       LFopportunity,
-      // whatsappCountry,
-      // whatsappGsm,
+      showProfile,
     },
   });
 

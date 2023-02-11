@@ -34,27 +34,20 @@ model ProducerProfile {
   user_name           String      @unique
   categories          String[]
   equipment           String[]
-  related_link1_desc  String?
-  related_link2_desc  String?
-  related_link3_desc  String?
-  related_link1       String?
-  related_link2       String?
-  related_link3       String?
+  relatedLinks        Json
   description         String?
   lister_id           String      @unique
   created_at          DateTime    @default(now()) 
   updated_at          DateTime    @updatedAt  
   admin               Boolean
   LFopportunity       Boolean
-  // whatsappCountry     String?
-  // whatsappGsm         String?
+  showProfile         Boolean
   terms               Boolean
 
   // audio_listings        AudioListings[]
 
 }
 
- 
 
 model ChatRooms {
 id                Int         @id @default(autoincrement())
