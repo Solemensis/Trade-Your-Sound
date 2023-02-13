@@ -26,12 +26,34 @@ const onAudioUpload = (event) => {
   const input = event.target;
 
   if (input.files) {
-    audio.value.audio = input.files[0];
-    emits("changeInput", input.files[0], "audio");
-
-    uploadedAudio.value = input.files[0].name;
+    //burası mp3 mü koyuldu onu sorgulama
+    if (input.files[0].type != "audio/mpeg") {
+      errorMessage.value = "For now, we can only accept mp3 files.";
+      setTimeout(() => {
+        errorMessage.value = "";
+      }, 4000);
+      return;
+    }
+    //burası audio'nun 30 saniye olup olmadığını belirleme:
+    const audioControl = new Audio();
+    audioControl.addEventListener("loadedmetadata", () => {
+      if (audioControl.duration >= 30) {
+        errorMessage.value =
+          "For now, you can't upload an audio longer than 30 seconds.";
+        setTimeout(() => {
+          errorMessage.value = "";
+        }, 4000);
+      } else {
+        audio.value.audio = input.files[0];
+        emits("changeInput", input.files[0], "audio");
+        uploadedAudio.value = input.files[0].name;
+        errorMessage.value = "";
+      }
+    });
+    audioControl.src = URL.createObjectURL(input.files[0]);
   }
 };
+const errorMessage = ref("");
 
 //Bottom code is about showing old audio of the listing on the edit page.
 // AND making it emit's value (which is the actual mp3 file)
@@ -66,10 +88,19 @@ onMounted(() => {
         style="height: 100%; width: 100%; opacity: 0; z-index: 100"
         @change="onAudioUpload"
         ref="fileinput"
+        title=""
       />
-
-      <p v-if="!uploadedAudio">+ drop audio...</p>
-      <p v-else>{{ uploadedAudio }} <br />is placed.</p>
+      <div>
+        <p v-if="!uploadedAudio">+ drop audio...</p>
+        <p v-else style="color: #3fcf8e">
+          {{ getContentBeforeUnderscore(uploadedAudio) }} <br />is placed.
+        </p>
+      </div>
+      <div v-if="errorMessage" style="top: -5rem; white-space: nowrap">
+        <p style="font-size: 1.1rem; color: orangered">
+          {{ errorMessage }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -92,7 +123,7 @@ onMounted(() => {
   position: relative;
   height: 100%;
 }
-.input p {
+.input div {
   font-size: 1.2rem;
   text-align: center;
   position: absolute;

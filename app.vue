@@ -35,6 +35,7 @@ body {
 }
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none;
@@ -146,6 +147,10 @@ label {
 }
 .checkbox:hover {
   background-color: #555;
+}
+
+.disabled-checkbox:hover {
+  background-color: #888;
 }
 
 .checkbox::before {

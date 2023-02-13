@@ -1,3 +1,20 @@
+<script setup>
+const textContent = ref("");
+const notification = ref("");
+
+async function sendOpinion() {
+  const response = await $fetch("/api/opinion", {
+    method: "post",
+    body: textContent.value,
+  });
+  textContent.value = "";
+  notification.value = "Done! ty :D";
+  setTimeout(() => {
+    notification.value = "";
+  }, 4000);
+}
+</script>
+
 <template>
   <div class="flex-whole">
     <div class="flex-left">
@@ -15,8 +32,8 @@
       </p>
       <p>
         You can play a role in this aswell by just filling your profile with
-        some empty fill-in information, creating an audio listing with a sample
-        file, and just surfing the functionality of the web in general.
+        some fill-in information, creating an audio listing with a sample file,
+        and just surfing the functionality of the web in general.
       </p>
       <p>
         And as a conclusion, you can write me the functional struggles-user
@@ -31,8 +48,9 @@
       </p>
     </div>
     <div class="textarea-and-button">
-      <textarea class="textarea"></textarea>
-      <button class="hero-button">Send Message</button>
+      <textarea v-model="textContent" class="textarea"></textarea>
+      <button @click="sendOpinion" class="hero-button">Send Message</button>
+      <p class="notification" v-if="notification">{{ notification }}</p>
     </div>
   </div>
 </template>
@@ -75,9 +93,17 @@ textarea {
   align-items: center;
   margin-inline: auto;
   width: 45%;
+  position: relative;
 }
 .textarea-and-button button {
   padding: 0.5rem 5rem;
   color: #ddd;
+}
+
+.notification {
+  color: #3fcf8e;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 11.5rem;
 }
 </style>

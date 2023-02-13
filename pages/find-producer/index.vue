@@ -91,7 +91,7 @@ const opportunityActive = ref(false);
           </NuxtLink>
         </div>
         <h2 style="color: #ff4545; grid-column-start: span 2" v-else>
-          No Audios Found With These Filters
+          No Producer Found With These Filters
         </h2>
       </div>
     </div>

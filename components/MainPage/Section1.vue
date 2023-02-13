@@ -1,7 +1,7 @@
 <script setup>
-import bow from "@/assets/audios2/bow.wav";
+import bow from "@/assets/audios2/bow.mp3";
 import potion from "@/assets/audios2/potion.mp3";
-import shuriken from "@/assets/audios/shuriken.mp3";
+import shuriken from "@/assets/audios2/shuriken.mp3";
 
 function playAudio(name, audio) {
   name = new Audio(audio);
@@ -11,6 +11,12 @@ function playAudio(name, audio) {
 
 <template>
   <div style="position: relative" class="flex">
+    <p
+      id="things-you-can-do"
+      style="position: absolute; left: 0; top: -35rem; opacity: 0"
+    >
+      things-you-can-do
+    </p>
     <h2 class="heading">
       The Things <span class="green-span">You Can Do...</span>
     </h2>
@@ -33,11 +39,11 @@ function playAudio(name, audio) {
       </p>
     </div>
     <div @mouseenter="playAudio('shuriken', shuriken)" data-aos="zoom-in">
-      <img src="@/assets/audios/shuriken.svg" alt="" />
+      <img src="@/assets/audios2/shuriken.svg" alt="" />
       <h3>Get inspirations</h3>
       <p>
         Instead scrolling general social media; scroll here to get audial
-        inspirations, and meet people like you!
+        inspirations, and meet people who loves sfx!
       </p>
     </div>
   </div>

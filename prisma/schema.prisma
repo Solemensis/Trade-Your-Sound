@@ -68,5 +68,9 @@ room_id           Int
 chat_room         ChatRooms   @relation(fields:[room_id], references:[id], onDelete: Cascade)
 }
 
-
+model Opinions {
+id                Int         @id @default(autoincrement())
+created_at        DateTime    @default(now()) 
+content           String
+}
 

@@ -23,6 +23,7 @@ async function handleDelete(id) {
     .from("audios")
     .remove([audio.value.audio]);
 }
+
 async function navigateToCreatePage() {
   const response = await $fetch("/api/producerProfile/specificUser", {
     method: "post",
@@ -31,11 +32,21 @@ async function navigateToCreatePage() {
     },
   });
 
-  if (response.description) {
-    navigateTo("/profile/listings/create");
-  } else {
+  const response2 = await $fetch("/api/audio/listings/getSpecificListings", {
+    method: "post",
+    body: {
+      userId: user.value.id,
+    },
+  });
+
+  if (!response.description) {
     errorMessage.value =
       "You need to pick a username and fill your profile before listing an audio.";
+  } else if (response2.length >= 4) {
+    errorMessage.value =
+      "Currently we can't accept more than 4 audio listings.";
+  } else {
+    navigateTo("/profile/listings/create");
   }
 }
 const errorMessage = ref("");
@@ -56,7 +67,10 @@ const errorMessage = ref("");
         @delete-click="handleDelete"
       />
     </div>
-    <p style="font-size: 1.5rem; color: brown" v-if="errorMessage">
+    <p
+      style="font-size: 1.5rem; color: brown; position: absolute; top: 11rem"
+      v-if="errorMessage"
+    >
       {{ errorMessage }}
     </p>
   </div>

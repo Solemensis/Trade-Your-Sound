@@ -23,6 +23,7 @@ const username = reactive({
   ],
   description: "",
   showProfile: false,
+  admin: false,
 });
 
 const onClick = async () => {

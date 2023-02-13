@@ -1,17 +1,5 @@
 <script setup>
-//audio files
-import eggCrackAudio from "@/assets/audios2/eggCrack.mp3";
-import cauldronAudio from "@/assets/audios2/cauldron.wav";
-import axeAudio from "@/assets/audios2/axe.mp3";
-import manAudio from "@/assets/audios2/man.wav";
-import womanAudio from "@/assets/audios2/woman.wav";
-import grimReaperAudio from "@/assets/audios2/grimReaper.wav";
-import ui1Audio from "@/assets/audios2/ui1.mp3";
-import ui2Audio from "@/assets/audios2/ui2.wav";
-import ui3Audio from "@/assets/audios2/ui3.wav";
-import fireSpellAudio from "@/assets/audios2/fireSpell.wav";
-import windyScrollAudio from "@/assets/audios2/windyScroll.wav";
-import spellBookAudio from "@/assets/audios2/spellBook.wav";
+const supabase = useSupabaseClient();
 
 //refs to audios from template
 const eggCrack = ref(null);
@@ -28,14 +16,33 @@ const windyScroll = ref(null);
 const spellBook = ref(null);
 
 //player
-function play(audio) {
+async function play(audio, audioName) {
   if (!audio.paused) {
     audio.pause();
     return;
+  } else if (audio.src) {
+    audio.load();
+    audio.play();
+    return;
+  } else {
+    // loading.eggCrack = true;
+
+    const { data, error } = await supabase.storage
+      .from("audios")
+      .download(`example/${audioName}.mp3`);
+
+    const audioUrl = URL.createObjectURL(data);
+
+    audio.src = audioUrl;
+
+    audio.load();
+    audio.play();
   }
-  audio.load();
-  audio.play();
 }
+// const loading = reactive({
+//   eggCrack: false,
+// });
+// @loadedmetadata="loading.eggCrack = false"
 
 //booleans for playing state
 const playing = reactive({
@@ -68,31 +75,37 @@ const playing = reactive({
     </h2>
     <div class="general-grid">
       <div class="ico-grid">
-        <div :class="{ playing: playing.eggCrack }" @click="play(eggCrack)">
+        <div
+          :class="{ playing: playing.eggCrack }"
+          @click="play(eggCrack, 'eggCrack')"
+        >
           <img src="@/assets/audios2/eggCrack.svg" alt="" />
           <audio
-            @play="playing.eggCrack = !playing.eggCrack"
-            @pause="playing.eggCrack = !playing.eggCrack"
+            @play="playing.eggCrack = true"
+            @pause="playing.eggCrack = false"
             ref="eggCrack"
-            :src="eggCrackAudio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.cauldron }" @click="play(cauldron)">
+        <div
+          :class="{ playing: playing.cauldron }"
+          @click="play(cauldron, 'cauldron')"
+        >
           <img src="@/assets/audios2/cauldron.svg" alt="" />
           <audio
-            @play="playing.cauldron = !playing.cauldron"
-            @pause="playing.cauldron = !playing.cauldron"
+            @play="playing.cauldron = true"
+            @pause="playing.cauldron = false"
             ref="cauldron"
-            :src="cauldronAudio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.axe }" @click="play(axe)">
+        <div :class="{ playing: playing.axe }" @click="play(axe, 'axe')">
           <img src="@/assets/audios2/axe.svg" alt="" />
           <audio
-            @play="playing.axe = !playing.axe"
-            @pause="playing.axe = !playing.axe"
+            @play="playing.axe = true"
+            @pause="playing.axe = false"
             ref="axe"
-            :src="axeAudio"
+            type="audio/mpeg"
           />
         </div>
       </div>
@@ -115,60 +128,63 @@ const playing = reactive({
         </ul>
       </div>
       <div class="ico-grid">
-        <div :class="{ playing: playing.man }" @click="play(man)">
+        <div :class="{ playing: playing.man }" @click="play(man, 'man')">
           <img src="@/assets/audios2/man.svg" alt="" />
           <audio
-            @play="playing.man = !playing.man"
-            @pause="playing.man = !playing.man"
+            @play="playing.man = true"
+            @pause="playing.man = false"
             ref="man"
-            :src="manAudio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.woman }" @click="play(woman)">
+        <div :class="{ playing: playing.woman }" @click="play(woman, 'woman')">
           <img src="@/assets/audios2/woman.svg" alt="" />
           <audio
-            @play="playing.woman = !playing.woman"
-            @pause="playing.woman = !playing.woman"
+            @play="playing.woman = true"
+            @pause="playing.woman = false"
             ref="woman"
-            :src="womanAudio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.grimReaper }" @click="play(grimReaper)">
+        <div
+          :class="{ playing: playing.grimReaper }"
+          @click="play(grimReaper, 'grimReaper')"
+        >
           <img src="@/assets/audios2/grimReaper.svg" alt="" />
           <audio
-            @play="playing.grimReaper = !playing.grimReaper"
-            @pause="playing.grimReaper = !playing.grimReaper"
+            @play="playing.grimReaper = true"
+            @pause="playing.grimReaper = false"
             ref="grimReaper"
-            :src="grimReaperAudio"
+            type="audio/mpeg"
           />
         </div>
       </div>
       <div class="ico-grid">
-        <div :class="{ playing: playing.ui1 }" @click="play(ui1)">
+        <div :class="{ playing: playing.ui1 }" @click="play(ui1, 'ui1')">
           <img src="@/assets/audios2/ui1.svg" alt="" />
           <audio
-            @play="playing.ui1 = !playing.ui1"
-            @pause="playing.ui1 = !playing.ui1"
+            @play="playing.ui1 = true"
+            @pause="playing.ui1 = false"
             ref="ui1"
-            :src="ui1Audio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.ui2 }" @click="play(ui2)">
+        <div :class="{ playing: playing.ui2 }" @click="play(ui2, 'ui2')">
           <img src="@/assets/audios2/ui2.svg" alt="" />
           <audio
-            @play="playing.ui2 = !playing.ui2"
-            @pause="playing.ui2 = !playing.ui2"
+            @play="playing.ui2 = true"
+            @pause="playing.ui2 = false"
             ref="ui2"
-            :src="ui2Audio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.ui3 }" @click="play(ui3)">
+        <div :class="{ playing: playing.ui3 }" @click="play(ui3, 'ui3')">
           <img src="@/assets/audios2/ui3.svg" alt="" />
           <audio
-            @play="playing.ui3 = !playing.ui3"
-            @pause="playing.ui3 = !playing.ui3"
+            @play="playing.ui3 = true"
+            @pause="playing.ui3 = false"
             ref="ui3"
-            :src="ui3Audio"
+            type="audio/mpeg"
           />
         </div>
       </div>
@@ -193,34 +209,40 @@ const playing = reactive({
         </ul>
       </div>
       <div class="ico-grid">
-        <div :class="{ playing: playing.fireSpell }" @click="play(fireSpell)">
+        <div
+          :class="{ playing: playing.fireSpell }"
+          @click="play(fireSpell, 'fireSpell')"
+        >
           <img src="@/assets/audios2/fireSpell.svg" alt="" />
           <audio
-            @play="playing.fireSpell = !playing.fireSpell"
-            @pause="playing.fireSpell = !playing.fireSpell"
+            @play="playing.fireSpell = true"
+            @pause="playing.fireSpell = false"
             ref="fireSpell"
-            :src="fireSpellAudio"
+            type="audio/mpeg"
           />
         </div>
         <div
           :class="{ playing: playing.windyScroll }"
-          @click="play(windyScroll)"
+          @click="play(windyScroll, 'windyScroll')"
         >
           <img src="@/assets/audios2/windyScroll.svg" alt="" />
           <audio
-            @play="playing.windyScroll = !playing.windyScroll"
-            @pause="playing.windyScroll = !playing.windyScroll"
+            @play="playing.windyScroll = true"
+            @pause="playing.windyScroll = false"
             ref="windyScroll"
-            :src="windyScrollAudio"
+            type="audio/mpeg"
           />
         </div>
-        <div :class="{ playing: playing.spellBook }" @click="play(spellBook)">
+        <div
+          :class="{ playing: playing.spellBook }"
+          @click="play(spellBook, 'spellBook')"
+        >
           <img src="@/assets/audios2/spellBook.svg" alt="" />
           <audio
-            @play="playing.spellBook = !playing.spellBook"
-            @pause="playing.spellBook = !playing.spellBook"
+            @play="playing.spellBook = true"
+            @pause="playing.spellBook = false"
             ref="spellBook"
-            :src="spellBookAudio"
+            type="audio/mpeg"
           />
         </div>
       </div>

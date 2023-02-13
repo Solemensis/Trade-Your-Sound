@@ -70,6 +70,8 @@ export default defineEventHandler((event) => {
 
   //database event
   return prisma.AudioListings.findMany({
+    skip: 0,
+    take: 1,
     where: filters,
   });
 });

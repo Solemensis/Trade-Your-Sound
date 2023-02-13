@@ -51,15 +51,24 @@ export function truncateShorterString(str) {
   return str;
 }
 
-// export function sanitizeInput(input) {
-//   let output = input.replace(/[^0-9.,]/g, "").replace(/,/g, ".");
-//   let dotIndex = output.indexOf(".");
-//   if (dotIndex !== -1) {
-//     let decimal = output.substring(dotIndex + 1);
-//     if (decimal.length > 1) {
-//       decimal = decimal.substring(0, 1);
-//       output = output.substring(0, dotIndex + 1) + decimal;
-//     }
-//   }
-//   return output;
-// }
+export function getFormattedFileName(date) {
+  const year = String(date.getFullYear()).slice(-2);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hour = String(date.getHours()).padStart(2, "0");
+  const minute = String(date.getMinutes()).padStart(2, "0");
+  return `${day}_${month}_${year}_${hour}${minute}`;
+}
+
+export function getContentBeforeUnderscore(str) {
+  return str.split("_")[0];
+}
+
+export function getSubstring(str) {
+  const match = "public/audios/public/";
+  const index = str.indexOf(match);
+  if (index === -1) {
+    return null;
+  }
+  return str.substring(index + match.length);
+}

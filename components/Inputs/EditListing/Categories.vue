@@ -18,13 +18,13 @@ const onChange = () => {
     <label>{{ title }} <span class="green-span">*</span></label>
     <select @change="onChange" v-model="state">
       <option :key="1" value="sound-effects">Sound Effects</option>
-      <option :key="2" value="environmental-sounds">
+      <option :key="2" value="ui-sounds">UI Sounds</option>
+      <option :key="3" value="foley-sounds">Foley Sounds</option>
+      <option :key="4" value="dialogue">Dialogue</option>
+      <option disabled :key="5" value="soundscapes">Soundscapes</option>
+      <option disabled :key="6" value="environmental-sounds">
         Environmental Sounds
       </option>
-      <option :key="3" value="ui-sounds">UI Sounds</option>
-      <option :key="4" value="foley-sounds">Foley Sounds</option>
-      <option :key="5" value="dialogue">Dialogue</option>
-      <option :key="6" value="soundscapes">Soundscapes</option>
     </select>
   </div>
 </template>

@@ -76,7 +76,6 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
 
 <template>
   <div class="inputs-group">
-    {{ info }}
     <InputsProducerProfileCategories
       class="categories"
       title="Categories"

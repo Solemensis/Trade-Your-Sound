@@ -25,7 +25,12 @@ const onChangeInput = (inputData, name) => {
 async function handleSubmit() {
   //audio bucket file creation logic
   const fileName =
-    replaceSpacesAndTrChars(info.name) + "_" + Math.floor(Math.random() * 9999);
+    replaceSpacesAndTrChars(info.name) +
+    "_" +
+    getFormattedFileName(new Date()) +
+    "_" +
+    Math.floor(Math.random() * 999);
+
   const { data, error } = await supabase.storage
     .from("audios")
     .upload("public/" + fileName, info.audio);
@@ -54,7 +59,7 @@ async function handleSubmit() {
       });
 
       //as that put request was a pure edit and the audio file will always be uploaded,
-      //the old audio shall be eleminated:
+      //the old audio shall be eliminated:
       await supabase.storage.from("audios").remove(props.audio.audio);
 
       closeEdit();
@@ -134,7 +139,17 @@ const listingEditRefetchSignal = useState(
         <button class="delete-button" @click="closeEdit">Cancel</button>
       </div>
 
-      <p v-if="errorMessage">{{ errorMessage }}</p>
+      <p
+        v-if="errorMessage"
+        style="
+          position: absolute;
+          bottom: -3rem;
+          color: orangered;
+          font-size: 1.2rem;
+        "
+      >
+        {{ errorMessage }}
+      </p>
     </div>
   </div>
 </template>

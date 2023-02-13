@@ -6,12 +6,10 @@ const props = defineProps({
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
-const chatRoom = useState("addRoom", () => {
-  return {
-    room_name: ``,
-    user1_id: null,
-    user2_id: null,
-  };
+const chatRoom = reactive({
+  room_name: ``,
+  user1_id: null,
+  user2_id: null,
 });
 
 const errorMessage = ref("");
@@ -27,14 +25,10 @@ async function onSubmit() {
     return;
   }
 
-  try {
-    //populating the object with the already fetched audio
-    chatRoom.room_name = `${props.audio.name} - $${props.audio.price}`;
-    chatRoom.user1_id = user.value.id;
-    chatRoom.user2_id = props.audio.lister_id;
-  } catch (err) {
-    // console.log(err);
-  }
+  //populating the object with the already fetched audio
+  chatRoom.room_name = `${props.audio.name} - $${props.audio.price}`;
+  chatRoom.user1_id = user.value.id;
+  chatRoom.user2_id = props.audio.lister_id;
 
   try {
     //creating the body object from earlier populated object
@@ -45,7 +39,7 @@ async function onSubmit() {
     };
 
     if (chatRoom.user1_id == chatRoom.user2_id) {
-      console.log("you can't send message to yourself");
+      errorMessage.value = "You can't send message to yourself";
     } else {
       const response = await $fetch(`/api/chatroom/createChat`, {
         method: "post",
@@ -54,7 +48,8 @@ async function onSubmit() {
       navigateTo("/chat");
     }
   } catch (err) {
-    // console.log(err);
+    //belli ki bu oda daha önce kurulmuş. Direkt chat'e yönlenelim.
+    navigateTo("/chat");
   }
 }
 async function deleteListing() {
@@ -88,12 +83,11 @@ function openEdit() {
           v-if="errorMessage"
           style="
             color: orangered;
-            font-size: 1.3rem;
             position: absolute;
+            bottom: -3.5rem;
             left: 50%;
-            top: 180%;
-            transform: translate(-50%, -50%);
-            width: 100%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
           "
         >
           {{ errorMessage }}

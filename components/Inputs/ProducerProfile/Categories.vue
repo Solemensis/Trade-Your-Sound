@@ -47,13 +47,14 @@ const isChecked = {
         />
         <label>Sound Effects</label>
       </div>
-      <div>
+      <div style="opacity: 0.4">
         <input
-          class="checkbox"
+          class="checkbox disabled-checkbox"
           v-model="isChecked.second"
           @click="onChange"
           type="checkbox"
           value="environmental-sounds"
+          disabled
         />
         <label>Environmental Sounds</label>
       </div>
@@ -88,13 +89,14 @@ const isChecked = {
         />
         <label>Dialogue</label>
       </div>
-      <div>
+      <div style="opacity: 0.4">
         <input
-          class="checkbox"
+          class="checkbox disabled-checkbox"
           v-model="isChecked.sixth"
           @click="onChange"
           type="checkbox"
           value="soundscapes"
+          disabled
         />
         <label>Soundscapes</label>
       </div>

@@ -1,10 +1,11 @@
 <script setup>
+import { vIntersectionObserver } from "@vueuse/components";
+
 definePageMeta({
   middleware: ["auth"],
 });
 
 const route = useRoute();
-
 const category = computed(() => route.query.category);
 const price = computed(() => route.query.price);
 const processing = computed(() => route.query.processing);
@@ -20,6 +21,22 @@ watch(
   () => route.query,
   () => refresh()
 );
+
+//infinite scroll logic starts here
+const isVisible = ref(false);
+
+async function onIntersectionObserver([{ isIntersecting }]) {
+  isVisible.value = isIntersecting;
+  console.log("anan");
+
+  const { data: audios, refresh } = await useFetch(`/api/audios`, {
+    query: {
+      category: category,
+      price: price,
+      processing: processing,
+    },
+  });
+}
 </script>
 
 <template>
@@ -30,7 +47,15 @@ watch(
       <h2 class="scroll-audios">
         Scroll <span class="green-span">Audios</span>
       </h2>
-      <AudioSearchCards v-if="audios && audios.length" :audios="audios" />
+      <div v-if="audios && audios.length">
+        <AudioSearchCards :audios="audios" />
+        <div
+          style="margin-top: 50rem"
+          v-intersection-observer="onIntersectionObserver"
+        >
+          ananı sikerim
+        </div>
+      </div>
       <h2 style="color: #ff4545" v-else>No Audios Found With These Filters</h2>
     </div>
   </div>
@@ -43,7 +68,8 @@ watch(
   padding-top: 25rem;
   margin-left: 5rem;
   position: relative;
-  z-index: -50;
+  width: 50%;
+  margin-inline: auto;
 }
 
 .scroll-audios {

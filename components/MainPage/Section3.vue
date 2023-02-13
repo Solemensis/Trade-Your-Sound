@@ -18,7 +18,7 @@ function playAudio(name, audio) {
       <p>
         Sadly, this app currently cannot accept audios longer than 30 seconds,
         and there are limitations to uploadable file formats as some of them are
-        huge. Additionally, there is a 5 audio listing limit per user and some
+        huge. Additionally, there is a 4 audio listing limit per user and some
         sound categories are forbidden due to their length.
       </p>
       <p>

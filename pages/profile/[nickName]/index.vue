@@ -6,11 +6,16 @@ definePageMeta({
 const route = useRoute();
 const user = useSupabaseUser();
 
+const chatRoom = reactive({
+  room_name: ``,
+  user1_id: null,
+  user2_id: null,
+});
+
 //fetch profile information of the logged user
 const { data, refresh, error } = await useFetch(
   `/api/producerProfile/${route.params.nickName}`
 );
-
 const profileEditToggle = ref(false);
 const carryRefetchSignal = useState("carryRefetchSignal");
 watch(
@@ -19,6 +24,43 @@ watch(
     refresh();
   }
 );
+
+async function sendMessage() {
+  //check if user entered his/her username
+  const response = await $fetch("/api/producerProfile/specificUser", {
+    method: "post",
+    body: { userId: user.value.id },
+  });
+  if (Boolean(response) == false) {
+    errorMessage.value =
+      "You need to fill your profile before sending messages.";
+    return;
+  }
+
+  //populating the object with the already fetched profile
+  chatRoom.room_name = `${response.user_name} - ${toRaw(data.value).user_name}`;
+  chatRoom.user1_id = user.value.id;
+  chatRoom.user2_id = toRaw(data.value).lister_id;
+
+  try {
+    const body = toRaw(chatRoom);
+
+    if (chatRoom.user1_id == chatRoom.user2_id) {
+      errorMessage.value = "You can't send message to yourself";
+    } else {
+      const response = await $fetch(`/api/chatroom/createChat`, {
+        method: "post",
+        body: body,
+      });
+      navigateTo("/chat");
+    }
+  } catch (err) {
+    //belli ki bu oda daha önce kurulmuş. Direkt chat'e yönlenelim.
+    navigateTo("/chat");
+  }
+}
+
+const errorMessage = ref("");
 </script>
 
 <template>
@@ -114,9 +156,26 @@ watch(
             Edit page
           </button>
         </div>
-        <button class="hero-button" v-if="user && user.id !== data.lister_id">
+        <button
+          @click="sendMessage"
+          class="hero-button"
+          v-if="user && user.id !== data.lister_id"
+        >
           Send message
         </button>
+        <p
+          v-if="errorMessage"
+          style="
+            color: orangered;
+            position: absolute;
+            bottom: -3.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+          "
+        >
+          {{ errorMessage }}
+        </p>
         <h2 class="no-user" v-if="!user">
           You have to be a user to send a message.
         </h2>
@@ -124,7 +183,6 @@ watch(
     </div>
     <div v-if="profileEditToggle">
       <EditModesProfileEditMode
-        class="editmode"
         :data="data"
         @toggle-close="(response) => (profileEditToggle = response)"
       />

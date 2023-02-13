@@ -2,10 +2,30 @@
 const props = defineProps({
   src: String,
 });
+const supabase = useSupabaseClient();
 
 //custom audio input logic
 const player = ref(null);
 const seekSlider = ref(null);
+
+async function play() {
+  if (!player.value.paused) {
+    player.value.pause();
+    return;
+  } else if (player.value.src) {
+    player.value.play();
+    return;
+  } else {
+    const { data, error } = await supabase.storage
+      .from("audios")
+      .download(`public/${getSubstring(props.src)}`);
+
+    const audioUrl = URL.createObjectURL(data);
+    player.value.src = audioUrl;
+
+    player.value.play();
+  }
+}
 
 const timeline = ref(0);
 
@@ -30,22 +50,15 @@ function onMetadata() {
       @loadedmetadata="onMetadata"
       ref="player"
       @timeupdate="updateTimelineValue"
-      :src="src"
       type="audio/mpeg"
     />
 
     <div class="jukebox">
       <div class="buttons">
-        <button
-          :class="{ invis: player && !player.paused }"
-          @click="player.play()"
-        >
+        <button :class="{ invis: player && !player.paused }" @click="play">
           <img src="@/assets/play-but.svg" alt="" />
         </button>
-        <button
-          :class="{ invis: player && player.paused }"
-          @click="player.pause()"
-        >
+        <button :class="{ invis: player && player.paused }" @click="play">
           <img src="@/assets/pause-but.svg" alt="" />
         </button>
       </div>
@@ -78,11 +91,11 @@ function onMetadata() {
 .jukebox button {
   background-color: transparent;
   border: none;
-  transition: 0.3s;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -47%);
+  /* transition: 0.3s; */
 }
 .jukebox img {
   width: 4rem;

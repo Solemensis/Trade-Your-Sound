@@ -10,9 +10,11 @@
         <span class="green-span">Sell</span> your sounds, contact producers
         across the globe. <br />Just click the button to learn more!
       </p>
-      <button class="hero-button">What is This?</button>
+      <a href="#things-you-can-do"
+        ><button class="hero-button">What is This?</button></a
+      >
     </div>
-    <img class="hero-img" src="@/assets/images/1.png" alt="" />
+    <img class="hero-img" src="@/assets/images/1.webp" alt="" />
   </div>
 </template>
 

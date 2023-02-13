@@ -34,7 +34,9 @@ async function handleSubmit() {
     "public/" +
     replaceSpacesAndTrChars(info.name) +
     "_" +
-    Math.floor(Math.random() * 9999);
+    getFormattedFileName(new Date()) +
+    "_" +
+    Math.floor(Math.random() * 999);
 
   //fetching username to add it to body object
   const userId = {
@@ -73,15 +75,12 @@ async function handleSubmit() {
       await $fetch(`/api/audio/listings/${response.id}`, {
         method: "delete",
       });
-      return (errorMessage.value = "Cannot upload audio");
+      errorMessage.value = "Cannot upload audio";
     }
 
     navigateTo("/profile/listings");
   } catch (err) {
     errorMessage.value = err.statusMessage;
-
-    //if error, delete uploaded audio
-    // await supabase.storage.from("audios").remove(data.path);
   }
 }
 </script>
@@ -140,7 +139,17 @@ async function handleSubmit() {
       <NuxtLink to="/profile/listings"
         ><button class="delete-button">Cancel</button></NuxtLink
       >
-      <p v-if="errorMessage">{{ errorMessage }}</p>
+      <p
+        v-if="errorMessage"
+        style="
+          position: absolute;
+          bottom: -3rem;
+          color: orangered;
+          font-size: 1.2rem;
+        "
+      >
+        {{ errorMessage }}
+      </p>
     </div>
   </div>
 </template>
