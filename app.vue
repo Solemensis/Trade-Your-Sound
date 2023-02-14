@@ -132,8 +132,6 @@ label {
 }
 
 /* checkbox style */
-/* input style logic */
-
 .checkbox {
   position: relative;
   top: 0.1rem;

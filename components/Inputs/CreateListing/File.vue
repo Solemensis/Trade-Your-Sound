@@ -17,7 +17,7 @@ const onAudioUpload = (event) => {
   const input = event.target;
 
   if (input.files) {
-    //burası mp3 mü koyuldu onu sorgulama
+    //burası mp3 mü koyuldu onu sorgulama yeri:
     if (input.files[0].type != "audio/mpeg") {
       errorMessage.value = "For now, we can only accept mp3 files.";
       setTimeout(() => {
@@ -27,26 +27,71 @@ const onAudioUpload = (event) => {
     }
 
     //burası audio'nun 30 saniye olup olmadığını belirleme:
-    const audioControl = new Audio();
-    audioControl.addEventListener("loadedmetadata", () => {
-      if (audioControl.duration >= 30) {
+    const newAudio = new Audio();
+    newAudio.addEventListener("loadedmetadata", () => {
+      if (newAudio.duration >= 30) {
         errorMessage.value =
           "For now, you can't upload an audio longer than 30 seconds.";
         setTimeout(() => {
           errorMessage.value = "";
         }, 4000);
       } else {
+        //burası audioyu sample audio ile mixleme yeri:
+        //sample audioyu oluşturarak başla.
+        const sampleAudio = new Audio(
+          `${config.public.supabase.url}/storage/v1/object/public/audios/sample/sample.mp3`
+        );
+
+        //2 audio da elimizde. burdan sonrası onları birleştirme:
+        const audioContext = new AudioContext();
+
+        const source1 = audioContext.createMediaElementSource(newAudio);
+        const source2 = audioContext.createMediaElementSource(sampleAudio);
+        source1.connect(audioContext.destination);
+        source2.connect(audioContext.destination);
+
+        const gainNode1 = audioContext.createGain();
+        const gainNode2 = audioContext.createGain();
+        source1.connect(gainNode1);
+        source2.connect(gainNode2);
+        gainNode1.Gain.value = 0.5; // adjust volume as needed
+        gainNode2.Gain.value = 0.5; // adjust volume as needed
+
+        const combinedBuffer = audioContext.createBuffer(
+          2, // stereo
+          Math.max(source1.buffer.length, source2.buffer.length), // length of longest audio file
+          audioContext.sampleRate
+        );
+        const channel1 = combinedBuffer.getChannelData(0);
+        const channel2 = combinedBuffer.getChannelData(1);
+        for (let i = 0; i < combinedBuffer.length; i++) {
+          channel1[i] =
+            source1.buffer.getChannelData(0)[i] +
+            source2.buffer.getChannelData(0)[i];
+          channel2[i] =
+            source1.buffer.getChannelData(1)[i] +
+            source2.buffer.getChannelData(1)[i];
+        }
+
+        const combinedSource = audioContext.createBufferSource();
+        combinedSource.buffer = combinedBuffer;
+        combinedSource.connect(audioContext.destination);
+        combinedSource.start();
+
+        //burası audioyu son yolculuğuna uğurlama yeri:
         audio.value.audio = input.files[0];
         emits("changeInput", input.files[0], "audio");
         uploadedAudio.value = input.files[0].name;
         errorMessage.value = "";
       }
     });
-    audioControl.src = URL.createObjectURL(input.files[0]);
+    newAudio.src = URL.createObjectURL(input.files[0]);
   }
 };
 
 const errorMessage = ref("");
+
+const config = useRuntimeConfig();
 </script>
 
 <template>

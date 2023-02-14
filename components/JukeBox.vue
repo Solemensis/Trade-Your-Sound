@@ -34,13 +34,13 @@ function updateTimelineValue() {
 }
 
 function seekAudio() {
-  player.value.pause();
+  // player.value.pause();
   player.value.currentTime = seekSlider.value.value;
 }
 
 function onMetadata() {
   seekSlider.value.max = player.value.duration;
-  seekSlider.value.step = player.value.duration / 8;
+  seekSlider.value.step = player.value.duration / 100;
 }
 </script>
 
@@ -77,7 +77,6 @@ function onMetadata() {
 <style scoped>
 .invis {
   opacity: 0;
-  z-index: -999;
 }
 .jukebox {
   display: flex;
@@ -88,6 +87,9 @@ function onMetadata() {
 .buttons {
   position: relative;
 }
+.buttons:active {
+  animation: button-pop 0.3s ease-out;
+}
 .jukebox button {
   background-color: transparent;
   border: none;
@@ -95,7 +97,8 @@ function onMetadata() {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -47%);
-  /* transition: 0.3s; */
+
+  transition: 0.3s;
 }
 .jukebox img {
   width: 4rem;

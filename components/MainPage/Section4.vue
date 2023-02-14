@@ -21,8 +21,8 @@ async function sendOpinion() {
       <div>
         <h3 class="green-span">You can share your opinions with me.</h3>
         <p>
-          In addition to database limitations, this website is at closed-beta
-          stage right now:
+          In addition to database limitations, this app is at closed-beta stage
+          right now:
         </p>
       </div>
       <p>
@@ -42,7 +42,7 @@ async function sendOpinion() {
       </p>
       <p>
         Plus, i would appreciate legal assistance about writing terms of usage
-        of the webapp, and guidance between my rights and the audio uploaders
+        of the app, and guidance between my rights and the audio uploaders
         rights with the uploaded file, and information in licensing uploaded
         files.
       </p>

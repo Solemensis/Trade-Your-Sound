@@ -23,19 +23,19 @@ watch(
 );
 
 //infinite scroll logic starts here
-const isVisible = ref(false);
-
 async function onIntersectionObserver([{ isIntersecting }]) {
-  isVisible.value = isIntersecting;
-  console.log("anan");
-
-  const { data: audios, refresh } = await useFetch(`/api/audios`, {
-    query: {
-      category: category,
-      price: price,
-      processing: processing,
-    },
-  });
+  if (isIntersecting) {
+    const { data: anan } = await useFetch(`/api/audios`, {
+      query: {
+        category: category,
+        price: price,
+        processing: processing,
+      },
+      method: "post",
+      body: audios.value.length,
+    });
+    audios.value.push(...anan.value);
+  }
 }
 </script>
 
@@ -50,10 +50,10 @@ async function onIntersectionObserver([{ isIntersecting }]) {
       <div v-if="audios && audios.length">
         <AudioSearchCards :audios="audios" />
         <div
-          style="margin-top: 50rem"
+          style="margin-top: 40rem; opacity: 0"
           v-intersection-observer="onIntersectionObserver"
         >
-          ananı sikerim
+          Loading...
         </div>
       </div>
       <h2 style="color: #ff4545" v-else>No Audios Found With These Filters</h2>

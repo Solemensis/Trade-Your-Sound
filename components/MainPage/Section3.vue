@@ -27,17 +27,17 @@ function playAudio(name, audio) {
         size limitations, and audios are usually large file types.
       </p>
       <p>
-        That's why soundscapes, ambiances, environmental sounds and musical
-        pieces etc are not a part of listable audio categories as they are
-        usually audio types longer than 30 seconds. Plus, only accepted file
-        format is mp3 for now.
+        That's why soundscapes, ambiances, environmental sounds, musical pieces
+        etc are not a part of listable audio categories as they are usually
+        audio types longer than 30 seconds. Plus, only accepted file format is
+        mp3 for now.
       </p>
       <p>
         Yet, there is no active-passive listing functionality. So if you want
-        your audio listing to be unlisted-paused but still remain in your
+        your audio listing to be unlisted/paused but still remain in your
         account to be editable and re-listed again, you can't do that and you
-        need to delete your listing instead. Purpose of this is to clean
-        database from unused audios and create space. For now this limitation is
+        need to delete your listing instead. Purpose of this is to keep database
+        clean from unused audios and create space. For now this limitation is
         necessery.
       </p>
       <p>

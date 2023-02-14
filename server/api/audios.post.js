@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const { category } = getQuery(event);
   const { price } = getQuery(event);
   const { processing } = getQuery(event);
+
+  const listingsLength = await readBody(event);
 
   let filters = {};
 
@@ -70,7 +72,8 @@ export default defineEventHandler((event) => {
 
   //database event
   return prisma.AudioListings.findMany({
-    take: 6,
+    skip: listingsLength,
+    take: 4,
     where: filters,
   });
 });
