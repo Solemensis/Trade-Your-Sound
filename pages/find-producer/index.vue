@@ -104,7 +104,7 @@ const opportunityActive = ref(false);
   width: 96vw;
   text-align: center;
   left: 50%;
-  top: -11.9rem;
+  top: -10rem;
   transform: translateX(-50%);
   font-weight: 500;
   font-size: 3.7rem;
@@ -120,7 +120,7 @@ const opportunityActive = ref(false);
 .flex-box-center {
   display: flex;
   justify-content: center;
-  padding-top: 28.5rem;
+  padding-top: 27rem;
   margin-left: 5rem;
 }
 .profile-card {

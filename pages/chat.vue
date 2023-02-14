@@ -77,24 +77,33 @@ const messageBox = ref(null);
         </div>
       </div>
 
-      <div v-if="relatedRoomId" class="right-part">
-        <h3 class="roomName">{{ roomName }}</h3>
-        <div ref="messageBox" class="message-box">
-          <div class="messages">
-            <p
-              v-for="message in messages"
-              :key="message.id"
-              :class="user.id == message.lister_id ? 'myMessage' : 'itsMessage'"
-            >
-              {{ message.content }}
-            </p>
+      <div v-if="relatedRoomId" data-aos="fade-out">
+        <div class="right-part">
+          <h3 class="roomName">{{ roomName }}</h3>
+          <div ref="messageBox" class="message-box">
+            <div class="messages">
+              <p
+                v-for="message in messages"
+                :key="message.id"
+                :class="
+                  user.id == message.lister_id ? 'myMessage' : 'itsMessage'
+                "
+              >
+                {{ message.content }}
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="input-and-button">
-          <input class="text-input" v-model="textMessage" type="text" />
-          <button class="hero-button send-button" @click="postMessage">
-            Send
-          </button>
+          <div class="input-and-button">
+            <input
+              @keydown.enter="postMessage"
+              class="text-input"
+              v-model="textMessage"
+              type="text"
+            />
+            <button class="hero-button send-button" @click="postMessage">
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>

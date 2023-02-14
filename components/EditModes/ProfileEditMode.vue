@@ -75,104 +75,111 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
 </script>
 
 <template>
-  <div class="inputs-group">
-    <InputsProducerProfileCategories
-      class="categories"
-      title="Categories"
-      name="categories"
-      :data="data.categories"
-      @change-input="onChangeInput"
-    /><InputsProducerProfileEquipment
-      title="Equipment"
-      name="equipment"
-      :data="data.equipment"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileSelfDescription
-      class="description"
-      title="Self description"
-      name="description"
-      placeholder="As an audio engineer specialized in creating UI sounds and environmental audio recording, I have worked on projects like video games, nature documentaries, and blockbuster films. I have also recorded and mixed albums for chart-topping artists. My job is to ensure the sound in any project is perfect and I have the experience and passion to bring it to the next level."
-      :data="data.description"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileCheckboxes
-      :LFopportunity="data.LFopportunity"
-      :showProfile="data.showProfile"
-      @change-input="onChangeInput"
-      LFopportunityName="LFopportunity"
-      showProfileName="showProfile"
-    />
-  </div>
-  <label style="font-size: 1.8rem; color: #ddd"
-    >Show your projects <span style="color: #898989">(optional)</span></label
-  >
-  <div style="margin-top: 3.5rem" class="links-group">
-    <InputsProducerProfileRelatedLink
-      class="link"
-      style="width: 150%"
-      title="Describe your link"
-      name="relatedLink1Desc"
-      placeholder="This is a link to my open source foley library samples"
-      :data="data.relatedLinks[0].relatedLink1Desc"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileRelatedLink
-      class="link"
-      style="width: 50%; justify-self: end"
-      title="Paste link"
-      name="relatedLink1"
-      placeholder="Link"
-      :data="data.relatedLinks[0].relatedLink1"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileRelatedLink
-      class="link"
-      style="width: 150%"
-      title="Describe your link"
-      name="relatedLink2Desc"
-      placeholder="It's my own track which is currently being used in a game"
-      :data="data.relatedLinks[0].relatedLink2Desc"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileRelatedLink
-      class="link"
-      style="width: 50%; justify-self: end"
-      title="Paste link"
-      name="relatedLink2"
-      placeholder="Link"
-      :data="data.relatedLinks[0].relatedLink2"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileRelatedLink
-      class="link"
-      style="width: 150%"
-      title="Describe your link"
-      name="relatedLink3Desc"
-      placeholder="My soundcloud profile"
-      :data="data.relatedLinks[0].relatedLink3Desc"
-      @change-input="onChangeInput"
-    />
-    <InputsProducerProfileRelatedLink
-      class="link"
-      style="width: 50%; justify-self: end"
-      title="Paste link"
-      name="relatedLink3"
-      placeholder="Link"
-      :data="data.relatedLinks[0].relatedLink3"
-      @change-input="onChangeInput"
-    />
-  </div>
-  <div class="bottom-group">
-    <div class="buttons" style="margin-bottom: 6rem">
-      <button class="hero-button" @click="handleSubmit">Submit</button>
-      <button @click="closeEdit" class="delete-button">Cancel</button>
-      <p
-        style="position: absolute; top: -4rem; color: brown; font-size: 1.4rem"
-        v-if="errorMessage"
-      >
-        {{ errorMessage }}
-      </p>
+  <div data-aos="fade-in" data-aos-offset="-2000" data-aos-duration="1500">
+    <div class="inputs-group">
+      <InputsProducerProfileCategories
+        class="categories"
+        title="Categories"
+        name="categories"
+        :data="data.categories"
+        @change-input="onChangeInput"
+      /><InputsProducerProfileEquipment
+        title="Equipment"
+        name="equipment"
+        :data="data.equipment"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileSelfDescription
+        class="description"
+        title="Self description"
+        name="description"
+        placeholder="As an audio engineer specialized in creating UI sounds and environmental audio recording, I have worked on projects like video games, nature documentaries, and blockbuster films. I have also recorded and mixed albums for chart-topping artists. My job is to ensure the sound in any project is perfect and I have the experience and passion to bring it to the next level."
+        :data="data.description"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileCheckboxes
+        :LFopportunity="data.LFopportunity"
+        :showProfile="data.showProfile"
+        @change-input="onChangeInput"
+        LFopportunityName="LFopportunity"
+        showProfileName="showProfile"
+      />
+    </div>
+    <label style="font-size: 1.8rem; color: #ddd"
+      >Show your projects <span style="color: #898989">(optional)</span></label
+    >
+    <div style="margin-top: 3.5rem" class="links-group">
+      <InputsProducerProfileRelatedLink
+        class="link"
+        style="width: 150%"
+        title="Describe your link"
+        name="relatedLink1Desc"
+        placeholder="This is a link to my open source foley library samples"
+        :data="data.relatedLinks[0].relatedLink1Desc"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileRelatedLink
+        class="link"
+        style="width: 50%; justify-self: end"
+        title="Paste link"
+        name="relatedLink1"
+        placeholder="Link"
+        :data="data.relatedLinks[0].relatedLink1"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileRelatedLink
+        class="link"
+        style="width: 150%"
+        title="Describe your link"
+        name="relatedLink2Desc"
+        placeholder="It's my own track which is currently being used in a game"
+        :data="data.relatedLinks[0].relatedLink2Desc"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileRelatedLink
+        class="link"
+        style="width: 50%; justify-self: end"
+        title="Paste link"
+        name="relatedLink2"
+        placeholder="Link"
+        :data="data.relatedLinks[0].relatedLink2"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileRelatedLink
+        class="link"
+        style="width: 150%"
+        title="Describe your link"
+        name="relatedLink3Desc"
+        placeholder="My soundcloud profile"
+        :data="data.relatedLinks[0].relatedLink3Desc"
+        @change-input="onChangeInput"
+      />
+      <InputsProducerProfileRelatedLink
+        class="link"
+        style="width: 50%; justify-self: end"
+        title="Paste link"
+        name="relatedLink3"
+        placeholder="Link"
+        :data="data.relatedLinks[0].relatedLink3"
+        @change-input="onChangeInput"
+      />
+    </div>
+    <div class="bottom-group">
+      <div class="buttons" style="margin-bottom: 6rem">
+        <button class="hero-button" @click="handleSubmit">Submit</button>
+        <button @click="closeEdit" class="delete-button">Cancel</button>
+        <p
+          style="
+            position: absolute;
+            top: -4rem;
+            color: brown;
+            font-size: 1.4rem;
+          "
+          v-if="errorMessage"
+        >
+          {{ errorMessage }}
+        </p>
+      </div>
     </div>
   </div>
 </template>

@@ -70,6 +70,9 @@ const errorMessage = ref("");
         Profile of <span style="color: #3fcf8e">{{ data.user_name }}</span>
       </h2>
       <h2
+        data-aos="fade-in"
+        data-aos-offset="-2000"
+        data-aos-duration="1500"
         v-else
         style="margin-top: 80rem; margin-bottom: 8rem; font-size: 4rem"
       >

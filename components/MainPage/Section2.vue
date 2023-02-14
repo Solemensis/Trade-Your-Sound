@@ -63,7 +63,7 @@ const playing = reactive({
       Categorization of <span class="green-span">Sounds</span>
     </h2>
     <div class="general-grid">
-      <div class="ico-grid">
+      <div data-aos="zoom-out" data-aos-duration="700" class="ico-grid">
         <div
           :class="{ playing: playing.eggCrack }"
           @click="play(eggCrack, 'eggCrack')"
@@ -104,7 +104,7 @@ const playing = reactive({
           />
         </div>
       </div>
-      <div class="text-box">
+      <div data-aos="zoom-out" data-aos-duration="700" class="text-box">
         <h3>Foley Sounds</h3>
         <ul>
           <li>
@@ -113,7 +113,7 @@ const playing = reactive({
           </li>
         </ul>
       </div>
-      <div class="text-box">
+      <div data-aos="zoom-out" data-aos-duration="700" class="text-box">
         <h3>Dialogue</h3>
         <ul>
           <li>
@@ -122,7 +122,7 @@ const playing = reactive({
           </li>
         </ul>
       </div>
-      <div class="ico-grid">
+      <div data-aos="zoom-out" data-aos-duration="700" class="ico-grid">
         <div :class="{ playing: playing.man }" @click="play(man, 'man')">
           <img src="@/assets/audios2/man.svg" alt="" />
           <span v-if="playing.man == null" class="lds-dual-ring"></span>
@@ -160,7 +160,7 @@ const playing = reactive({
           />
         </div>
       </div>
-      <div class="ico-grid">
+      <div data-aos="zoom-out" data-aos-duration="700" class="ico-grid">
         <div :class="{ playing: playing.ui1 }" @click="play(ui1, 'ui1')">
           <img src="@/assets/audios2/ui1.svg" alt="" />
           <span v-if="playing.ui1 == null" class="lds-dual-ring"></span>
@@ -195,17 +195,17 @@ const playing = reactive({
           />
         </div>
       </div>
-      <div class="text-box">
+      <div data-aos="zoom-out" data-aos-duration="700" class="text-box">
         <h3>UI Sounds</h3>
         <ul>
           <li>
             When receiving something, activating something, deleting something,
-            hovering on something, or an event happens in an app, we can be
-            notified in audial way. These are user interface sounds
+            or an event happens in an app, we can be notified in audial way.
+            These are user interface sounds.
           </li>
         </ul>
       </div>
-      <div class="text-box">
+      <div data-aos="zoom-out" data-aos-duration="700" class="text-box">
         <h3>Sound Effects</h3>
         <ul>
           <li>
@@ -215,7 +215,7 @@ const playing = reactive({
           </li>
         </ul>
       </div>
-      <div class="ico-grid">
+      <div data-aos="zoom-out" data-aos-duration="700" class="ico-grid">
         <div
           :class="{ playing: playing.fireSpell }"
           @click="play(fireSpell, 'fireSpell')"
@@ -284,6 +284,10 @@ const playing = reactive({
 
 .text-box {
   text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .text-box h3 {
   font-size: 3rem;

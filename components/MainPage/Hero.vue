@@ -26,6 +26,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 6rem;
+  padding-top: 1rem;
 }
 .hero-text-box {
   color: #ededed;

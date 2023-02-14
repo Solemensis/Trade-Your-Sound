@@ -1,10 +1,6 @@
 <script setup>
 import { vIntersectionObserver } from "@vueuse/components";
 
-definePageMeta({
-  middleware: ["auth"],
-});
-
 const route = useRoute();
 const category = computed(() => route.query.category);
 const price = computed(() => route.query.price);
@@ -65,7 +61,7 @@ async function onIntersectionObserver([{ isIntersecting }]) {
 .flex-box-center {
   display: flex;
   justify-content: center;
-  padding-top: 28.5rem;
+  padding-top: 27rem;
   margin-left: 5rem;
   position: relative;
   width: 50%;
@@ -76,7 +72,7 @@ async function onIntersectionObserver([{ isIntersecting }]) {
 .scroll-audios {
   position: absolute;
   left: 50%;
-  top: 16.5rem;
+  top: 17rem;
   padding-left: 20rem;
   width: 96vw;
   text-align: center;

@@ -20,7 +20,12 @@ function playAudio(name, audio) {
     <h2 class="heading">
       The Things <span class="green-span">You Can Do...</span>
     </h2>
-    <div @mouseenter="playAudio('bow', bow)" data-aos="zoom-in">
+    <div
+      @mouseenter="playAudio('bow', bow)"
+      data-aos="fade-down"
+      data-aos-duration="2200"
+      data-aos-easing="ease-out-back"
+    >
       <img src="@/assets/audios2/bow.svg" />
       <h3>Create your producer profile</h3>
       <p>
@@ -29,7 +34,13 @@ function playAudio(name, audio) {
       </p>
     </div>
 
-    <div @mouseenter="playAudio('potion', potion)" data-aos="zoom-in">
+    <div
+      @mouseenter="playAudio('potion', potion)"
+      data-aos="fade-down"
+      data-aos-duration="2200"
+      data-aos-easing="ease-out-back"
+      data-aos-delay="300"
+    >
       <img src="@/assets/audios2/potion.svg" alt="" />
 
       <h3>Sell your audios</h3>
@@ -38,7 +49,13 @@ function playAudio(name, audio) {
         and make a passive income.
       </p>
     </div>
-    <div @mouseenter="playAudio('shuriken', shuriken)" data-aos="zoom-in">
+    <div
+      @mouseenter="playAudio('shuriken', shuriken)"
+      data-aos="fade-down"
+      data-aos-duration="2200"
+      data-aos-easing="ease-out-back"
+      data-aos-delay="600"
+    >
       <img src="@/assets/audios2/shuriken.svg" alt="" />
       <h3>Get inspirations</h3>
       <p>

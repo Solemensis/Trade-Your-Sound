@@ -52,7 +52,12 @@ const listingEditToggle = ref(false);
           @toggle-open="(response) => (listingEditToggle = response)"
         />
       </div>
-      <div v-else>
+      <div
+        data-aos="fade-in"
+        data-aos-offset="-2000"
+        data-aos-duration="1500"
+        v-else
+      >
         <EditModesListingEditMode
           :audio="audio"
           @toggle-close="(response) => (listingEditToggle = response)"
