@@ -103,12 +103,14 @@ function removeAllFilters() {
   padding-top: 5rem;
   height: 100vh;
   font-size: 1.5rem;
-  margin-left: 2rem;
-  /* z-index: 1000; */
+  margin-left: 3rem;
+  z-index: 1000;
 }
 .search-bar h3 {
+  font-size: 2rem;
   margin-bottom: 1rem;
-  font-weight: 400;
+  font-weight: 500;
+  text-align: center;
   padding-bottom: 0.5rem;
   border-bottom: white 1px solid;
   color: #3fcf8e;

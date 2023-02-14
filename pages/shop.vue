@@ -65,17 +65,21 @@ async function onIntersectionObserver([{ isIntersecting }]) {
 .flex-box-center {
   display: flex;
   justify-content: center;
-  padding-top: 25rem;
+  padding-top: 28.5rem;
   margin-left: 5rem;
   position: relative;
   width: 50%;
   margin-inline: auto;
+  padding-left: 20rem;
 }
 
 .scroll-audios {
   position: absolute;
   left: 50%;
-  top: 14rem;
+  top: 16.5rem;
+  padding-left: 20rem;
+  width: 96vw;
+  text-align: center;
   transform: translateX(-50%);
   font-weight: 500;
   font-size: 3.7rem;

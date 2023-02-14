@@ -25,7 +25,7 @@ async function play(audio, audioName) {
     audio.play();
     return;
   } else {
-    // loading.eggCrack = true;
+    playing[audioName] = null;
 
     const { data, error } = await supabase.storage
       .from("audios")
@@ -39,10 +39,6 @@ async function play(audio, audioName) {
     audio.play();
   }
 }
-// const loading = reactive({
-//   eggCrack: false,
-// });
-// @loadedmetadata="loading.eggCrack = false"
 
 //booleans for playing state
 const playing = reactive({
@@ -63,14 +59,7 @@ const playing = reactive({
 
 <template>
   <div>
-    <h2
-      style="
-        text-align: center;
-        margin-bottom: 10rem;
-        font-size: 3.5rem;
-        font-weight: 500;
-      "
-    >
+    <h2 class="heading">
       Categorization of <span class="green-span">Sounds</span>
     </h2>
     <div class="general-grid">
@@ -80,6 +69,8 @@ const playing = reactive({
           @click="play(eggCrack, 'eggCrack')"
         >
           <img src="@/assets/audios2/eggCrack.svg" alt="" />
+          <span v-if="playing.eggCrack == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.eggCrack = true"
             @pause="playing.eggCrack = false"
@@ -92,6 +83,8 @@ const playing = reactive({
           @click="play(cauldron, 'cauldron')"
         >
           <img src="@/assets/audios2/cauldron.svg" alt="" />
+          <span v-if="playing.cauldron == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.cauldron = true"
             @pause="playing.cauldron = false"
@@ -101,6 +94,8 @@ const playing = reactive({
         </div>
         <div :class="{ playing: playing.axe }" @click="play(axe, 'axe')">
           <img src="@/assets/audios2/axe.svg" alt="" />
+          <span v-if="playing.axe == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.axe = true"
             @pause="playing.axe = false"
@@ -130,6 +125,8 @@ const playing = reactive({
       <div class="ico-grid">
         <div :class="{ playing: playing.man }" @click="play(man, 'man')">
           <img src="@/assets/audios2/man.svg" alt="" />
+          <span v-if="playing.man == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.man = true"
             @pause="playing.man = false"
@@ -139,6 +136,8 @@ const playing = reactive({
         </div>
         <div :class="{ playing: playing.woman }" @click="play(woman, 'woman')">
           <img src="@/assets/audios2/woman.svg" alt="" />
+          <span v-if="playing.woman == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.woman = true"
             @pause="playing.woman = false"
@@ -151,6 +150,8 @@ const playing = reactive({
           @click="play(grimReaper, 'grimReaper')"
         >
           <img src="@/assets/audios2/grimReaper.svg" alt="" />
+          <span v-if="playing.grimReaper == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.grimReaper = true"
             @pause="playing.grimReaper = false"
@@ -162,6 +163,8 @@ const playing = reactive({
       <div class="ico-grid">
         <div :class="{ playing: playing.ui1 }" @click="play(ui1, 'ui1')">
           <img src="@/assets/audios2/ui1.svg" alt="" />
+          <span v-if="playing.ui1 == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.ui1 = true"
             @pause="playing.ui1 = false"
@@ -171,6 +174,8 @@ const playing = reactive({
         </div>
         <div :class="{ playing: playing.ui2 }" @click="play(ui2, 'ui2')">
           <img src="@/assets/audios2/ui2.svg" alt="" />
+          <span v-if="playing.ui2 == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.ui2 = true"
             @pause="playing.ui2 = false"
@@ -180,6 +185,8 @@ const playing = reactive({
         </div>
         <div :class="{ playing: playing.ui3 }" @click="play(ui3, 'ui3')">
           <img src="@/assets/audios2/ui3.svg" alt="" />
+          <span v-if="playing.ui3 == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.ui3 = true"
             @pause="playing.ui3 = false"
@@ -214,6 +221,8 @@ const playing = reactive({
           @click="play(fireSpell, 'fireSpell')"
         >
           <img src="@/assets/audios2/fireSpell.svg" alt="" />
+          <span v-if="playing.fireSpell == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.fireSpell = true"
             @pause="playing.fireSpell = false"
@@ -226,6 +235,8 @@ const playing = reactive({
           @click="play(windyScroll, 'windyScroll')"
         >
           <img src="@/assets/audios2/windyScroll.svg" alt="" />
+          <span v-if="playing.windyScroll == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.windyScroll = true"
             @pause="playing.windyScroll = false"
@@ -238,6 +249,8 @@ const playing = reactive({
           @click="play(spellBook, 'spellBook')"
         >
           <img src="@/assets/audios2/spellBook.svg" alt="" />
+          <span v-if="playing.spellBook == null" class="lds-dual-ring"></span>
+
           <audio
             @play="playing.spellBook = true"
             @pause="playing.spellBook = false"
@@ -251,6 +264,12 @@ const playing = reactive({
 </template>
 
 <style scoped>
+.heading {
+  text-align: center;
+  margin-bottom: 10rem;
+  font-size: 3.5rem;
+  font-weight: 500;
+}
 .general-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -295,6 +314,7 @@ const playing = reactive({
 }
 
 .ico-grid div {
+  position: relative;
   background-color: #202020;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -318,5 +338,36 @@ const playing = reactive({
 }
 img {
   height: 8rem;
+}
+
+/* loading animation */
+.lds-dual-ring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.6s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

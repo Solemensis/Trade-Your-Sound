@@ -101,24 +101,26 @@ const opportunityActive = ref(false);
 <style scoped>
 .find-producer {
   position: absolute;
-  width: 80vw;
+  width: 96vw;
   text-align: center;
   left: 50%;
-  top: -11rem;
+  top: -11.9rem;
   transform: translateX(-50%);
   font-weight: 500;
   font-size: 3.7rem;
   color: #bbb;
+  padding-left: 20rem;
 }
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 3rem;
+  padding-left: 20rem;
 }
 .flex-box-center {
   display: flex;
   justify-content: center;
-  padding-top: 25rem;
+  padding-top: 28.5rem;
   margin-left: 5rem;
 }
 .profile-card {

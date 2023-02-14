@@ -111,8 +111,8 @@ const messageBox = ref(null);
   gap: 1rem;
   padding-top: 5rem;
   height: 100vh;
-  margin-left: 2rem;
-  /* z-index: 100; */
+  margin-left: 3rem;
+  z-index: 1000;
 }
 .chatrooms {
   border: 2px solid green;
@@ -127,22 +127,26 @@ const messageBox = ref(null);
 .roomName {
   position: absolute;
   left: 50%;
-  top: -7rem;
+  top: 17rem;
   transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
   color: #3fcf8e;
   font-size: 2.7rem;
 }
 .right-part {
-  padding-top: 20rem;
+  padding-top: 23rem;
   position: relative;
   width: 50%;
   margin-inline: auto;
+  position: absolute;
+  left: 57.5%;
+  transform: translate(-50%);
 }
 .message-box {
   position: relative;
   height: 50vh;
   margin-inline: auto;
-  border-radius: 0.8rem;
   font-size: 1.5rem;
   overflow-y: scroll;
 }
