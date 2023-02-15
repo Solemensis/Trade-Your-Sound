@@ -87,7 +87,8 @@ function playAudio(name, audio) {
   width: 28rem;
   height: 20rem;
   border-radius: 1.5rem;
-  background-color: #222222;
+  /* background-color: #222222;  */
+  background-color: #3030307c;
   display: flex;
   flex-direction: column;
   align-items: center;

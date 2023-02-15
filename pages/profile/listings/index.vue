@@ -58,7 +58,10 @@ const errorMessage = ref("");
       New Listing
     </button>
 
-    <div v-if="!listings">loading...</div>
+    <!-- <span v-if="!listings === null" class="lds-dual-ring loading"></span> -->
+    <span style="font-size: 1.4rem; color: orangered" v-if="!listings"
+      >No audios.</span
+    >
     <div v-else class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
@@ -92,5 +95,8 @@ const errorMessage = ref("");
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 4rem;
+}
+.loading {
+  top: 30rem;
 }
 </style>

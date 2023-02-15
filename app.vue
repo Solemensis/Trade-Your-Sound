@@ -32,6 +32,13 @@
 body {
   background-color: #1c1c1c;
   user-select: none;
+  background-image: linear-gradient(#00000086, #00000086),
+    url("@/assets/images/11.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 html {
   font-size: 62.5%;
@@ -106,7 +113,8 @@ select,
 input[type="file"] {
   height: 2.8rem;
   width: 100%;
-  background-color: #313131;
+  /* background-color: #313131; */
+  background-color: #313131cd;
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
@@ -124,7 +132,8 @@ input[type="file"]:focus {
 textarea {
   height: 10rem;
   width: 50rem;
-  background-color: #313131;
+  /* background-color: #313131; */
+  background-color: #313131cd;
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
@@ -259,6 +268,37 @@ label {
 @media (max-width: 1024px) {
   html {
     font-size: 35%;
+  }
+}
+
+/* loading animation */
+.lds-dual-ring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.6s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

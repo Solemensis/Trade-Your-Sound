@@ -59,9 +59,21 @@ const opportunityActive = ref(false);
                   </li>
                 </ul>
 
-                <div v-if="profile.related_link1_desc" class="related-link">
+                <div
+                  v-if="
+                    profile.relatedLinks &&
+                    profile.relatedLinks[0].relatedLink1Desc
+                  "
+                  class="related-link"
+                >
                   <span class="purple-span" style="font-size: 1.5rem">➜</span>
-                  <p>{{ truncateShortString(profile.related_link1_desc) }}</p>
+                  <p>
+                    {{
+                      truncateShortString(
+                        profile.relatedLinks[0].relatedLink1Desc
+                      )
+                    }}
+                  </p>
                 </div>
 
                 <div
@@ -124,11 +136,13 @@ const opportunityActive = ref(false);
   margin-left: 5rem;
 }
 .profile-card {
-  background-color: #232323;
+  /* background-color: #232323; */
+  background-color: #25252587;
   border-radius: 0.8rem;
   padding: 1.8rem;
   position: relative;
   width: 30rem;
+  height: 21rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -143,7 +157,7 @@ const opportunityActive = ref(false);
 .profile-card h2 {
   color: #3fcf8e;
   font-size: 2.3rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: 0.9rem;
   font-weight: 500;
   transition: 0.2s;
 }
@@ -157,7 +171,7 @@ const opportunityActive = ref(false);
   grid-template-rows: 1fr 1fr 1fr;
   grid-column-gap: 0.6rem;
   grid-row-gap: 0.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .profile-card ul li {
   color: #888;
@@ -166,7 +180,7 @@ const opportunityActive = ref(false);
 .description {
   font-size: 1.3rem;
   color: #aaa;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .related-link {
   margin-bottom: 0.5rem;

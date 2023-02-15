@@ -36,47 +36,47 @@ const onAudioUpload = (event) => {
           errorMessage.value = "";
         }, 4000);
       } else {
-        //burası audioyu sample audio ile mixleme yeri:
-        //sample audioyu oluşturarak başla.
-        const sampleAudio = new Audio(
-          `${config.public.supabase.url}/storage/v1/object/public/audios/sample/sample.mp3`
-        );
+        // //burası audioyu sample audio ile mixleme yeri:
+        // //sample audioyu oluşturarak başla.
+        // const sampleAudio = new Audio(
+        //   `${config.public.supabase.url}/storage/v1/object/public/audios/sample/sample.mp3`
+        // );
 
-        //2 audio da elimizde. burdan sonrası onları birleştirme:
-        const audioContext = new AudioContext();
+        // //2 audio da elimizde. burdan sonrası onları birleştirme:
+        // const audioContext = new AudioContext();
 
-        const source1 = audioContext.createMediaElementSource(newAudio);
-        const source2 = audioContext.createMediaElementSource(sampleAudio);
-        source1.connect(audioContext.destination);
-        source2.connect(audioContext.destination);
+        // const source1 = audioContext.createMediaElementSource(newAudio);
+        // const source2 = audioContext.createMediaElementSource(sampleAudio);
+        // source1.connect(audioContext.destination);
+        // source2.connect(audioContext.destination);
 
-        const gainNode1 = audioContext.createGain();
-        const gainNode2 = audioContext.createGain();
-        source1.connect(gainNode1);
-        source2.connect(gainNode2);
-        gainNode1.Gain.value = 0.5; // adjust volume as needed
-        gainNode2.Gain.value = 0.5; // adjust volume as needed
+        // const gainNode1 = audioContext.createGain();
+        // const gainNode2 = audioContext.createGain();
+        // source1.connect(gainNode1);
+        // source2.connect(gainNode2);
+        // gainNode1.Gain.value = 0.5; // adjust volume as needed
+        // gainNode2.Gain.value = 0.5; // adjust volume as needed
 
-        const combinedBuffer = audioContext.createBuffer(
-          2, // stereo
-          Math.max(source1.buffer.length, source2.buffer.length), // length of longest audio file
-          audioContext.sampleRate
-        );
-        const channel1 = combinedBuffer.getChannelData(0);
-        const channel2 = combinedBuffer.getChannelData(1);
-        for (let i = 0; i < combinedBuffer.length; i++) {
-          channel1[i] =
-            source1.buffer.getChannelData(0)[i] +
-            source2.buffer.getChannelData(0)[i];
-          channel2[i] =
-            source1.buffer.getChannelData(1)[i] +
-            source2.buffer.getChannelData(1)[i];
-        }
+        // const combinedBuffer = audioContext.createBuffer(
+        //   2, // stereo
+        //   Math.max(source1.buffer.length, source2.buffer.length), // length of longest audio file
+        //   audioContext.sampleRate
+        // );
+        // const channel1 = combinedBuffer.getChannelData(0);
+        // const channel2 = combinedBuffer.getChannelData(1);
+        // for (let i = 0; i < combinedBuffer.length; i++) {
+        //   channel1[i] =
+        //     source1.buffer.getChannelData(0)[i] +
+        //     source2.buffer.getChannelData(0)[i];
+        //   channel2[i] =
+        //     source1.buffer.getChannelData(1)[i] +
+        //     source2.buffer.getChannelData(1)[i];
+        // }
 
-        const combinedSource = audioContext.createBufferSource();
-        combinedSource.buffer = combinedBuffer;
-        combinedSource.connect(audioContext.destination);
-        combinedSource.start();
+        // const combinedSource = audioContext.createBufferSource();
+        // combinedSource.buffer = combinedBuffer;
+        // combinedSource.connect(audioContext.destination);
+        // combinedSource.start();
 
         //burası audioyu son yolculuğuna uğurlama yeri:
         audio.value.audio = input.files[0];

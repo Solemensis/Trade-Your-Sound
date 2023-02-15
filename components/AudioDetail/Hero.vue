@@ -59,7 +59,7 @@ const reRenderComponent = ref(true);
   border: #353535 1px solid;
   border-radius: 1rem;
   text-align: center;
-  padding: 1rem;
+  padding: 1.2rem;
   position: absolute;
   right: 0.5rem;
   top: 0;
@@ -114,7 +114,9 @@ const reRenderComponent = ref(true);
 }
 
 .description {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-bottom: 4.5rem;
+  color: #ccc;
+  line-height: 1.3;
 }
 </style>

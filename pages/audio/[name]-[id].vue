@@ -72,7 +72,7 @@ const listingEditToggle = ref(false);
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -48%);
+  transform: translate(-50%, -46%);
   width: 55%;
 }
 </style>

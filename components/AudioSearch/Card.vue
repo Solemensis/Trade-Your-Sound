@@ -60,7 +60,9 @@ const config = useRuntimeConfig();
   padding-left: 3rem;
   position: relative;
   border-radius: 0.8rem;
-  background-color: #232323;
+  /* background-color: #232323; */
+  background-color: #25252587;
+
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .listing-content {

@@ -21,7 +21,9 @@ const config = useRuntimeConfig();
   padding-right: 1.7rem;
   padding-bottom: 2.9rem;
   border-radius: 0.8rem;
-  background-color: #232323;
+  /* background-color: #232323; */
+  background-color: #25252587;
+
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 </style>

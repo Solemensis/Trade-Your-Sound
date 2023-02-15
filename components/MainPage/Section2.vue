@@ -319,7 +319,8 @@ const playing = reactive({
 
 .ico-grid div {
   position: relative;
-  background-color: #202020;
+  /* background-color: #202020; */
+  background-color: #3030307c;
   border-radius: 0.5rem;
   padding: 1rem;
   transition: 0.2s;
@@ -332,7 +333,8 @@ const playing = reactive({
 }
 
 .ico-grid div:hover {
-  background-color: #252525;
+  /* background-color: #252525; */
+  background-color: #3535357c;
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   box-shadow: #343434 3px 3px 6px 0px inset, #05050580 -3px -3px 6px 1px inset;
 }
@@ -342,36 +344,5 @@ const playing = reactive({
 }
 img {
   height: 8rem;
-}
-
-/* loading animation */
-.lds-dual-ring {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.6;
-}
-
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-dual-ring 1.6s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 </style>
