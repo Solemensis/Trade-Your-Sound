@@ -1,11 +1,11 @@
 <script setup>
-import heartFilled from "@/assets/heartFilled.png";
-import heartOutline from "@/assets/heartOutline.png";
+// import heartFilled from "@/assets/heartFilled.png";
+// import heartOutline from "@/assets/heartOutline.png";
 const props = defineProps({ audio: Object });
 
-const favored = useState(`favored-${props.audio.id}`, () => {
-  return false;
-});
+// const favored = useState(`favored-${props.audio.id}`, () => {
+//   return false;
+// });
 
 const config = useRuntimeConfig();
 </script>
