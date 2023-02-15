@@ -96,32 +96,10 @@ h2 {
   top: -4rem;
   width: 100%;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #aaa;
 }
-.google {
-  width: 22rem;
-  height: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  border: none;
-  border-radius: 0.2rem;
-  background-color: #333333;
-  transition: 0.2s;
-}
-.google:hover {
-  transform: translateY(-3%);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.google span {
-  color: #bbb;
-  font-weight: 500;
-}
-.google img {
-  width: 2.3rem;
-}
+.google,
 .discord {
   width: 22rem;
   height: 5rem;
@@ -130,18 +108,22 @@ h2 {
   justify-content: center;
   gap: 2rem;
   border: none;
-  background-color: #333333;
   border-radius: 0.2rem;
+  background-color: #333333;
   transition: 0.2s;
+  font-size: 1.3rem;
 }
+.google:hover,
 .discord:hover {
   transform: translateY(-3%);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.google span,
 .discord span {
   color: #bbb;
   font-weight: 500;
 }
+.google img,
 .discord img {
   width: 2.3rem;
 }

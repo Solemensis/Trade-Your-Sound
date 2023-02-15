@@ -62,6 +62,7 @@ a {
   border: #2c9163 2px solid;
   border-radius: 0.5rem;
   transition: 0.2s;
+  font-size: 1.4rem;
 }
 
 .hero-button:hover {
@@ -76,6 +77,7 @@ a {
   border: #d81a1a 2px solid;
   border-radius: 0.5rem;
   transition: 0.2s;
+  font-size: 1.4rem;
 }
 
 .delete-button:hover {
@@ -108,6 +110,7 @@ input[type="file"] {
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
+  font-size: 1.5rem;
 }
 
 input[type="text"]:focus,
@@ -142,6 +145,7 @@ label {
   appearance: none;
   background-color: #888;
   transition: all 0.1s;
+  font-size: 1.2rem;
 }
 .checkbox:hover {
   background-color: #555;
@@ -194,5 +198,67 @@ label {
 }
 ::-webkit-scrollbar-thumb:active {
   background-color: #454545;
+}
+
+/* responsive*/
+
+@media (min-width: 2500px) {
+  html {
+    font-size: 110%;
+  }
+}
+
+@media (max-width: 2499px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (max-width: 2300px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media (max-width: 2100px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media (max-width: 1920px) {
+  html {
+    font-size: 77%;
+  }
+}
+
+@media (max-width: 1820px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 1720px) {
+  html {
+    font-size: 66%;
+  }
+}
+
+@media (max-width: 1580px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 35%;
+  }
 }
 </style>

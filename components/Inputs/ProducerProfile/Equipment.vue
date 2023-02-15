@@ -105,6 +105,7 @@ const handleDelete = (value) => {
   border-radius: 0.5rem;
   color: #3fcf8e;
   font-weight: 500;
+  font-size: 1.3rem;
 }
 .input-button button:hover {
   background-color: #303030;
