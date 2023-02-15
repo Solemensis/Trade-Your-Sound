@@ -1,13 +1,4 @@
-<script setup>
-import bow from "@/assets/audios2/bow.wav";
-import potion from "@/assets/audios2/potion.mp3";
-import shuriken from "@/assets/audios/shuriken.mp3";
-
-function playAudio(name, audio) {
-  name = new Audio(audio);
-  name.play();
-}
-</script>
+<script setup></script>
 
 <template>
   <div class="text-container">
