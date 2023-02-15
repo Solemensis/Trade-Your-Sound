@@ -33,7 +33,7 @@ body {
   background-color: #1c1c1c;
   user-select: none;
   background-image: linear-gradient(#00000086, #00000086),
-    url("@/assets/images/11.jpg");
+    url("@/assets/images/11.webp");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

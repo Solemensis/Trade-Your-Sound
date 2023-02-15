@@ -107,7 +107,20 @@ const messageBox = ref(null);
         </div>
       </div>
     </div>
-    <h3 v-else>no chat rooms</h3>
+    <h3
+      v-else
+      style="
+        font-size: 2rem;
+        color: orangered;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+      "
+    >
+      No chat rooms.
+    </h3>
   </div>
 </template>
 
@@ -124,9 +137,14 @@ const messageBox = ref(null);
   z-index: 1000;
 }
 .chatrooms {
-  border: 2px solid green;
-  padding: 0.5rem 1rem;
-  max-width: 20rem;
+  background-color: #30303087;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  max-width: 25rem;
+  transition: 0.3s;
+}
+.chatrooms:hover {
+  background-color: #303030db;
 }
 .chatrooms h2 {
   font-weight: 500;
