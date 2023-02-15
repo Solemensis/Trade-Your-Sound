@@ -110,7 +110,7 @@ input[type="file"] {
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 input[type="text"]:focus,
