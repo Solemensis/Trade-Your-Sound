@@ -37,10 +37,7 @@ const opportunityActive = ref(false);
           v-for="profile in profiles"
           :key="profile.id"
         >
-          <NuxtLink
-            v-if="profiles.length"
-            :to="`/profile/${profile.user_name}`"
-          >
+          <NuxtLink :to="`/profile/${profile.user_name}`">
             <div class="profile-card">
               <h2>
                 {{ profile.user_name }}
@@ -88,7 +85,6 @@ const opportunityActive = ref(false);
                       :key="profile.id"
                       v-show="opportunityActive"
                       class="opportunity"
-                      v-if="profile.LFopportunity"
                     >
                       User currently looking for opportunities!
                     </p>

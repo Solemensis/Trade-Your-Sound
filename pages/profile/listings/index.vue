@@ -58,11 +58,7 @@ const errorMessage = ref("");
       New Listing
     </button>
 
-    <!-- <span v-if="!listings === null" class="lds-dual-ring loading"></span> -->
-    <span style="font-size: 1.4rem; color: orangered" v-if="!listings"
-      >No audios.</span
-    >
-    <div v-else class="listings">
+    <div v-if="!listings" class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
         :key="listing.id"
@@ -70,6 +66,10 @@ const errorMessage = ref("");
         @delete-click="handleDelete"
       />
     </div>
+    <!-- <span v-if="!listings === null" class="lds-dual-ring loading"></span> -->
+    <!-- <span style="font-size: 1.4rem; color: orangered"
+      >No audios.</span
+    > -->
     <p
       style="font-size: 1.5rem; color: brown; position: absolute; top: 11rem"
       v-if="errorMessage"
