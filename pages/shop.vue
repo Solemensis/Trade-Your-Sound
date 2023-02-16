@@ -6,17 +6,17 @@ const category = computed(() => route.query.category);
 const price = computed(() => route.query.price);
 const processing = computed(() => route.query.processing);
 
-const { data: audios, refresh } = await useFetch(`/api/audios`, {
+const { data: audios } = await useFetch(`/api/audios`, {
   query: {
     category: category,
     price: price,
     processing: processing,
   },
 });
-watch(
-  () => route.query,
-  () => refresh()
-);
+// watch(
+//   () => route.query,
+//   () => refresh()
+// );
 
 //infinite scroll logic starts here
 async function onIntersectionObserver([{ isIntersecting }]) {

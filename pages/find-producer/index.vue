@@ -4,19 +4,16 @@ const route = useRoute();
 const category = computed(() => route.query.category);
 const LFopportunity = computed(() => route.query.opportunity);
 
-const { data: profiles, refresh } = await useFetch(
-  "/api/producerProfile/getProfiles",
-  {
-    query: {
-      category: category,
-      opportunity: LFopportunity,
-    },
-  }
-);
-watch(
-  () => route.query,
-  () => refresh()
-);
+const { data: profiles } = await useFetch("/api/producerProfile/getProfiles", {
+  query: {
+    category: category,
+    opportunity: LFopportunity,
+  },
+});
+// watch(
+//   () => route.query,
+//   () => refresh()
+// );
 
 const opportunityActive = ref(false);
 </script>
