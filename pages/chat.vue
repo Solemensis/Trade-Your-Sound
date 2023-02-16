@@ -7,9 +7,13 @@ const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
 //fetch chats according to logged user
-const chatRooms = await $fetch("/api/chatroom/fetchChats", {
-  method: "post",
-  body: user.value.id,
+
+const chatRooms = ref();
+onMounted(async () => {
+  chatRooms.value = await $fetch("/api/chatroom/fetchChats", {
+    method: "post",
+    body: user.value.id,
+  });
 });
 
 //fetch messages according to selected chat
@@ -61,9 +65,9 @@ async function postMessage() {
 const messageBox = ref(null);
 </script>
 
-<template lang="">
+<template>
   <div>
-    <div v-if="chatRooms.length" class="container">
+    <div v-if="chatRooms && chatRooms.length" class="container">
       <div class="left-part">
         <div
           @click="fetchMessages(chatroom)"
