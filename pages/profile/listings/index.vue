@@ -2,13 +2,12 @@
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
-const { data: listings } = useFetch(
+const { data: listings } = await useFetch(
   `/api/audio/listings/user/${user.value.id}`
 );
-
 async function handleDelete(id) {
   //catch the audio file location before it's deleted
-  const audio = await useFetchAudio(id);
+  const { data: audio } = await useFetch(`/api/audio/${id}`);
 
   //now delete it from database via backend
   await $fetch(`/api/audio/listings/${id}`, {
@@ -58,7 +57,7 @@ const errorMessage = ref("");
       New Listing
     </button>
 
-    <div v-if="!listings" class="listings">
+    <div v-if="listings" class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
         :key="listing.id"
@@ -66,10 +65,7 @@ const errorMessage = ref("");
         @delete-click="handleDelete"
       />
     </div>
-    <!-- <span v-if="!listings === null" class="lds-dual-ring loading"></span> -->
-    <!-- <span style="font-size: 1.4rem; color: orangered"
-      >No audios.</span
-    > -->
+    <span v-else style="font-size: 1.4rem; color: orangered">No audios.</span>
     <p
       style="font-size: 1.5rem; color: brown; position: absolute; top: 11rem"
       v-if="errorMessage"

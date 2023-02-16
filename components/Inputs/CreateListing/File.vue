@@ -91,7 +91,7 @@ const onAudioUpload = (event) => {
 
 const errorMessage = ref("");
 
-const config = useRuntimeConfig();
+// const config = useRuntimeConfig();
 </script>
 
 <template>

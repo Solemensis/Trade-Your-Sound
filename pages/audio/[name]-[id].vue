@@ -5,7 +5,6 @@ useHead({
   title: route.params.name,
 });
 
-//it's just usefetchaudio composable with refresh added
 const {
   data: audio,
   refresh,
