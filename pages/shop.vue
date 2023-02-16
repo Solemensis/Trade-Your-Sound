@@ -6,13 +6,19 @@ const category = computed(() => route.query.category);
 const price = computed(() => route.query.price);
 const processing = computed(() => route.query.processing);
 
-const { data: audios } = await useFetch(`/api/audios`, {
-  query: {
-    category: category,
-    price: price,
-    processing: processing,
-  },
+const audios = ref([]);
+onMounted(async () => {
+  const { data } = await useFetch(`/api/audios`, {
+    query: {
+      category: category,
+      price: price,
+      processing: processing,
+    },
+  });
+
+  audios.value = data.value;
 });
+
 // watch(
 //   () => route.query,
 //   () => refresh()

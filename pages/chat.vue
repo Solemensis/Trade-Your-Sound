@@ -8,7 +8,7 @@ const supabase = useSupabaseClient();
 
 //fetch chats according to logged user
 
-const chatRooms = ref();
+const chatRooms = ref([]);
 onMounted(async () => {
   chatRooms.value = await $fetch("/api/chatroom/fetchChats", {
     method: "post",
@@ -17,7 +17,7 @@ onMounted(async () => {
 });
 
 //fetch messages according to selected chat
-const messages = ref([]);
+const messages = ref();
 async function fetchMessages(chatroom) {
   messages.value = await $fetch("/api/chatroom/fetchMessages", {
     method: "post",
@@ -80,7 +80,6 @@ const messageBox = ref(null);
           </h2>
         </div>
       </div>
-
       <div v-if="relatedRoomId" data-aos="fade-out">
         <div class="right-part">
           <h3 class="roomName">{{ roomName }}</h3>

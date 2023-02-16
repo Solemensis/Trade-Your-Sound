@@ -2,9 +2,15 @@
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
-const { data: listings } = await useFetch(
-  `/api/audio/listings/user/${user.value.id}`
-);
+const listings = ref([]);
+onMounted(async () => {
+  const { data: userListings } = await useFetch(
+    `/api/audio/listings/user/${user.value.id}`
+  );
+
+  listings.value = userListings.value;
+});
+
 async function handleDelete(id) {
   //catch the audio file location before it's deleted
   const { data: audio } = await useFetch(`/api/audio/${id}`);
@@ -57,7 +63,7 @@ const errorMessage = ref("");
       New Listing
     </button>
 
-    <div v-if="listings" class="listings">
+    <div v-if="listings && listings.length" class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
         :key="listing.id"
