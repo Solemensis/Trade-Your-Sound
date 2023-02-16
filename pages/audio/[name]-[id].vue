@@ -5,18 +5,12 @@ useHead({
   title: route.params.name,
 });
 
-const {
-  data: audio,
-  refresh,
-  error,
-} = await useFetch(`/api/audio/${route.params.id}`);
+const audio = ref({});
+onMounted(async () => {
+  const { data } = await useFetch(`/api/audio/${route.params.id}`);
 
-if (error.value) {
-  throw createError({
-    statusCode: error.value.statusCode,
-    statusMessage: error.value.statusMessage,
-  });
-}
+  audio.value = data.value;
+});
 
 //edit penceresinde database'deki datanın güncellenmesinin ardından, orada dönen
 //boolean sinyaline burada erişilmesi, ve datanın burda yeniden fetch edilmesi için:
@@ -24,8 +18,9 @@ const listingEditRefetchSignal = useState("listingEditRefetchSignal");
 
 watch(
   () => listingEditRefetchSignal.value,
-  () => {
-    refresh();
+  async () => {
+    const { data } = await useFetch(`/api/audio/${route.params.id}`);
+    audio.value = data.value;
 
     //audio dosyasının da yeni fetch'i algılamasını sağlamak için,
     //componenti dom'dan silip hemen geri kurmaya dair bi trick

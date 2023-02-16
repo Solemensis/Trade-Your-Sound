@@ -24,8 +24,8 @@ const reRenderComponent = ref(true);
         </p>
         <div>
           <p class="created-updated">
-            Listed: {{ cutString(audio.created_at) }} - Updated:
-            {{ cutString(audio.updated_at) }}
+            Listed: {{ cutString(String(audio.created_at)) }} - Updated:
+            {{ cutString(String(audio.updated_at)) }}
           </p>
         </div>
       </div>
