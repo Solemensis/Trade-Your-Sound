@@ -9,6 +9,11 @@ export default defineEventHandler(async (event) => {
     where: {
       room_id: chatroom_id,
     },
+    orderBy: [
+      {
+        created_at: "asc",
+      },
+    ],
   });
 
   return fetchMessage;

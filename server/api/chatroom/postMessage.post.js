@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
       content: content,
       lister_id: lister_id,
       room_id: room_id,
+      read: false,
     },
   });
 

@@ -4,11 +4,12 @@ const supabase = useSupabaseClient();
 
 const listings = ref([]);
 onMounted(async () => {
-  const { data: userListings } = await useFetch(
-    `/api/audio/listings/user/${user.value.id}`
-  );
-
-  listings.value = userListings.value;
+  setTimeout(async () => {
+    const { data: userListings } = await useFetch(
+      `/api/audio/listings/user/${user.value.id}`
+    );
+    listings.value = userListings.value;
+  }, 1);
 });
 
 async function handleDelete(id) {

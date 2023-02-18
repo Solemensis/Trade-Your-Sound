@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  middleware: ["no-auth"],
+});
+
 const client = useSupabaseAuthClient();
 
 //oauth

@@ -7,36 +7,50 @@ const price = computed(() => route.query.price);
 const processing = computed(() => route.query.processing);
 
 const audios = ref([]);
-onMounted(async () => {
-  const { data } = await useFetch(`/api/audios`, {
-    query: {
-      category: category,
-      price: price,
-      processing: processing,
-    },
-  });
 
-  audios.value = data.value;
+onMounted(async () => {
+  // setTimeout dışında çalışmıyor, setTimeout'suz birtek $fetch çalışıyor onMounted içinde.
+  setTimeout(async () => {
+    const { data } = await useFetch("/api/audios", {
+      query: {
+        category: category.value,
+        price: price.value,
+        processing: processing.value,
+      },
+    });
+    audios.value = data.value;
+  }, 1);
 });
 
-// watch(
-//   () => route.query,
-//   () => refresh()
-// );
+watch(
+  () => route.query,
+  async () => {
+    const { data } = await useFetch(`/api/audios`, {
+      query: {
+        category: category.value,
+        price: price.value,
+        processing: processing.value,
+      },
+    });
+    audios.value = data.value;
+  }
+);
 
 //infinite scroll logic starts here
 async function onIntersectionObserver([{ isIntersecting }]) {
   if (isIntersecting) {
-    const { data: anan } = await useFetch(`/api/audios`, {
-      query: {
-        category: category,
-        price: price,
-        processing: processing,
-      },
+    const { data: newAudios } = await useFetch(`/api/audios`, {
       method: "post",
       body: audios.value.length,
+      query: {
+        category: category.value,
+        price: price.value,
+        processing: processing.value,
+      },
     });
-    audios.value.push(...anan.value);
+    if (newAudios.value) {
+      audios.value.push(...newAudios.value);
+    }
   }
 }
 </script>

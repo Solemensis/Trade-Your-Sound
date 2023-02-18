@@ -12,23 +12,6 @@ datasource db {
 
 
 
-model AudioListings {
-  id              Int         @id @default(autoincrement())
-  name            String
-  price           Int
-  category        String
-  processing      String
-  description     String
-  lister_id       String      
-  audio           String
-  created_at      DateTime    @default(now()) 
-  updated_at      DateTime    @updatedAt 
-  user_name       String
-
-  // producerProfId  Int
-  // producerProf    ProducerProfile   @relation(fields:[producerProfId], references:[id], onDelete: Cascade)
-}
-
 model ProducerProfile {
   id                  Int         @id @default(autoincrement())
   user_name           String      @unique
@@ -44,10 +27,26 @@ model ProducerProfile {
   showProfile         Boolean
   terms               Boolean
 
-  // audio_listings        AudioListings[]
+  audio_listings        AudioListings[]
 
 }
 
+model AudioListings {
+  id              Int         @id @default(autoincrement())
+  name            String
+  price           Int
+  category        String
+  processing      String
+  description     String
+  lister_id       String      
+  audio           String
+  created_at      DateTime    @default(now()) 
+  updated_at      DateTime    @updatedAt 
+  user_name       String
+ 
+  producer_id     Int
+  producerProf    ProducerProfile   @relation(fields:[producer_id], references:[id], onDelete: Cascade)
+}
 
 model ChatRooms {
 id                Int         @id @default(autoincrement())
@@ -63,6 +62,7 @@ id                Int         @id @default(autoincrement())
 created_at        DateTime    @default(now()) 
 content           String
 lister_id         String
+read              Boolean
 
 room_id           Int
 chat_room         ChatRooms   @relation(fields:[room_id], references:[id], onDelete: Cascade)

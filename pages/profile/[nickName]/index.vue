@@ -15,11 +15,12 @@ const chatRoom = reactive({
 //fetch profile information of the logged user
 const profile = ref({});
 onMounted(async () => {
-  const { data } = await useFetch(
-    `/api/producerProfile/${route.params.nickName}`
-  );
-
-  profile.value = data.value;
+  setTimeout(async () => {
+    const { data } = await useFetch(
+      `/api/producerProfile/${route.params.nickName}`
+    );
+    profile.value = data.value;
+  }, 1);
 });
 
 const profileEditToggle = ref(false);
@@ -37,12 +38,12 @@ watch(
 );
 
 async function sendMessage() {
-  //check if user entered his/her username
+  //check if user filled his/her profile
   const response = await $fetch("/api/producerProfile/specificUser", {
     method: "post",
     body: { userId: user.value.id },
   });
-  if (Boolean(response) == false) {
+  if (response.description == false) {
     errorMessage.value =
       "You need to fill your profile before sending messages.";
     return;
@@ -78,7 +79,7 @@ const errorMessage = ref("");
 
 <template>
   <div class="container">
-    <div v-if="profile">
+    <div v-if="profile.user_name">
       <div class="profile-of">
         <h2 v-if="!profileEditToggle">
           Profile of <span style="color: #3fcf8e">{{ profile.user_name }}</span>
@@ -202,6 +203,7 @@ const errorMessage = ref("");
         />
       </div>
     </div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 

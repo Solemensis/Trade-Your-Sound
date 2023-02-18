@@ -5,11 +5,17 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   //database event
-  const producerProfile = await prisma.producerProfile.findUnique({
+  const readMessage = await prisma.Messages.updateMany({
     where: {
-      lister_id: body.userId,
+      room_id: body.chatroom,
+      lister_id: {
+        not: body.userId,
+      },
+    },
+    data: {
+      read: true,
     },
   });
 
-  return producerProfile;
+  return readMessage;
 });

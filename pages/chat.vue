@@ -19,12 +19,24 @@ onMounted(async () => {
 //fetch messages according to selected chat
 const messages = ref();
 async function fetchMessages(chatroom) {
-  messages.value = await $fetch("/api/chatroom/fetchMessages", {
+  const { data } = await useFetch("/api/chatroom/fetchMessages", {
     method: "post",
     body: chatroom.id,
   });
+  messages.value = data.value;
   relatedRoomId.value = chatroom.id;
   roomName.value = chatroom.room_name;
+
+  //if last message of the chat isn't seen...
+  if (toRaw(messages.value[messages.value.length - 1].read) == false) {
+    //then, let all the messages be seen of the current chat
+    const seenMessages = await $fetch("/api/chatroom/seeMessages", {
+      method: "put",
+      body: { chatroom: chatroom.id, userId: user.value.id },
+    });
+  }
+
+  messageBox.value.scrollTop = messageBox.value.scrollHeight;
 
   // Listen to database message inserts
   supabase
@@ -34,7 +46,6 @@ async function fetchMessages(chatroom) {
       { event: "INSERT", schema: "public", table: "Messages" },
       async (payload) => {
         await fetchMessages(chatroom);
-        messageBox.value.scrollTop = messageBox.value.scrollHeight;
       }
     )
     .subscribe();

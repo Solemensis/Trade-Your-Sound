@@ -1,10 +1,24 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const { category } = getQuery(event);
   const { price } = getQuery(event);
   const { processing } = getQuery(event);
+
+  // let category = "";
+  // let price = "";
+  // let processing = "";
+
+  // if (Boolean(getQuery(event)["category"])) {
+  //   category = getQuery(event)["category"];
+  // }
+  // if (Boolean(getQuery(event)["price"])) {
+  //   price = getQuery(event)["price"];
+  // }
+  // if (Boolean(getQuery(event)["processing"])) {
+  //   processing = getQuery(event)["processing"];
+  // }
 
   let filters = {};
 
@@ -69,8 +83,10 @@ export default defineEventHandler((event) => {
   }
 
   //database event
-  return prisma.AudioListings.findMany({
+  const audioListings = await prisma.AudioListings.findMany({
     take: 6,
     where: filters,
   });
+
+  return audioListings;
 });

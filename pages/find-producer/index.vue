@@ -6,15 +6,31 @@ const LFopportunity = computed(() => route.query.opportunity);
 
 const profiles = ref([]);
 onMounted(async () => {
-  const { data } = await useFetch("/api/producerProfile/getProfiles", {
-    query: {
-      category: category,
-      opportunity: LFopportunity,
-    },
-  });
-
-  profiles.value = data.value;
+  // setTimeout dışında çalışmıyor, setTimeout'suz birtek $fetch çalışıyor onMounted içinde.
+  setTimeout(async () => {
+    const { data } = await useFetch("/api/producerProfile/getProfiles", {
+      query: {
+        category: category.value,
+        opportunity: LFopportunity.value,
+      },
+    });
+    profiles.value = data.value;
+  }, 1);
 });
+
+watch(
+  () => route.query,
+  async () => {
+    const { data } = await useFetch("/api/producerProfile/getProfiles", {
+      query: {
+        category: category.value,
+        opportunity: LFopportunity.value,
+      },
+    });
+
+    profiles.value = data.value;
+  }
+);
 
 const opportunityActive = ref(false);
 </script>

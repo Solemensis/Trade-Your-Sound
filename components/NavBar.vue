@@ -1,11 +1,77 @@
 <script setup>
 const user = useSupabaseUser();
+const supabase = useSupabaseClient();
 const client = useSupabaseAuthClient();
 
 async function logout() {
   client.auth.signOut();
   navigateTo("/");
 }
+
+//fetch userprofile
+onMounted(async () => {
+  if (user.value && user.value.id) {
+    const data = await $fetch("/api/producerProfile/specificUser", {
+      method: "post",
+      body: { userId: user.value.id },
+    });
+
+    userName.value = data.user_name;
+  }
+});
+
+const userName = ref("");
+function goToProfile() {
+  if (userName.value) {
+    navigateTo(`/profile/${userName.value}`);
+  } else {
+    navigateTo("/profile");
+  }
+}
+
+// const newMessage = ref(false);
+
+// onMounted(async () => {
+//   if (user) {
+//     const data = await $fetch("/api/chatroom/newMessages", {
+//       method: "post",
+//       body: user.value.id,
+//     });
+
+//     if (Boolean(data)) {
+//       newMessage.value = true;
+//     }
+//   }
+
+//   // Listen to database message inserts
+//   supabase
+//     .channel("custom-filter-channel")
+//     .on(
+//       "postgres_changes",
+//       {
+//         event: "INSERT",
+//         schema: "public",
+//         table: "Messages",
+//       },
+//       async (payload) => {
+//         if (user) {
+//           // //payload bilgisi eşleşiyosa mesajın read:false'unu fetchle
+//           // if (payload) {
+//           // }
+
+//           const data = await $fetch("/api/chatroom/newMessages", {
+//             method: "post",
+//             body: user.value.id,
+//           });
+
+//           if (Boolean(data)) {
+//             newMessage.value = true;
+//           }
+//         }
+//       }
+//     )
+//     .subscribe();
+// });
 </script>
 
 <template>
@@ -18,9 +84,12 @@ async function logout() {
           <NuxtLink to="/shop">Shop</NuxtLink>
         </div>
         <div class="right-grouping">
-          <NuxtLink to="/chat">Messages</NuxtLink>
+          <NuxtLink to="/chat">
+            <!-- <span v-if="newMessage">@</span> -->
+            Messages</NuxtLink
+          >
           <NuxtLink to="/profile/listings">My Listings</NuxtLink>
-          <NuxtLink to="/profile/">My Profile</NuxtLink>
+          <p style="cursor: pointer" @click="goToProfile">My Profile</p>
           <p style="cursor: pointer" @click="logout">Logout</p>
         </div>
       </div>

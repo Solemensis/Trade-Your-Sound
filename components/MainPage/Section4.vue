@@ -1,6 +1,6 @@
 <script setup>
 const textContent = ref("");
-const notification = ref("");
+const successMessage = ref("");
 
 async function sendOpinion() {
   const response = await $fetch("/api/opinion", {
@@ -8,9 +8,9 @@ async function sendOpinion() {
     body: textContent.value,
   });
   textContent.value = "";
-  notification.value = "Done! ty :D";
+  successMessage.value = "Done! ty :D";
   setTimeout(() => {
-    notification.value = "";
+    successMessage.value = "";
   }, 4000);
 }
 </script>
@@ -50,7 +50,7 @@ async function sendOpinion() {
     <div class="textarea-and-button">
       <textarea v-model="textContent" class="textarea"></textarea>
       <button @click="sendOpinion" class="hero-button">Send Message</button>
-      <p class="notification" v-if="notification">{{ notification }}</p>
+      <p class="successMessage" v-if="successMessage">{{ successMessage }}</p>
     </div>
   </div>
 </template>
@@ -100,7 +100,7 @@ textarea {
   color: #ddd;
 }
 
-.notification {
+.successMessage {
   color: #3fcf8e;
   font-size: 2rem;
   position: absolute;
