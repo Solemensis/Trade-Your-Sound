@@ -3,6 +3,9 @@ const textContent = ref("");
 const successMessage = ref("");
 
 async function sendOpinion() {
+  if (textContent.value == "") {
+    return;
+  }
   const response = await $fetch("/api/opinion", {
     method: "post",
     body: textContent.value,

@@ -106,7 +106,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
       />
     </div>
     <label style="font-size: 1.8rem; color: #ddd"
-      >Show your projects <span style="color: #898989">(optional)</span></label
+      >Show us what you got! <span style="color: #666">(optional)</span></label
     >
     <div style="margin-top: 3.5rem" class="links-group">
       <InputsProducerProfileRelatedLink
@@ -150,7 +150,7 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
         style="width: 150%"
         title="Describe your link"
         name="relatedLink3Desc"
-        placeholder="My soundcloud profile"
+        placeholder="This is my soundcloud profile"
         :data="data.relatedLinks[0].relatedLink3Desc"
         @change-input="onChangeInput"
       />

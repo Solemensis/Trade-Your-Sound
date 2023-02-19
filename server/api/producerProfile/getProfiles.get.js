@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   const { category } = getQuery(event);
   const { opportunity } = getQuery(event);
+  const { updated } = getQuery(event);
 
   let filters = {
     showProfile: true,
@@ -13,6 +14,8 @@ export default defineEventHandler(async (event) => {
       not: "",
     },
   };
+
+  let orderby = {};
 
   switch (opportunity) {
     case "looking":
@@ -29,8 +32,18 @@ export default defineEventHandler(async (event) => {
     };
   }
 
+  switch (updated) {
+    case "descending":
+      orderby.updated_at = "desc";
+      break;
+    case "ascending":
+      orderby.updated_at = "asc";
+      break;
+  }
+
   const producerProfile = await prisma.ProducerProfile.findMany({
     where: filters,
+    orderBy: orderby,
   });
 
   return producerProfile;

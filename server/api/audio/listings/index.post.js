@@ -12,6 +12,7 @@ const schema = Joi.object({
   lister_id: Joi.string().required(),
   audio: Joi.string().required(),
   user_name: Joi.string().required(),
+  producer_id: Joi.number().required(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -36,6 +37,7 @@ export default defineEventHandler(async (event) => {
     lister_id,
     audio,
     user_name,
+    producer_id,
   } = body;
 
   //database event
@@ -49,6 +51,7 @@ export default defineEventHandler(async (event) => {
       lister_id,
       audio,
       user_name,
+      producer_id,
     },
   });
 

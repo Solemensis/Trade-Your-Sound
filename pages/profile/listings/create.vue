@@ -57,6 +57,7 @@ async function handleSubmit() {
     lister_id: user.value.id,
     audio: fileName,
     user_name: specificUser.user_name,
+    producer_id: specificUser.id,
   };
 
   //http post request to send body object to backend

@@ -7,7 +7,6 @@ const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
 //fetch chats according to logged user
-
 const chatRooms = ref([]);
 onMounted(async () => {
   chatRooms.value = await $fetch("/api/chatroom/fetchChats", {
@@ -27,16 +26,27 @@ async function fetchMessages(chatroom) {
   relatedRoomId.value = chatroom.id;
   roomName.value = chatroom.room_name;
 
-  //if last message of the chat isn't seen...
-  if (toRaw(messages.value[messages.value.length - 1].read) == false) {
-    //then, let all the messages be seen of the current chat
-    const seenMessages = await $fetch("/api/chatroom/seeMessages", {
-      method: "put",
-      body: { chatroom: chatroom.id, userId: user.value.id },
-    });
-  }
+  // //if there is a message...
+  // if (messages.value && messages.value.length) {
+  //   //if last message of the chat isn't seen...
+  //   if (toRaw(messages.value[messages.value.length - 1].read) == false) {
+  //     //then, let all the messages be seen of the current chat
+  //     const seenMessages = await $fetch("/api/chatroom/seeMessages", {
+  //       method: "put",
+  //       body: { chatroom: chatroom.id, userId: user.value.id },
+  //     });
+  //   }
+  // }
 
-  messageBox.value.scrollTop = messageBox.value.scrollHeight;
+  setTimeout(() => {
+    if (
+      messageBox &&
+      messageBox.value != null &&
+      messageBox.value.scrollHeight
+    ) {
+      messageBox.value.scrollTop = messageBox.value.scrollHeight;
+    }
+  }, 1);
 
   // Listen to database message inserts
   supabase
@@ -74,6 +84,17 @@ async function postMessage() {
 }
 
 const messageBox = ref(null);
+
+async function deleteChatroom(chatroom) {
+  //delete it from database
+  const { data } = await useFetch("/api/chatroom/deleteChat", {
+    method: "delete",
+    body: { roomId: chatroom.id, userId: user.value.id },
+  });
+
+  //delete it from user interface
+  chatRooms.value = chatRooms.value.filter((chat) => chat.id != chatroom.id);
+}
 </script>
 
 <template>
@@ -89,23 +110,26 @@ const messageBox = ref(null);
           <h2>
             {{ chatroom.room_name }}
           </h2>
+
+          <img
+            @click="deleteChatroom(chatroom)"
+            src="@/assets/delete-but.svg"
+            alt=""
+          />
         </div>
       </div>
       <div v-if="relatedRoomId" data-aos="fade-out">
         <div class="right-part">
           <h3 class="roomName">{{ roomName }}</h3>
           <div ref="messageBox" class="message-box">
-            <div class="messages">
-              <p
-                v-for="message in messages"
-                :key="message.id"
-                :class="
-                  user.id == message.lister_id ? 'myMessage' : 'itsMessage'
-                "
-              >
-                {{ message.content }}
-              </p>
-            </div>
+            <p
+              v-for="message in messages"
+              :class="user.id == message.lister_id ? 'myMessage' : 'itsMessage'"
+              :key="message.id"
+            >
+              {{ message.content }}
+              <span>{{ extractTime(message.created_at) }}</span>
+            </p>
           </div>
           <div class="input-and-button">
             <input
@@ -113,6 +137,7 @@ const messageBox = ref(null);
               class="text-input"
               v-model="textMessage"
               type="text"
+              placeholder="hi, i like your work! do you wanna collab for a project?"
             />
             <button class="hero-button send-button" @click="postMessage">
               Send
@@ -121,20 +146,7 @@ const messageBox = ref(null);
         </div>
       </div>
     </div>
-    <h3
-      v-else
-      style="
-        font-size: 2rem;
-        color: orangered;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-      "
-    >
-      No chat rooms.
-    </h3>
+    <h3 v-else class="errorMessage">No chat rooms.</h3>
   </div>
 </template>
 
@@ -142,27 +154,43 @@ const messageBox = ref(null);
 .left-part {
   position: absolute;
   display: flex;
-  flex-direction: column;
+  height: 100vh;
   justify-content: center;
   gap: 1rem;
   padding-top: 5rem;
-  height: 100vh;
   margin-left: 3rem;
   z-index: 1000;
 }
+
 .chatrooms {
-  background-color: #30303087;
-  border-radius: 1rem;
-  padding: 1.5rem 1rem;
-  max-width: 25rem;
-  transition: 0.3s;
-}
-.chatrooms:hover {
-  background-color: #303030db;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: center;
 }
 .chatrooms h2 {
   font-weight: 500;
   font-size: 1.4rem;
+  background-color: #30303087;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  max-width: 25rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.chatrooms img {
+  z-index: 1000;
+  width: 3rem;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 1.3rem 0.5rem;
+  border-radius: 1rem;
+  background-color: #30303087;
+}
+.chatrooms img:hover,
+.chatrooms h2:hover {
+  scale: 1.07;
+  filter: brightness(1.3);
 }
 
 .roomName {
@@ -174,6 +202,8 @@ const messageBox = ref(null);
   text-align: center;
   color: #3fcf8e;
   font-size: 2.7rem;
+  border-bottom: 2px #5d5d5d6a solid;
+  padding-bottom: 0.2rem;
 }
 .right-part {
   padding-top: 23rem;
@@ -188,28 +218,39 @@ const messageBox = ref(null);
   position: relative;
   height: 50vh;
   margin-inline: auto;
-  font-size: 1.5rem;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
-.messages {
-  height: 20rem;
-}
-.messages p {
-  word-wrap: break-word;
-  word-break: break-word;
-  margin-bottom: 0.3rem;
-}
+
 .myMessage {
-  color: #3f6fcf;
-  text-align: end;
-  padding-left: 55%;
-  padding-right: 1.5rem;
+  margin-right: 1rem;
+  align-self: flex-end;
+  background-color: #51d56955;
 }
 .itsMessage {
-  color: #a753bc;
-  text-align: start;
-  padding-right: 55%;
+  align-self: flex-start;
+  background-color: #80808033;
 }
+
+.message-box p {
+  word-wrap: break-word;
+  word-break: break-word;
+  margin-bottom: 0.2rem;
+  border-radius: 0.6rem;
+  color: #ddd;
+  padding: 0.3rem 1rem;
+  font-size: 1.4rem;
+  max-width: 40%;
+}
+
+.message-box p span {
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 0.3rem;
+}
+
 .input-and-button {
   display: flex;
   align-items: center;
@@ -220,5 +261,15 @@ const messageBox = ref(null);
 }
 .send-button {
   padding: 0.5rem 1rem;
+}
+
+.errorMessage {
+  font-size: 2rem;
+  color: orangered;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 </style>

@@ -3,6 +3,7 @@ const route = useRoute();
 
 const category = computed(() => route.query.category);
 const LFopportunity = computed(() => route.query.opportunity);
+const updated = computed(() => route.query.updated);
 
 const profiles = ref([]);
 onMounted(async () => {
@@ -12,6 +13,7 @@ onMounted(async () => {
       query: {
         category: category.value,
         opportunity: LFopportunity.value,
+        updated: updated.value,
       },
     });
     profiles.value = data.value;
@@ -25,14 +27,13 @@ watch(
       query: {
         category: category.value,
         opportunity: LFopportunity.value,
+        updated: updated.value,
       },
     });
 
     profiles.value = data.value;
   }
 );
-
-const opportunityActive = ref(false);
 </script>
 
 <template>
@@ -89,20 +90,13 @@ const opportunityActive = ref(false);
 
                 <div
                   class="fire"
-                  @mouseenter="opportunityActive = true"
-                  @mouseout="opportunityActive = false"
                   v-if="profile.LFopportunity"
+                  :key="profile.id"
                 >
                   🔥
-                  <transition name="page">
-                    <p
-                      :key="profile.id"
-                      v-show="opportunityActive"
-                      class="opportunity"
-                    >
-                      User currently looking for opportunities!
-                    </p>
-                  </transition>
+                  <p :key="profile.id" class="opportunity">
+                    User currently looking for opportunities!
+                  </p>
                 </div>
 
                 <p class="updated">
@@ -210,9 +204,14 @@ const opportunityActive = ref(false);
   top: 1.5rem;
   font-size: 1.5rem;
 }
+.fire:hover .opportunity {
+  opacity: 1;
+}
+
 .opportunity {
+  opacity: 0;
   position: absolute;
-  background-color: #510d32;
+  background-color: #5e2544;
   transition: 0.2s;
   border-radius: 0.3rem;
   top: -0.8rem;
@@ -222,10 +221,13 @@ const opportunityActive = ref(false);
   padding: 0.5rem 1rem;
   color: #ddd;
 }
+.opportunity:hover {
+  opacity: 0 !important;
+}
 .updated {
   position: absolute;
   bottom: 0.5rem;
-  right: 0.5rem;
+  right: 1rem;
   color: #989898;
   font-size: 0.9rem;
 }

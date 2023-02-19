@@ -54,6 +54,8 @@ created_at        DateTime    @default(now())
 room_name         String
 user1_id          String
 user2_id          String
+user1_deleted     Json
+user2_deleted     Json
 
 messages          Messages[]
 }

@@ -10,6 +10,8 @@ const chatRoom = reactive({
   room_name: ``,
   user1_id: null,
   user2_id: null,
+  user1_deleted: {},
+  user2_deleted: {},
 });
 
 //fetch profile information of the logged user
@@ -55,6 +57,11 @@ async function sendMessage() {
   }`;
   chatRoom.user1_id = user.value.id;
   chatRoom.user2_id = toRaw(profile.value).lister_id;
+  chatRoom.user1_deleted = { userId: user.value.id, deleted: false };
+  chatRoom.user2_deleted = {
+    userId: toRaw(profile.value).lister_id,
+    deleted: false,
+  };
 
   try {
     const body = toRaw(chatRoom);
@@ -203,7 +210,7 @@ const errorMessage = ref("");
         />
       </div>
     </div>
-    <div v-else>Loading...</div>
+    <div class="lds-dual-ring" v-else></div>
   </div>
 </template>
 
@@ -220,7 +227,7 @@ const errorMessage = ref("");
   margin-bottom: 1.3rem;
 }
 .opportunity {
-  font-size: 1.4rem !important;
+  font-size: 1.3rem !important;
 }
 .description {
   font-size: 1.6rem;

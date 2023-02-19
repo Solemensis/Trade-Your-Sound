@@ -12,11 +12,11 @@ const opportunityValue = ref(props.LFopportunity);
 const showProfileValue = ref(props.showProfile);
 
 function changeOpportunity() {
-  props.LFopportunity = !props.LFopportunity;
+  opportunityValue.value ? false : true;
   emits("changeInput", opportunityValue.value, props.LFopportunityName);
 }
 function changeShowProfile() {
-  props.showProfile = !props.showProfile;
+  showProfileValue.value ? false : true;
   emits("changeInput", showProfileValue.value, props.showProfileName);
 }
 </script>
@@ -32,6 +32,7 @@ function changeShowProfile() {
         type="checkbox"
       />
     </div>
+
     <div class="visibility-check">
       <label for=""
         >Do you want your profile to be seen on producer profiles page?</label

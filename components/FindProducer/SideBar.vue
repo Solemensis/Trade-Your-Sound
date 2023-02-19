@@ -17,6 +17,11 @@ function onChangeOpportunity(opportunity) {
   onFilterApply();
 }
 
+function onChangeUpdated(updated) {
+  queries.updated = updated;
+  onFilterApply();
+}
+
 //function to start the search
 function onFilterApply() {
   const pureObject = { ...queries };
@@ -25,6 +30,7 @@ function onFilterApply() {
     query: {
       category: pureObject.category,
       opportunity: pureObject.opportunity,
+      updated: pureObject.updated,
     },
   });
 }
@@ -32,11 +38,13 @@ function onFilterApply() {
 function removeAllFilters() {
   queries.category = undefined;
   queries.opportunity = undefined;
+  queries.updated = undefined;
 
   router.push({
     query: {
       category: undefined,
       opportunity: undefined,
+      updated: undefined,
     },
   });
 }
@@ -59,6 +67,13 @@ function removeAllFilters() {
         <li @click="onChangeOpportunity()">All</li>
         <li @click="onChangeOpportunity('looking')">Looking</li>
         <li @click="onChangeOpportunity('not-looking')">Not looking</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Updated</h3>
+      <ul>
+        <li @click="onChangeUpdated('descending')">Recently</li>
+        <li @click="onChangeUpdated('ascending')">Older</li>
       </ul>
     </div>
 

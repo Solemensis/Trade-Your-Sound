@@ -72,3 +72,16 @@ export function getSubstring(str) {
   }
   return str.substring(index + match.length);
 }
+
+export function extractTime(dateString) {
+  const timeString = dateString.substring(
+    dateString.indexOf("T") + 1,
+    dateString.indexOf("T") + 6
+  );
+  const timeParts = timeString.split(":");
+  const date = new Date(dateString);
+  date.setHours(date.getHours());
+  timeParts[0] = date.getHours();
+  const newTimeString = timeParts.join(":");
+  return newTimeString;
+}
