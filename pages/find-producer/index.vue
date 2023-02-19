@@ -185,6 +185,8 @@ watch(
   font-size: 1.3rem;
   color: #aaa;
   margin-bottom: 1.5rem;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 .related-link {
   margin-bottom: 0.5rem;

@@ -28,9 +28,6 @@
   box-sizing: border-box;
   font-family: "Rubik";
   color: #ededed;
-
-  /* word-wrap: break-word;
-  word-break: break-word; */
 }
 body {
   background-color: #1c1c1c;

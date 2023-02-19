@@ -105,18 +105,19 @@ const errorMessage = ref("");
             updated: {{ cutString(String(profile.updated_at)) }}
           </p>
           <p v-if="profile.LFopportunity" class="opportunity">
-            <span style="font-size: 2rem">🔥</span> This user is currently
+            <span style="font-size: 1.8rem">🔥</span> This user is currently
             <span style="color: #3fcf8e">open</span> to opportunities.
-            <span style="font-size: 2rem">🔥</span>
+            <span style="font-size: 1.8rem">🔥</span>
           </p>
         </div>
       </div>
 
       <div v-if="!profileEditToggle">
         <p v-if="profile.description" class="description">
-          <span style="color: #3fcf8e">" </span>{{ profile.description
-          }}<span style="color: #3fcf8e"> "</span>
+          <span style="color: #3fcf8e">"&nbsp;</span>{{ profile.description
+          }}<span style="color: #3fcf8e">&nbsp;"</span>
         </p>
+
         <div class="user-data">
           <div class="category-equipment">
             <div>
@@ -234,6 +235,8 @@ const errorMessage = ref("");
   line-height: 1.3;
   margin-bottom: 4rem;
   color: #aaa;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 .user-data {
   display: flex;
