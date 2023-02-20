@@ -7,8 +7,13 @@ useHead({
 
 const audio = ref({});
 onMounted(async () => {
-  const { data } = await useFetch(`/api/audio/${route.params.id}`);
+  const { data, error, refresh } = await useFetch(
+    `/api/audio/${route.params.id}`
+  );
 
+  if (error.value) {
+    refresh();
+  }
   audio.value = data.value;
 });
 

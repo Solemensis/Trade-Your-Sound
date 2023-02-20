@@ -9,13 +9,19 @@ const profiles = ref([]);
 onMounted(async () => {
   // setTimeout dışında çalışmıyor, setTimeout'suz birtek $fetch çalışıyor onMounted içinde.
   setTimeout(async () => {
-    const { data } = await useFetch("/api/producerProfile/getProfiles", {
-      query: {
-        category: category.value,
-        opportunity: LFopportunity.value,
-        updated: updated.value,
-      },
-    });
+    const { data, error, refresh } = await useFetch(
+      "/api/producerProfile/getProfiles",
+      {
+        query: {
+          category: category.value,
+          opportunity: LFopportunity.value,
+          updated: updated.value,
+        },
+      }
+    );
+    if (error.value) {
+      refresh();
+    }
     profiles.value = data.value;
   }, 1);
 });

@@ -5,9 +5,14 @@ const supabase = useSupabaseClient();
 const listings = ref([]);
 onMounted(async () => {
   setTimeout(async () => {
-    const { data: userListings } = await useFetch(
-      `/api/audio/listings/user/${user.value.id}`
-    );
+    const {
+      data: userListings,
+      error,
+      refresh,
+    } = await useFetch(`/api/audio/listings/user/${user.value.id}`);
+    if (error.value) {
+      refresh();
+    }
     listings.value = userListings.value;
   }, 1);
 });

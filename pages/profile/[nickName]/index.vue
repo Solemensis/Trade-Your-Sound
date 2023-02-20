@@ -20,9 +20,12 @@ const chatRoom = reactive({
 const profile = ref({});
 onMounted(async () => {
   setTimeout(async () => {
-    const { data } = await useFetch(
+    const { data, error, refresh } = await useFetch(
       `/api/producerProfile/${route.params.nickName}`
     );
+    if (error.value) {
+      refresh();
+    }
     profile.value = data.value;
   }, 1);
 });

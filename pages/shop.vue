@@ -11,13 +11,16 @@ const audios = ref([]);
 onMounted(async () => {
   // setTimeout dışında çalışmıyor, setTimeout'suz birtek $fetch çalışıyor onMounted içinde.
   setTimeout(async () => {
-    const { data } = await useFetch("/api/audios", {
+    const { data, error, refresh } = await useFetch("/api/audios", {
       query: {
         category: category.value,
         price: price.value,
         processing: processing.value,
       },
     });
+    if (error.value) {
+      refresh();
+    }
     audios.value = data.value;
   }, 1);
 });
