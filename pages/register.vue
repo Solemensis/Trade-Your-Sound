@@ -55,7 +55,12 @@ function clearError() {
       "
     >
       Got an account? Login from
-      <NuxtLink class="green-span" to="/login">here</NuxtLink>
+      <NuxtLink
+        class="green-span"
+        style="border-bottom: 1px solid #3fcf8e"
+        to="/login"
+        >here</NuxtLink
+      >
     </p>
   </div>
 </template>

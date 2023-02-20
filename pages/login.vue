@@ -58,8 +58,13 @@ function clearError() {
     <div class="oauth">
       <p>
         Have no account? Register from
-        <NuxtLink class="green-span" to="/register">here</NuxtLink> or sign in
-        using 3rd party auth:
+        <NuxtLink
+          class="green-span"
+          style="border-bottom: 1px solid #3fcf8e"
+          to="/register"
+          >here</NuxtLink
+        >
+        or sign in using 3rd party auth:
       </p>
 
       <button class="google" @click="oauthLogin('google')">
