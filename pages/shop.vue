@@ -20,8 +20,8 @@ onMounted(async () => {
     });
 
     if (!data.value && error.value) {
-      refresh();
       error.value = null;
+      refresh();
     }
     audios.value = data.value;
   }, 1);

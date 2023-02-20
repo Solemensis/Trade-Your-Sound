@@ -20,8 +20,8 @@ onMounted(async () => {
       }
     );
     if (!data.value && error.value) {
-      refresh();
       error.value = null;
+      refresh();
     }
     profiles.value = data.value;
   }, 1);

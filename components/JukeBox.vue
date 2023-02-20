@@ -30,7 +30,8 @@ async function play() {
 const timeline = ref(0);
 
 function updateTimelineValue() {
-  timeline.value = player.value.currentTime;
+  if (player.value && player.value.currentTime)
+    timeline.value = player.value.currentTime;
 }
 
 function seekAudio() {

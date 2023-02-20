@@ -12,16 +12,24 @@ const userName = useState("userName", () => "");
 
 //fetch userprofile
 onMounted(async () => {
-  if (user.value && user.value.id) {
-    const data = await $fetch("/api/producerProfile/specificUser", {
-      method: "post",
-      body: { userId: user.value.id },
-    });
+  setTimeout(async () => {
+    if (user.value && user.value.id) {
+      const { data, error, refresh } = await useFetch(
+        "/api/producerProfile/specificUser",
+        {
+          method: "post",
+          body: { userId: user.value.id },
+        }
+      );
 
-    if (data) {
-      userName.value = data.user_name;
+      if (error.value) {
+        error.value = null;
+        refresh();
+      } else if (data.value) {
+        userName.value = data.value.user_name;
+      }
     }
-  }
+  }, 1);
 });
 
 function goToProfile() {
