@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-aos="fade-in" data-aos-duration="2000">
     <NavBar />
     <NuxtPage />
   </div>
