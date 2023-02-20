@@ -19,8 +19,9 @@ onMounted(async () => {
         },
       }
     );
-    if (error.value) {
+    if (!data.value && error.value) {
       refresh();
+      error.value = null;
     }
     profiles.value = data.value;
   }, 1);

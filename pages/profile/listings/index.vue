@@ -10,8 +10,9 @@ onMounted(async () => {
       error,
       refresh,
     } = await useFetch(`/api/audio/listings/user/${user.value.id}`);
-    if (error.value) {
+    if (!userListings.value && error.value) {
       refresh();
+      error.value = null;
     }
     listings.value = userListings.value;
   }, 1);

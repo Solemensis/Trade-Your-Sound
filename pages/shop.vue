@@ -18,8 +18,10 @@ onMounted(async () => {
         processing: processing.value,
       },
     });
-    if (error.value) {
+
+    if (!data.value && error.value) {
       refresh();
+      error.value = null;
     }
     audios.value = data.value;
   }, 1);

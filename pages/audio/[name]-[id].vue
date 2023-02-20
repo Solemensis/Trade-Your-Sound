@@ -11,8 +11,9 @@ onMounted(async () => {
     `/api/audio/${route.params.id}`
   );
 
-  if (error.value) {
+  if (!data.value && error.value) {
     refresh();
+    error.value = null;
   }
   audio.value = data.value;
 });

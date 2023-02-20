@@ -1,7 +1,9 @@
 <template>
-  <div class="opening-animation">
+  <div>
     <NavBar />
-    <NuxtPage />
+    <div class="opening-animation">
+      <NuxtPage />
+    </div>
   </div>
 </template>
 
@@ -10,7 +12,7 @@
 
 .opening-animation {
   opacity: 0;
-  animation: opacity-grow 2.5s ease-in;
+  animation: opacity-grow 1.5s ease-in;
   animation-fill-mode: forwards;
 }
 

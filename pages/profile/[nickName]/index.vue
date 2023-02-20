@@ -36,10 +36,13 @@ const carryRefetchSignal = useState("carryRefetchSignal");
 watch(
   () => carryRefetchSignal.value,
   async () => {
-    const { data } = await useFetch(
+    const { data, error, refresh } = await useFetch(
       `/api/producerProfile/${route.params.nickName}`
     );
-
+    if (!data.value && error.value) {
+      refresh();
+      error.value = null;
+    }
     profile.value = data.value;
   }
 );
