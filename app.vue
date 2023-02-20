@@ -1,5 +1,5 @@
 <template>
-  <div data-aos="fade-in" data-aos-duration="2500">
+  <div class="opening-animation">
     <NavBar />
     <NuxtPage />
   </div>
@@ -7,6 +7,21 @@
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+
+.opening-animation {
+  opacity: 0;
+  animation: opacity-grow 2.5s ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes opacity-grow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 /* transitions */
 

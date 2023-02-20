@@ -14,7 +14,7 @@
         ><button class="hero-button">What is This?</button></a
       >
     </div>
-    <img class="hero-img" src="@/assets/images/1.webp" alt="" />
+    <img class="hero-img" src="@/assets/images/2.webp" alt="" />
   </div>
 </template>
 
@@ -52,8 +52,9 @@
   width: clamp(50%, 50rem, 80%);
 }
 .hero-img {
-  height: 25%;
-  animation: hue-rotate alternate 20s infinite linear;
+  height: 40%;
+  animation: hue-rotate alternate 40s infinite linear;
+  opacity: 0.9;
 }
 @keyframes hue-rotate {
   0% {
