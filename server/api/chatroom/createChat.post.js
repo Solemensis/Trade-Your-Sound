@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi, { allow } from "joi";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -9,6 +9,9 @@ const schema = Joi.object({
   user2_id: Joi.string().required(),
   user1_deleted: Joi.object().required(),
   user2_deleted: Joi.object().required(),
+  user1_nick: Joi.string().required(),
+  user2_nick: Joi.string().required(),
+  listing_path: Joi.string().allow(""),
 });
 
 export default defineEventHandler(async (event) => {
@@ -24,7 +27,16 @@ export default defineEventHandler(async (event) => {
   }
 
   //body destructure
-  const { room_name, user1_id, user2_id, user1_deleted, user2_deleted } = body;
+  const {
+    room_name,
+    user1_id,
+    user2_id,
+    user1_deleted,
+    user2_deleted,
+    user1_nick,
+    user2_nick,
+    listing_path,
+  } = body;
 
   //database event
   const existingRoom = await prisma.ChatRooms.findFirst({
@@ -43,6 +55,9 @@ export default defineEventHandler(async (event) => {
         user2_id,
         user1_deleted: user1_deleted,
         user2_deleted: user2_deleted,
+        user1_nick,
+        user2_nick,
+        listing_path,
       },
     });
     return ChatRoom;

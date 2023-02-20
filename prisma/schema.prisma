@@ -56,6 +56,10 @@ user1_id          String
 user2_id          String
 user1_deleted     Json
 user2_deleted     Json
+user1_nick        String
+user2_nick        String
+  listing_path    String?
+
 
 messages          Messages[]
 }

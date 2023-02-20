@@ -3,6 +3,7 @@ const props = defineProps({
   audio: Object,
 });
 
+const route = useRoute();
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
@@ -10,6 +11,11 @@ const chatRoom = reactive({
   room_name: ``,
   user1_id: null,
   user2_id: null,
+  user1_deleted: {},
+  user2_deleted: {},
+  user1_nick: "",
+  user2_nick: "",
+  listing_path: "",
 });
 
 const errorMessage = ref("");
@@ -30,6 +36,14 @@ async function onSubmit() {
   chatRoom.room_name = `${props.audio.name} - $${props.audio.price}`;
   chatRoom.user1_id = user.value.id;
   chatRoom.user2_id = props.audio.lister_id;
+  chatRoom.user1_deleted = { userId: user.value.id, deleted: false };
+  chatRoom.user2_deleted = {
+    userId: props.audio.lister_id,
+    deleted: false,
+  };
+  chatRoom.user1_nick = response.user_name;
+  chatRoom.user2_nick = props.audio.user_name;
+  chatRoom.listing_path = route.path;
 
   try {
     //creating the body object from earlier populated object
@@ -37,6 +51,11 @@ async function onSubmit() {
       room_name: chatRoom.room_name,
       user1_id: chatRoom.user1_id,
       user2_id: chatRoom.user2_id,
+      user1_deleted: chatRoom.user1_deleted,
+      user2_deleted: chatRoom.user2_deleted,
+      user1_nick: chatRoom.user1_nick,
+      user2_nick: chatRoom.user2_nick,
+      listing_path: chatRoom.listing_path,
     };
 
     if (chatRoom.user1_id == chatRoom.user2_id) {
@@ -80,6 +99,7 @@ function openEdit() {
     <div v-if="user">
       <div style="position: relative" v-if="user.id != props.audio.lister_id">
         <button class="hero-button" @click="onSubmit">Send Message</button>
+
         <p
           v-if="errorMessage"
           style="
@@ -96,6 +116,7 @@ function openEdit() {
       </div>
       <div class="user-buttons" v-else>
         <button class="hero-button" @click="openEdit">Edit listing</button>
+
         <button class="delete-button" @click="deleteListing">
           Delete listing
         </button>

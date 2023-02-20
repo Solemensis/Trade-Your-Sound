@@ -12,6 +12,8 @@ const chatRoom = reactive({
   user2_id: null,
   user1_deleted: {},
   user2_deleted: {},
+  user1_nick: "",
+  user2_nick: "",
 });
 
 //fetch profile information of the logged user
@@ -62,6 +64,8 @@ async function sendMessage() {
     userId: toRaw(profile.value).lister_id,
     deleted: false,
   };
+  chatRoom.user1_nick = profile.value.user_name;
+  chatRoom.user2_nick = response.user_name;
 
   try {
     const body = toRaw(chatRoom);

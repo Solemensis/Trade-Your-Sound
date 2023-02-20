@@ -8,6 +8,8 @@ async function logout() {
   navigateTo("/");
 }
 
+const userName = useState("userName", () => "");
+
 //fetch userprofile
 onMounted(async () => {
   if (user.value && user.value.id) {
@@ -16,11 +18,12 @@ onMounted(async () => {
       body: { userId: user.value.id },
     });
 
-    userName.value = data.user_name;
+    if (data) {
+      userName.value = data.user_name;
+    }
   }
 });
 
-const userName = ref("");
 function goToProfile() {
   if (userName.value) {
     navigateTo(`/profile/${userName.value}`);

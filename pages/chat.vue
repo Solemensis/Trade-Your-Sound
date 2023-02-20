@@ -24,7 +24,7 @@ async function fetchMessages(chatroom) {
   });
   messages.value = data.value;
   relatedRoomId.value = chatroom.id;
-  roomName.value = chatroom.room_name;
+  chat.value = chatroom;
 
   // //if there is a message...
   // if (messages.value && messages.value.length) {
@@ -61,7 +61,9 @@ async function fetchMessages(chatroom) {
     .subscribe();
 }
 const relatedRoomId = ref(null);
-const roomName = ref("");
+const chat = ref({});
+
+const userName = useState("userName");
 
 //post message to db via backend
 const textMessage = ref("");
@@ -95,6 +97,13 @@ async function deleteChatroom(chatroom) {
   //delete it from user interface
   chatRooms.value = chatRooms.value.filter((chat) => chat.id != chatroom.id);
 }
+
+function goToUser(user) {
+  navigateTo(`/profile/${user}`);
+}
+function goToAudio() {
+  navigateTo(chat.value.listing_path);
+}
 </script>
 
 <template>
@@ -107,10 +116,9 @@ async function deleteChatroom(chatroom) {
           :key="chatroom.id"
           class="chatrooms"
         >
-          <h2>
+          <h3>
             {{ chatroom.room_name }}
-          </h2>
-
+          </h3>
           <img
             @click="deleteChatroom(chatroom)"
             src="@/assets/delete-but.svg"
@@ -120,7 +128,44 @@ async function deleteChatroom(chatroom) {
       </div>
       <div v-if="relatedRoomId" data-aos="fade-out">
         <div class="right-part">
-          <h3 class="roomName">{{ roomName }}</h3>
+          <div class="heading-box">
+            <p
+              @click="
+                goToUser(
+                  userName == chat.user1_nick
+                    ? chat.user2_nick
+                    : chat.user1_nick
+                )
+              "
+            >
+              {{
+                userName == chat.user1_nick ? chat.user2_nick : chat.user1_nick
+              }}
+            </p>
+            <h2
+              v-if="chat.listing_path"
+              @click="goToAudio"
+              class="roomNameListing"
+            >
+              {{ chat.room_name }}
+            </h2>
+            <h2 v-else class="roomNameChat">
+              {{ chat.room_name }}
+            </h2>
+            <p
+              @click="
+                goToUser(
+                  userName == chat.user1_nick
+                    ? chat.user1_nick
+                    : chat.user2_nick
+                )
+              "
+            >
+              {{
+                userName == chat.user1_nick ? chat.user1_nick : chat.user2_nick
+              }}
+            </p>
+          </div>
           <div ref="messageBox" class="message-box">
             <p
               v-for="message in messages"
@@ -131,6 +176,7 @@ async function deleteChatroom(chatroom) {
               <span>{{ extractTime(message.created_at) }}</span>
             </p>
           </div>
+
           <div class="input-and-button">
             <input
               @keydown.enter="postMessage"
@@ -154,6 +200,7 @@ async function deleteChatroom(chatroom) {
 .left-part {
   position: absolute;
   display: flex;
+  flex-direction: column;
   height: 100vh;
   justify-content: center;
   gap: 1rem;
@@ -168,13 +215,15 @@ async function deleteChatroom(chatroom) {
   gap: 0.5rem;
   align-self: center;
 }
-.chatrooms h2 {
+.chatrooms h3 {
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   background-color: #30303087;
   border-radius: 1rem;
-  padding: 1.5rem 1rem;
+  padding: 1.4rem 1rem;
   max-width: 25rem;
+  min-width: 12rem;
+  text-align: center;
   transition: 0.2s;
   cursor: pointer;
 }
@@ -188,25 +237,52 @@ async function deleteChatroom(chatroom) {
   background-color: #30303087;
 }
 .chatrooms img:hover,
-.chatrooms h2:hover {
-  scale: 1.07;
+.chatrooms h3:hover {
+  scale: 1.02;
   filter: brightness(1.3);
 }
 
-.roomName {
+.heading-box {
+  display: flex;
+  justify-content: space-around;
+  gap: 40%;
+  align-items: center;
+  width: 100%;
   position: absolute;
   left: 50%;
-  top: 17rem;
+  top: 18rem;
   transform: translateX(-50%);
-  width: 100%;
+  border-bottom: 2px #5d5d5d6a solid;
+  padding-bottom: 0.3rem;
+}
+.heading-box h2 {
   text-align: center;
   color: #3fcf8e;
   font-size: 2.7rem;
-  border-bottom: 2px #5d5d5d6a solid;
-  padding-bottom: 0.2rem;
+  position: absolute;
+  top: -5.5rem;
+}
+.roomNameListing {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.roomNameListing:hover {
+  transform: scale(1.03);
+}
+
+.heading-box p {
+  color: #6e2bac;
+  font-size: 1.5rem;
+  font-weight: 500;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.heading-box p:hover {
+  transform: scale(1.05);
+  color: blueviolet;
 }
 .right-part {
-  padding-top: 23rem;
+  padding-top: 24rem;
   position: relative;
   width: 50%;
   margin-inline: auto;
