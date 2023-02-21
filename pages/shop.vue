@@ -11,7 +11,32 @@ const audios = ref([]);
 onMounted(async () => {
   // setTimeout dışında çalışmıyor, setTimeout'suz birtek $fetch çalışıyor onMounted içinde.
   setTimeout(async () => {
-    const { data, error, refresh } = await useFetch("/api/audios", {
+    const { data, error, refresh, pending } = await useFetch("/api/audios", {
+      query: {
+        category: category.value,
+        price: price.value,
+        processing: processing.value,
+      },
+    });
+
+    if (!pending.value) {
+      loading.value = false;
+    }
+
+    if (!data.value && error.value) {
+      error.value = null;
+      refresh();
+    }
+    audios.value = data.value;
+  }, 1);
+});
+
+const loading = ref(true);
+
+watch(
+  () => route.query,
+  async () => {
+    const { data, error, refresh } = await useFetch(`/api/audios`, {
       query: {
         category: category.value,
         price: price.value,
@@ -23,20 +48,6 @@ onMounted(async () => {
       error.value = null;
       refresh();
     }
-    audios.value = data.value;
-  }, 1);
-});
-
-watch(
-  () => route.query,
-  async () => {
-    const { data } = await useFetch(`/api/audios`, {
-      query: {
-        category: category.value,
-        price: price.value,
-        processing: processing.value,
-      },
-    });
     audios.value = data.value;
   }
 );
@@ -68,7 +79,7 @@ async function onIntersectionObserver([{ isIntersecting }]) {
       <h2 class="scroll-audios">
         Scroll <span class="green-span">Audios</span>
       </h2>
-      <div v-if="audios && audios.length">
+      <div v-if="!loading && audios && audios.length">
         <AudioSearchCards :audios="audios" />
         <div
           style="margin-top: 40rem; opacity: 0"
@@ -77,7 +88,18 @@ async function onIntersectionObserver([{ isIntersecting }]) {
           Loading...
         </div>
       </div>
-      <h2 style="color: #ff4545" v-else>No Audios Found With These Filters</h2>
+
+      <h2
+        style="color: #ff4545"
+        v-else-if="!loading && audios && !audios.length"
+      >
+        No Audios Found With These Filters
+      </h2>
+      <div
+        v-else-if="loading"
+        class="lds-dual-ring"
+        style="padding-left: 20rem; top: 100%"
+      ></div>
     </div>
   </div>
 </template>

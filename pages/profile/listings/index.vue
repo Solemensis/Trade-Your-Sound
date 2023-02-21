@@ -9,7 +9,12 @@ onMounted(async () => {
       data: userListings,
       error,
       refresh,
+      pending,
     } = await useFetch(`/api/audio/listings/user/${user.value.id}`);
+
+    if (!pending.value) {
+      loading.value = false;
+    }
     if (!userListings.value && error.value) {
       error.value = null;
       refresh();
@@ -17,6 +22,8 @@ onMounted(async () => {
     listings.value = userListings.value;
   }, 1);
 });
+
+const loading = ref(true);
 
 async function handleDelete(id) {
   //catch the audio file location before it's deleted
@@ -70,7 +77,7 @@ const errorMessage = ref("");
       New Listing
     </button>
 
-    <div v-if="listings && listings.length" class="listings">
+    <div v-if="!loading && listings && listings.length" class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
         :key="listing.id"
@@ -78,7 +85,12 @@ const errorMessage = ref("");
         @delete-click="handleDelete"
       />
     </div>
-    <span v-else style="font-size: 1.4rem; color: orangered">No audios.</span>
+    <span
+      v-else-if="!loading && listings && !listings.length"
+      style="font-size: 1.4rem; color: orangered"
+      >No audios.</span
+    >
+    <div v-else-if="loading" class="lds-dual-ring" style="top: 85%"></div>
     <p
       style="font-size: 1.5rem; color: brown; position: absolute; top: 11rem"
       v-if="errorMessage"

@@ -9,11 +9,28 @@ const supabase = useSupabaseClient();
 //fetch chats according to logged user
 const chatRooms = ref([]);
 onMounted(async () => {
-  chatRooms.value = await $fetch("/api/chatroom/fetchChats", {
-    method: "post",
-    body: user.value.id,
-  });
+  setTimeout(async () => {
+    const { data, error, refresh, pending } = await useFetch(
+      "/api/chatroom/fetchChats",
+      {
+        method: "post",
+        body: user.value.id,
+      }
+    );
+
+    if (!pending.value) {
+      loading.value = false;
+    }
+
+    if (!data.value && error.value) {
+      error.value = null;
+      refresh();
+    }
+    profiles.value = data.value;
+  }, 1);
 });
+
+const loading = ref(true);
 
 //fetch messages according to selected chat
 const messages = ref();
@@ -108,7 +125,7 @@ function goToAudio() {
 
 <template>
   <div>
-    <div v-if="chatRooms && chatRooms.length" class="container">
+    <div v-if="!loading && chatRooms && chatRooms.length" class="container">
       <div class="left-part">
         <div
           @click="fetchMessages(chatroom)"
@@ -192,7 +209,13 @@ function goToAudio() {
         </div>
       </div>
     </div>
-    <h3 v-else class="errorMessage">No chat rooms.</h3>
+    <h3
+      v-else-if="!loading && chatRooms && !chatRooms.length"
+      class="errorMessage"
+    >
+      No chat rooms.
+    </h3>
+    <div v-else-if="loading" class="lds-dual-ring"></div>
   </div>
 </template>
 

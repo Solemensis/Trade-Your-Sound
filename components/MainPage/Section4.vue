@@ -36,7 +36,7 @@ async function sendOpinion() {
       <p>
         You can play a role in this aswell by just filling your profile with
         some fill-in information, creating an audio listing with a sample file,
-        and just surfing the functionality of the web in general.
+        and just surfing the functionality of the app in general.
       </p>
       <p>
         And as a conclusion, you can write me the functional struggles-user
@@ -45,9 +45,9 @@ async function sendOpinion() {
       </p>
       <p>
         Plus, i would appreciate legal assistance about writing terms of usage
-        of the app, and guidance between my rights and the audio uploaders
-        rights with the uploaded file, and information in licensing uploaded
-        files.
+        of the app, for example guidance between my rights and the audio
+        uploaders rights with the uploaded file, or information in licensing
+        uploaded files, etc.
       </p>
     </div>
     <div class="textarea-and-button">

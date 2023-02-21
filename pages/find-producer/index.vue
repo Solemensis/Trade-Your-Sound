@@ -9,6 +9,34 @@ const profiles = ref([]);
 onMounted(async () => {
   // setTimeout dışında çalışmıyor, setTimeout'suz birtek $fetch çalışıyor onMounted içinde.
   setTimeout(async () => {
+    const { data, error, refresh, pending } = await useFetch(
+      "/api/producerProfile/getProfiles",
+      {
+        query: {
+          category: category.value,
+          opportunity: LFopportunity.value,
+          updated: updated.value,
+        },
+      }
+    );
+
+    if (!pending.value) {
+      loading.value = false;
+    }
+
+    if (!data.value && error.value) {
+      error.value = null;
+      refresh();
+    }
+    profiles.value = data.value;
+  }, 1);
+});
+
+const loading = ref(true);
+
+watch(
+  () => route.query,
+  async () => {
     const { data, error, refresh } = await useFetch(
       "/api/producerProfile/getProfiles",
       {
@@ -23,20 +51,6 @@ onMounted(async () => {
       error.value = null;
       refresh();
     }
-    profiles.value = data.value;
-  }, 1);
-});
-
-watch(
-  () => route.query,
-  async () => {
-    const { data } = await useFetch("/api/producerProfile/getProfiles", {
-      query: {
-        category: category.value,
-        opportunity: LFopportunity.value,
-        updated: updated.value,
-      },
-    });
 
     profiles.value = data.value;
   }
@@ -54,7 +68,7 @@ watch(
         </h2>
 
         <div
-          v-if="profiles && profiles.length"
+          v-if="!loading && profiles && profiles.length"
           class="flex-box"
           v-for="profile in profiles"
           :key="profile.id"
@@ -113,9 +127,18 @@ watch(
             </div>
           </NuxtLink>
         </div>
-        <h2 style="color: #ff4545; grid-column-start: span 2" v-else>
+
+        <h2
+          style="color: #ff4545; grid-column-start: span 2"
+          v-else-if="!loading && profiles && !profiles.length"
+        >
           No Producer Found With These Filters
         </h2>
+        <div
+          v-else-if="loading"
+          class="lds-dual-ring"
+          style="padding-left: 20rem; top: 20%"
+        ></div>
       </div>
     </div>
   </div>

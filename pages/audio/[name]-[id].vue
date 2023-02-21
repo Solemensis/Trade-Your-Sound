@@ -44,7 +44,7 @@ const listingEditToggle = ref(false);
 </script>
 <template>
   <div class="container">
-    <div v-if="audio">
+    <div v-if="audio && audio.name">
       <div v-if="!listingEditToggle">
         <AudioDetailHero style="" :audio="audio" />
         <AudioDetailButtons
@@ -64,6 +64,7 @@ const listingEditToggle = ref(false);
         />
       </div>
     </div>
+    <div class="lds-dual-ring" v-else></div>
   </div>
 </template>
 

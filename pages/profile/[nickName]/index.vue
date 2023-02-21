@@ -20,10 +20,11 @@ const chatRoom = reactive({
 const profile = ref({});
 onMounted(async () => {
   setTimeout(async () => {
-    const { data, error, refresh } = await useFetch(
+    const { data, error, refresh, pending } = await useFetch(
       `/api/producerProfile/${route.params.nickName}`
     );
-    if (error.value) {
+
+    if (!data.value && error.value) {
       refresh();
     }
     profile.value = data.value;
@@ -96,7 +97,7 @@ const errorMessage = ref("");
 
 <template>
   <div class="container">
-    <div v-if="profile.user_name">
+    <div v-if="profile && profile.user_name">
       <div class="profile-of">
         <h2 v-if="!profileEditToggle">
           Profile of <span style="color: #3fcf8e">{{ profile.user_name }}</span>
