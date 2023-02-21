@@ -76,7 +76,6 @@ const errorMessage = ref("");
     <button @click="navigateToCreatePage" class="hero-button">
       New Listing
     </button>
-
     <div v-if="!loading && listings && listings.length" class="listings">
       <UserListingsListingCard
         v-for="listing in listings"
@@ -90,7 +89,7 @@ const errorMessage = ref("");
       style="font-size: 1.4rem; color: orangered"
       >No audios.</span
     >
-    <div v-else-if="loading" class="lds-dual-ring" style="top: 85%"></div>
+    <div v-else-if="loading" class="lds-dual-ring" style="top: 110%"></div>
     <p
       style="font-size: 1.5rem; color: brown; position: absolute; top: 11rem"
       v-if="errorMessage"

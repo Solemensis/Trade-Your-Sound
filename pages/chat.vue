@@ -26,7 +26,7 @@ onMounted(async () => {
       error.value = null;
       refresh();
     }
-    profiles.value = data.value;
+    chatRooms.value = data.value;
   }, 1);
 });
 
@@ -125,97 +125,105 @@ function goToAudio() {
 
 <template>
   <div>
-    <div v-if="!loading && chatRooms && chatRooms.length" class="container">
-      <div class="left-part">
-        <div
-          @click="fetchMessages(chatroom)"
-          v-for="chatroom in chatRooms"
-          :key="chatroom.id"
-          class="chatrooms"
-        >
-          <h3>
-            {{ chatroom.room_name }}
-          </h3>
-          <img
-            @click="deleteChatroom(chatroom)"
-            src="@/assets/delete-but.svg"
-            alt=""
-          />
+    <div style="position: relative">
+      <div v-if="!loading && chatRooms && chatRooms.length" class="container">
+        <div class="left-part">
+          <div
+            @click="fetchMessages(chatroom)"
+            v-for="chatroom in chatRooms"
+            :key="chatroom.id"
+            class="chatrooms"
+          >
+            <h3>
+              {{ chatroom.room_name }}
+            </h3>
+            <img
+              @click="deleteChatroom(chatroom)"
+              src="@/assets/delete-but.svg"
+              alt=""
+            />
+          </div>
         </div>
-      </div>
-      <div v-if="relatedRoomId" data-aos="fade-out">
-        <div class="right-part">
-          <div class="heading-box">
-            <p
-              @click="
-                goToUser(
+        <div v-if="relatedRoomId" data-aos="fade-out">
+          <div class="right-part">
+            <div class="heading-box">
+              <p
+                @click="
+                  goToUser(
+                    userName == chat.user1_nick
+                      ? chat.user2_nick
+                      : chat.user1_nick
+                  )
+                "
+              >
+                {{
                   userName == chat.user1_nick
                     ? chat.user2_nick
                     : chat.user1_nick
-                )
-              "
-            >
-              {{
-                userName == chat.user1_nick ? chat.user2_nick : chat.user1_nick
-              }}
-            </p>
-            <h2
-              v-if="chat.listing_path"
-              @click="goToAudio"
-              class="roomNameListing"
-            >
-              {{ chat.room_name }}
-            </h2>
-            <h2 v-else class="roomNameChat">
-              {{ chat.room_name }}
-            </h2>
-            <p
-              @click="
-                goToUser(
+                }}
+              </p>
+              <h2
+                v-if="chat.listing_path"
+                @click="goToAudio"
+                class="roomNameListing"
+              >
+                {{ chat.room_name }}
+              </h2>
+              <h2 v-else class="roomNameChat">
+                {{ chat.room_name }}
+              </h2>
+              <p
+                @click="
+                  goToUser(
+                    userName == chat.user1_nick
+                      ? chat.user1_nick
+                      : chat.user2_nick
+                  )
+                "
+              >
+                {{
                   userName == chat.user1_nick
                     ? chat.user1_nick
                     : chat.user2_nick
-                )
-              "
-            >
-              {{
-                userName == chat.user1_nick ? chat.user1_nick : chat.user2_nick
-              }}
-            </p>
-          </div>
-          <div ref="messageBox" class="message-box">
-            <p
-              v-for="message in messages"
-              :class="user.id == message.lister_id ? 'myMessage' : 'itsMessage'"
-              :key="message.id"
-            >
-              {{ message.content }}
-              <span>{{ extractTime(message.created_at) }}</span>
-            </p>
-          </div>
+                }}
+              </p>
+            </div>
+            <div ref="messageBox" class="message-box">
+              <p
+                v-for="message in messages"
+                :class="
+                  user.id == message.lister_id ? 'myMessage' : 'itsMessage'
+                "
+                :key="message.id"
+              >
+                {{ message.content }}
+                <span>{{ extractTime(message.created_at) }}</span>
+              </p>
+            </div>
 
-          <div class="input-and-button">
-            <input
-              @keydown.enter="postMessage"
-              class="text-input"
-              v-model="textMessage"
-              type="text"
-              placeholder="hi, i like your work! do you wanna collab for a project?"
-            />
-            <button class="hero-button send-button" @click="postMessage">
-              Send
-            </button>
+            <div class="input-and-button">
+              <input
+                @keydown.enter="postMessage"
+                class="text-input"
+                v-model="textMessage"
+                type="text"
+                placeholder="hi, i like your work! do you wanna collab for a project?"
+              />
+              <button class="hero-button send-button" @click="postMessage">
+                Send
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <h3
+        v-else-if="!loading && chatRooms && !chatRooms.length"
+        class="errorMessage"
+      >
+        No chat rooms.
+      </h3>
+      <div v-else-if="loading" class="lds-dual-ring"></div>
     </div>
-    <h3
-      v-else-if="!loading && chatRooms && !chatRooms.length"
-      class="errorMessage"
-    >
-      No chat rooms.
-    </h3>
-    <div v-else-if="loading" class="lds-dual-ring"></div>
   </div>
 </template>
 
