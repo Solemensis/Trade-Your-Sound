@@ -13,11 +13,5 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  if (!userRelatedChatRooms) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: `No chatroom exists with current user`,
-    });
-  }
   return userRelatedChatRooms;
 });
