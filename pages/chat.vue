@@ -23,7 +23,7 @@ onMounted(async () => {
     }
 
     if (!data.value && error.value) {
-      error.value = null;
+      console.log(error);
       refresh();
     }
     chatRooms.value = data.value;
