@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,73 +7,65 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 model ProducerProfile {
-  id                  Int         @id @default(autoincrement())
-  user_name           String      @unique
-  categories          String[]
-  equipment           String[]
-  relatedLinks        Json
-  description         String?
-  lister_id           String      @unique
-  created_at          DateTime    @default(now()) 
-  updated_at          DateTime    @updatedAt  
-  admin               Boolean
-  LFopportunity       Boolean
-  showProfile         Boolean
-  terms               Boolean
-
-  audio_listings        AudioListings[]
-
+  id             Int             @id @default(autoincrement())
+  user_name      String          @unique
+  categories     String[]
+  equipment      String[]
+  relatedLinks   Json
+  description    String?
+  lister_id      String          @unique
+  created_at     DateTime        @default(now())
+  updated_at     DateTime        @updatedAt
+  admin          Boolean
+  LFopportunity  Boolean
+  showProfile    Boolean
+  terms          Boolean
+  audio_listings AudioListings[]
 }
 
 model AudioListings {
-  id              Int         @id @default(autoincrement())
-  name            String
-  price           Int
-  category        String
-  processing      String
-  description     String
-  lister_id       String      
-  audio           String
-  created_at      DateTime    @default(now()) 
-  updated_at      DateTime    @updatedAt 
-  user_name       String
- 
-  producer_id     Int
-  producerProf    ProducerProfile   @relation(fields:[producer_id], references:[id], onDelete: Cascade)
+  id           Int             @id @default(autoincrement())
+  name         String
+  price        Int
+  category     String
+  processing   String
+  description  String
+  lister_id    String
+  audio        String
+  created_at   DateTime        @default(now())
+  updated_at   DateTime        @updatedAt
+  user_name    String
+  producer_id  Int
+  producerProf ProducerProfile @relation(fields: [producer_id], references: [id], onDelete: Cascade)
 }
 
 model ChatRooms {
-id                Int         @id @default(autoincrement())
-created_at        DateTime    @default(now())
-room_name         String
-user1_id          String
-user2_id          String
-user1_deleted     Json
-user2_deleted     Json
-user1_nick        String
-user2_nick        String
-  listing_path    String?
-
-
-messages          Messages[]
+  id            Int        @id @default(autoincrement())
+  created_at    DateTime   @default(now())
+  room_name     String
+  user1_id      String
+  user2_id      String
+  user1_deleted Json
+  user2_deleted Json
+  user1_nick    String
+  user2_nick    String
+  listing_path  String?
+  messages      Messages[]
 }
-model Messages {
-id                Int         @id @default(autoincrement())
-created_at        DateTime    @default(now()) 
-content           String
-lister_id         String
-read              Boolean
 
-room_id           Int
-chat_room         ChatRooms   @relation(fields:[room_id], references:[id], onDelete: Cascade)
+model Messages {
+  id         Int       @id @default(autoincrement())
+  created_at DateTime  @default(now())
+  content    String
+  lister_id  String
+  read       Boolean
+  room_id    Int
+  chat_room  ChatRooms @relation(fields: [room_id], references: [id], onDelete: Cascade)
 }
 
 model Opinions {
-id                Int         @id @default(autoincrement())
-created_at        DateTime    @default(now()) 
-content           String
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  content    String
 }
-
