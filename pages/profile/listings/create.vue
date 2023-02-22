@@ -42,7 +42,8 @@ async function handleSubmit() {
   const userId = {
     userId: user.value.id,
   };
-  const specificUser = await $fetch("/api/producerProfile/specificUser", {
+
+  const { data } = await useFetch("/api/producerProfile/specificUser", {
     method: "post",
     body: userId,
   });
@@ -56,8 +57,8 @@ async function handleSubmit() {
     description: info.description,
     lister_id: user.value.id,
     audio: fileName,
-    user_name: specificUser.user_name,
-    producer_id: specificUser.id,
+    user_name: data.value.user_name,
+    producer_id: data.value.id,
   };
 
   //http post request to send body object to backend
