@@ -31,6 +31,7 @@ const loading = ref(true);
 //fetch messages according to selected chat
 const messages = ref();
 async function fetchMessages(chatroom) {
+  relatedRoomId.value = "";
   loading.value = true;
 
   const { data } = await useFetch("/api/chatroom/fetchMessages", {
@@ -105,6 +106,10 @@ async function postMessage() {
 const messageBox = ref(null);
 
 async function deleteChatroom(chatroom) {
+  //silinecek olan chatbox açıksa, önce kapat
+  if (relatedRoomId.value == chatroom.id) {
+    relatedRoomId.value = "";
+  }
   //delete it from database
   await useFetch("/api/chatroom/deleteChat", {
     method: "delete",
@@ -222,7 +227,7 @@ function goToAudio() {
       >
         No chat rooms.
       </h3>
-      <div v-else-if="loading" class="lds-dual-ring" style="top: 35rem"></div>
+      <div v-if="loading" class="lds-dual-ring" style="top: 35rem"></div>
     </div>
   </div>
 </template>
