@@ -9,28 +9,31 @@ const supabase = useSupabaseClient();
 //fetch chats according to logged user
 const chatRooms = ref([]);
 onMounted(async () => {
-  setTimeout(async () => {
-    const { data, error, refresh, pending } = await useFetch(
-      "/api/chatroom/fetchChats",
-      {
-        method: "post",
-        body: user.value.id,
-      }
-    );
+  // setTimeout(async () => {
+  //   const { data, error, refresh, pending } = await useFetch(
+  //     "/api/chatroom/fetchChats",
+  //     {
+  //       method: "post",
+  //       body: user.value.id,
+  //     }
+  //   );
 
-    if (!pending.value) {
-      loading.value = false;
-    }
+  //   if (!pending.value) {
+  //     loading.value = false;
+  //   }
 
-    if (!data.value && error.value) {
-      error.value = null;
-      refresh();
-    }
-    chatRooms.value = data.value;
-  }, 1);
+  //   if (!data.value && error.value) {
+  //     error.value = null;
+  //     refresh();
+  //   }
+  //   chatRooms.value = data.value;
+  // }, 1);
+
+  chatRooms.value = await $fetch("/api/chatroom/fetchChats", {
+    method: "post",
+    body: user.value.id,
+  });
 });
-
-const loading = ref(true);
 
 //fetch messages according to selected chat
 const messages = ref();
@@ -126,7 +129,7 @@ function goToAudio() {
 <template>
   <div>
     <div style="position: relative">
-      <div v-if="!loading && chatRooms && chatRooms.length" class="container">
+      <div v-if="chatRooms && chatRooms.length" class="container">
         <div class="left-part">
           <div
             @click="fetchMessages(chatroom)"
@@ -216,13 +219,10 @@ function goToAudio() {
           </div>
         </div>
       </div>
-      <h3
-        v-else-if="!loading && chatRooms && !chatRooms.length"
-        class="errorMessage"
-      >
+      <h3 v-else-if="chatRooms && !chatRooms.length" class="errorMessage">
         No chat rooms.
       </h3>
-      <div v-else-if="loading" class="lds-dual-ring"></div>
+      <div v-else-if="!chatRooms" class="lds-dual-ring"></div>
     </div>
   </div>
 </template>
