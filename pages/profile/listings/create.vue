@@ -38,15 +38,8 @@ async function handleSubmit() {
     "_" +
     Math.floor(Math.random() * 999);
 
-  //fetching username to add it to body object
-  const userId = {
-    userId: user.value.id,
-  };
-
-  const { data } = await useFetch("/api/producerProfile/specificUser", {
-    method: "post",
-    body: userId,
-  });
+  //fetching username to add it to the body object
+  const { data } = await useFetch("/api/producerProfile/specificUser");
 
   //creation of the body(data) object which will be sent to backend
   const body = {

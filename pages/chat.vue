@@ -9,27 +9,24 @@ const supabase = useSupabaseClient();
 //fetch chats according to logged user
 const chatRooms = ref([]);
 onMounted(async () => {
-  // setTimeout(async () => {
-  //   const { data, error, refresh, pending } = await useFetch(
-  //     "/api/chatroom/fetchChats",
-  //     {
-  //       method: "post",
-  //       body: user.value.id,
-  //     }
-  //   );
-  chatRooms.value = await $fetch("/api/chatroom/fetchChats");
+  setTimeout(async () => {
+    const { data, error, refresh, pending } = await useFetch(
+      "/api/chatroom/fetchChats"
+    );
 
-  //   if (!pending.value) {
-  //     loading.value = false;
-  //   }
+    if (!pending.value) {
+      loading.value = false;
+    }
 
-  //   if (!data.value && error.value) {
-  //     error.value = null;
-  //     refresh();
-  //   }
-  //   chatRooms.value = data.value;
-  // }, 1);
+    if (!data.value && error.value) {
+      error.value = null;
+      refresh();
+    }
+    chatRooms.value = data.value;
+  }, 1);
 });
+
+const loading = ref(true);
 
 //fetch messages according to selected chat
 const messages = ref();
@@ -65,16 +62,16 @@ async function fetchMessages(chatroom) {
   }, 1);
 
   // Listen to database message inserts
-  // supabase
-  //   .channel("any")
-  //   .on(
-  //     "postgres_changes",
-  //     { event: "INSERT", schema: "public", table: "Messages" },
-  //     async (payload) => {
-  //       await fetchMessages(chatroom);
-  //     }
-  //   )
-  //   .subscribe();
+  supabase
+    .channel("any")
+    .on(
+      "postgres_changes",
+      { event: "INSERT", schema: "public", table: "Messages" },
+      async (payload) => {
+        await fetchMessages(chatroom);
+      }
+    )
+    .subscribe();
 }
 const relatedRoomId = ref(null);
 const chat = ref({});
@@ -125,7 +122,7 @@ function goToAudio() {
 <template>
   <div>
     <div style="position: relative">
-      <div v-if="chatRooms && chatRooms.length" class="container">
+      <div v-if="!loading && chatRooms && chatRooms.length" class="container">
         <div class="left-part">
           <div
             @click="fetchMessages(chatroom)"
@@ -215,10 +212,13 @@ function goToAudio() {
           </div>
         </div>
       </div>
-      <h3 v-else-if="chatRooms && !chatRooms.length" class="errorMessage">
+      <!-- <h3
+        v-else-if="!loading && chatRooms && !chatRooms.length"
+        class="errorMessage"
+      >
         No chat rooms.
-      </h3>
-      <div v-else-if="!chatRooms" class="lds-dual-ring"></div>
+      </h3> -->
+      <div v-else-if="loading" class="lds-dual-ring" style="top: 35rem"></div>
     </div>
   </div>
 </template>

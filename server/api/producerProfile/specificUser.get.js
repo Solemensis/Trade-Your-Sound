@@ -1,13 +1,15 @@
 import { PrismaClient } from "@prisma/client";
+import { serverSupabaseUser } from "#supabase/server";
+
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const user = await serverSupabaseUser(event);
 
   //database event
   const producerProfile = await prisma.producerProfile.findUnique({
     where: {
-      lister_id: body.userId,
+      lister_id: user.id,
     },
   });
 

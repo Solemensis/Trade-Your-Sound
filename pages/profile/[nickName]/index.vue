@@ -50,11 +50,8 @@ watch(
 
 async function sendMessage() {
   //check if user filled his/her profile
-  const response = await $fetch("/api/producerProfile/specificUser", {
-    method: "post",
-    body: { userId: user.value.id },
-  });
-  if (response.description == false) {
+  const response = await $fetch("/api/producerProfile/specificUser");
+  if (!response || (response && response.description == false)) {
     errorMessage.value =
       "You need to fill your profile before sending messages.";
     return;

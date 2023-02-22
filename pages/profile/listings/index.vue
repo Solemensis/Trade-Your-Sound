@@ -44,24 +44,13 @@ async function handleDelete(id) {
 }
 
 async function navigateToCreatePage() {
-  const response = await $fetch("/api/producerProfile/specificUser", {
-    method: "post",
-    body: {
-      userId: user.value.id,
-    },
-  });
+  //to see if user filled his/her profile
+  const producerProfile = await $fetch("/api/producerProfile/specificUser");
 
-  const response2 = await $fetch("/api/audio/listings/getSpecificListings", {
-    method: "post",
-    body: {
-      userId: user.value.id,
-    },
-  });
-
-  if (!response.description) {
+  if (!producerProfile.description) {
     errorMessage.value =
       "You need to pick a username and fill your profile before listing an audio.";
-  } else if (response2.length >= 4) {
+  } else if (listings.value.length >= 4) {
     errorMessage.value =
       "Currently we can't accept more than 4 audio listings.";
   } else {

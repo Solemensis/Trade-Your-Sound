@@ -15,11 +15,7 @@ onMounted(async () => {
   setTimeout(async () => {
     if (user.value && user.value.id) {
       const { data, error, refresh } = await useFetch(
-        "/api/producerProfile/specificUser",
-        {
-          method: "post",
-          body: { userId: user.value.id },
-        }
+        "/api/producerProfile/specificUser"
       );
 
       if (error.value) {
@@ -44,10 +40,7 @@ function goToProfile() {
 
 // onMounted(async () => {
 //   if (user) {
-//     const data = await $fetch("/api/chatroom/newMessages", {
-//       method: "post",
-//       body: user.value.id,
-//     });
+//     const data = await $fetch("/api/chatroom/newMessages");
 
 //     if (Boolean(data)) {
 //       newMessage.value = true;
