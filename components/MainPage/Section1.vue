@@ -5,6 +5,7 @@ import shuriken from "@/assets/audios2/shuriken.mp3";
 
 function playAudio(name, audio) {
   name = new Audio(audio);
+  name.volume = 0.4;
   name.play();
 }
 </script>

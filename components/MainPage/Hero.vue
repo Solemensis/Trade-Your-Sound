@@ -52,7 +52,7 @@
   width: clamp(50%, 50rem, 80%);
 }
 .hero-img {
-  height: 40%;
+  height: 31rem;
   animation: hue-rotate alternate 40s infinite linear;
   opacity: 0.9;
 }

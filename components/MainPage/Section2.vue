@@ -34,6 +34,7 @@ async function play(audio, audioName) {
     const audioUrl = URL.createObjectURL(data);
 
     audio.src = audioUrl;
+    audio.volume = 0.7;
 
     audio.load();
     audio.play();

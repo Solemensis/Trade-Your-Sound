@@ -230,63 +230,57 @@ label {
 
 @media (min-width: 2500px) {
   html {
-    font-size: 110%;
+    font-size: 108%;
   }
 }
 
 @media (max-width: 2499px) {
   html {
-    font-size: 100%;
+    font-size: 98%;
   }
 }
 
 @media (max-width: 2300px) {
   html {
-    font-size: 95%;
-  }
-}
-
-@media (max-width: 2100px) {
-  html {
-    font-size: 85%;
+    font-size: 93%;
   }
 }
 
 @media (max-width: 1920px) {
   html {
-    font-size: 79%;
-  }
-}
-
-@media (max-width: 1820px) {
-  html {
-    font-size: 70%;
+    font-size: 77%;
   }
 }
 
 @media (max-width: 1720px) {
   html {
-    font-size: 66%;
+    font-size: 64%;
   }
 }
 
-@media (max-width: 1580px) {
+@media (max-width: 1280px) and (max-height: 977px) {
   html {
-    font-size: 62.5%;
+    font-size: 63%;
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1280px) and (max-height: 800px) {
   html {
-    font-size: 50%;
+    font-size: 53%;
   }
 }
 
 @media (max-width: 1024px) {
   html {
-    font-size: 35%;
+    font-size: 48%;
   }
 }
+
+/* @media (orientation: portrait) {
+  html {
+    font-size: 30%;
+  }
+} */
 
 /* loading animation */
 .lds-dual-ring {

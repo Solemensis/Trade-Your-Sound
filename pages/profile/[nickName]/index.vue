@@ -166,20 +166,20 @@ const errorMessage = ref("");
               <a
                 v-if="profile.relatedLinks[0].relatedLink1Desc"
                 target="_blank"
-                :href="profile.relatedLinks[0].relatedLink1"
+                :href="addHttpsIfNeeded(profile.relatedLinks[0].relatedLink1)"
               >
                 ✔️ {{ profile.relatedLinks[0].relatedLink1Desc }}</a
               >
               <a
                 v-if="profile.relatedLinks[0].relatedLink2Desc"
                 target="_blank"
-                :href="profile.relatedLinks[0].relatedLink2"
+                :href="addHttpsIfNeeded(profile.relatedLinks[0].relatedLink2)"
                 >✔️ {{ profile.relatedLinks[0].relatedLink2Desc }}</a
               >
               <a
                 v-if="profile.relatedLinks[0].relatedLink3Desc"
                 target="_blank"
-                :href="profile.relatedLinks[0].relatedLink3"
+                :href="addHttpsIfNeeded(profile.relatedLinks[0].relatedLink3)"
                 >✔️ {{ profile.relatedLinks[0].relatedLink3Desc }}</a
               >
             </div>
@@ -228,7 +228,7 @@ const errorMessage = ref("");
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -45%);
+  transform: translate(-50%, -43%);
   text-align: center;
   width: 55%;
 }

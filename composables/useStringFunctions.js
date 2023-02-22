@@ -85,3 +85,10 @@ export function extractTime(dateString) {
   const newTimeString = timeParts.join(":");
   return newTimeString;
 }
+
+export function addHttpsIfNeeded(str) {
+  if (!str.startsWith("https://")) {
+    str = "https://" + str;
+  }
+  return str;
+}
