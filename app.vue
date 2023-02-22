@@ -254,7 +254,7 @@ label {
 
 @media (max-width: 1920px) {
   html {
-    font-size: 77%;
+    font-size: 79%;
   }
 }
 
