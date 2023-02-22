@@ -74,13 +74,13 @@ async function onIntersectionObserver([{ isIntersecting }]) {
 <template>
   <div>
     <AudioSearchSideBar />
-
     <div class="flex-box-center">
       <h2 class="scroll-audios">
         Scroll <span class="green-span">Audios</span>
       </h2>
       <div v-if="!loading && audios && audios.length">
         <AudioSearchCards :audios="audios" />
+
         <div
           style="margin-top: 40rem; opacity: 0"
           v-intersection-observer="onIntersectionObserver"

@@ -49,7 +49,7 @@ async function handleSubmit() {
 
     // http post request to send body object to backend
     try {
-      const response = await $fetch("/api/producerProfile/producerProfile", {
+      await useFetch("/api/producerProfile/producerProfile", {
         method: "put",
         body,
       });

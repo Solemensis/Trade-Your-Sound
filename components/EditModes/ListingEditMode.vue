@@ -53,7 +53,7 @@ async function handleSubmit() {
 
     // http post request to send body object to backend
     try {
-      const response = await $fetch(`/api/audio/listings/${route.params.id}/`, {
+      await useFetch(`/api/audio/listings/${route.params.id}/`, {
         method: "put",
         body,
       });

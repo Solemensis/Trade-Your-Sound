@@ -31,7 +31,7 @@ const onClick = async () => {
   //i'm just using "toRaw" built-in function of vue.js
   const body = toRaw(username);
   try {
-    const response = await $fetch("/api/producerProfile/usernameEnter", {
+    await useFetch("/api/producerProfile/usernameEnter", {
       method: "post",
       body: body,
     });

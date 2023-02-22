@@ -91,7 +91,8 @@ async function postMessage() {
     };
     textMessage.value = "";
 
-    const sendMessage = await $fetch("/api/chatroom/postMessage", {
+    //send message
+    await useFetch("/api/chatroom/postMessage", {
       method: "post",
       body: message,
     });
@@ -102,7 +103,7 @@ const messageBox = ref(null);
 
 async function deleteChatroom(chatroom) {
   //delete it from database
-  const { data } = await useFetch("/api/chatroom/deleteChat", {
+  await useFetch("/api/chatroom/deleteChat", {
     method: "delete",
     body: { roomId: chatroom.id, userId: user.value.id },
   });
@@ -225,18 +226,23 @@ function goToAudio() {
 
 <style scoped>
 .left-part {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
+  height: 70%;
+  align-items: center;
   height: 100vh;
   justify-content: center;
   gap: 1rem;
-  padding-top: 5rem;
-  margin-left: 3rem;
   z-index: 1000;
+  width: 30rem;
+  padding-left: 1rem;
+  margin-left: 1rem;
 }
 
 .chatrooms {
+  justify-content: center;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -244,12 +250,11 @@ function goToAudio() {
 }
 .chatrooms h3 {
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   background-color: #30303087;
   border-radius: 1rem;
   padding: 1.4rem 1rem;
-  max-width: 25rem;
-  min-width: 12rem;
+  width: 100%;
   text-align: center;
   transition: 0.2s;
   cursor: pointer;
@@ -314,7 +319,7 @@ function goToAudio() {
   width: 50%;
   margin-inline: auto;
   position: absolute;
-  left: 57.5%;
+  left: 60%;
   transform: translate(-50%);
 }
 .message-box {

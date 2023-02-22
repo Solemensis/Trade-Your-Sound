@@ -44,6 +44,14 @@ export default defineEventHandler(async (event) => {
   const producerProfile = await prisma.ProducerProfile.findMany({
     where: filters,
     orderBy: orderby,
+    select: {
+      updated_at: true,
+      user_name: true,
+      categories: true,
+      description: true,
+      relatedLinks: true,
+      LFopportunity: true,
+    },
   });
 
   return producerProfile;

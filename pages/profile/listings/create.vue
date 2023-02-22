@@ -56,18 +56,18 @@ async function handleSubmit() {
 
   //http post request to send body object to backend
   try {
-    const response = await $fetch("/api/audio/listings", {
+    const { createListing } = await useFetch("/api/audio/listings", {
       method: "post",
       body,
     });
 
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("audios")
       .upload(fileName, info.audio);
 
     if (error) {
       //delete the newly uploaded row because file couldn't upload
-      await $fetch(`/api/audio/listings/${response.id}`, {
+      await useFetch(`/api/audio/listings/${createListing.value.id}`, {
         method: "delete",
       });
       errorMessage.value = "Cannot upload audio";

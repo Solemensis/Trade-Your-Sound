@@ -21,9 +21,9 @@ const chatRoom = reactive({
 const errorMessage = ref("");
 async function onSubmit() {
   //check if user filled his/her profile
-  const response = await $fetch("/api/producerProfile/specificUser");
+  const { data } = await useFetch("/api/producerProfile/specificUser");
 
-  if (!response || (response && response.description == false)) {
+  if (!data.value || (data.value && data.value.description == false)) {
     errorMessage.value =
       "You need to fill your profile before sending messages.";
     return;
@@ -38,7 +38,7 @@ async function onSubmit() {
     userId: props.audio.lister_id,
     deleted: false,
   };
-  chatRoom.user1_nick = response.user_name;
+  chatRoom.user1_nick = data.value.user_name;
   chatRoom.user2_nick = props.audio.user_name;
   chatRoom.listing_path = route.path;
 
@@ -58,7 +58,7 @@ async function onSubmit() {
     if (chatRoom.user1_id == chatRoom.user2_id) {
       errorMessage.value = "You can't send message to yourself";
     } else {
-      const response = await $fetch(`/api/chatroom/createChat`, {
+      await useFetch(`/api/chatroom/createChat`, {
         method: "post",
         body: body,
       });
@@ -71,12 +71,12 @@ async function onSubmit() {
 }
 async function deleteListing() {
   //delete listing from database via backend
-  await $fetch(`/api/audio/listings/${props.audio.id}`, {
+  await useFetch(`/api/audio/listings/${props.audio.id}`, {
     method: "delete",
   });
 
   //after that, delete the remaining file associated to that row
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from("audios")
     .remove([props.audio.audio]);
 

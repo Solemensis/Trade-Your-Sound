@@ -50,15 +50,20 @@ watch(
 
 async function sendMessage() {
   //check if user filled his/her profile
-  const response = await $fetch("/api/producerProfile/specificUser");
-  if (!response || (response && response.description == false)) {
+  const { data: specificUser } = await useFetch(
+    "/api/producerProfile/specificUser"
+  );
+  if (
+    !specificUser.value ||
+    (specificUser.value && specificUser.value.description == false)
+  ) {
     errorMessage.value =
       "You need to fill your profile before sending messages.";
     return;
   }
 
   //populating the object with the already fetched profile
-  chatRoom.room_name = `${response.user_name} - ${
+  chatRoom.room_name = `${specificUser.value.user_name} - ${
     toRaw(profile.value).user_name
   }`;
   chatRoom.user1_id = user.value.id;
@@ -69,7 +74,7 @@ async function sendMessage() {
     deleted: false,
   };
   chatRoom.user1_nick = profile.value.user_name;
-  chatRoom.user2_nick = response.user_name;
+  chatRoom.user2_nick = specificUser.value.user_name;
 
   try {
     const body = toRaw(chatRoom);
@@ -77,7 +82,7 @@ async function sendMessage() {
     if (chatRoom.user1_id == chatRoom.user2_id) {
       errorMessage.value = "You can't send message to yourself";
     } else {
-      const response = await $fetch(`/api/chatroom/createChat`, {
+      await useFetch(`/api/chatroom/createChat`, {
         method: "post",
         body: body,
       });

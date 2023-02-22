@@ -108,7 +108,6 @@ watch(
                     }}
                   </p>
                 </div>
-
                 <div
                   class="fire"
                   v-if="profile.LFopportunity"

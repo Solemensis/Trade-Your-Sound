@@ -30,7 +30,7 @@ async function handleDelete(id) {
   const { data: audio } = await useFetch(`/api/audio/${id}`);
 
   //now delete it from database via backend
-  await $fetch(`/api/audio/listings/${id}`, {
+  await useFetch(`/api/audio/listings/${id}`, {
     method: "delete",
   });
 
@@ -38,16 +38,18 @@ async function handleDelete(id) {
   listings.value = listings.value.filter((listing) => listing.id !== id);
 
   //now delete the remaining file associated to that row lastly
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from("audios")
     .remove([audio.value.audio]);
 }
 
 async function navigateToCreatePage() {
   //to see if user filled his/her profile
-  const producerProfile = await $fetch("/api/producerProfile/specificUser");
+  const { data: producerProfile } = await useFetch(
+    "/api/producerProfile/specificUser"
+  );
 
-  if (!producerProfile.description) {
+  if (!producerProfile.value.description) {
     errorMessage.value =
       "You need to pick a username and fill your profile before listing an audio.";
   } else if (listings.value.length >= 4) {
@@ -78,7 +80,9 @@ const errorMessage = ref("");
       style="font-size: 1.4rem; color: orangered"
       >No audios.</span
     >
+
     <div v-else-if="loading" class="lds-dual-ring" style="top: 110%"></div>
+
     <p
       style="font-size: 1.5rem; color: brown; position: absolute; top: 11rem"
       v-if="errorMessage"
