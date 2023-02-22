@@ -65,16 +65,16 @@ async function fetchMessages(chatroom) {
   }, 1);
 
   // Listen to database message inserts
-  supabase
-    .channel("any")
-    .on(
-      "postgres_changes",
-      { event: "INSERT", schema: "public", table: "Messages" },
-      async (payload) => {
-        await fetchMessages(chatroom);
-      }
-    )
-    .subscribe();
+  // supabase
+  //   .channel("any")
+  //   .on(
+  //     "postgres_changes",
+  //     { event: "INSERT", schema: "public", table: "Messages" },
+  //     async (payload) => {
+  //       await fetchMessages(chatroom);
+  //     }
+  //   )
+  //   .subscribe();
 }
 const relatedRoomId = ref(null);
 const chat = ref({});
