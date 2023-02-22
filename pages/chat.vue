@@ -9,27 +9,26 @@ const supabase = useSupabaseClient();
 //fetch chats according to logged user
 const chatRooms = ref([]);
 onMounted(async () => {
-  setTimeout(async () => {
-    //   const { data, error, refresh, pending } = await useFetch(
-    //     "/api/chatroom/fetchChats",
-    //     {
-    //       method: "post",
-    //       body: user.value.id,
-    //     }
-    //   );
-    const { data } = await useFetch("/api/chatroom/fetchChats");
+  // setTimeout(async () => {
+  //   const { data, error, refresh, pending } = await useFetch(
+  //     "/api/chatroom/fetchChats",
+  //     {
+  //       method: "post",
+  //       body: user.value.id,
+  //     }
+  //   );
+  chatRooms.value = await $fetch("/api/chatroom/fetchChats");
 
-    //   if (!pending.value) {
-    //     loading.value = false;
-    //   }
+  //   if (!pending.value) {
+  //     loading.value = false;
+  //   }
 
-    //   if (!data.value && error.value) {
-    //     error.value = null;
-    //     refresh();
-    //   }
-    //   chatRooms.value = data.value;
-    chatRooms.value = data.value;
-  }, 1);
+  //   if (!data.value && error.value) {
+  //     error.value = null;
+  //     refresh();
+  //   }
+  //   chatRooms.value = data.value;
+  // }, 1);
 });
 
 //fetch messages according to selected chat
