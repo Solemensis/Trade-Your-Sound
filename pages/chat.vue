@@ -212,12 +212,12 @@ function goToAudio() {
           </div>
         </div>
       </div>
-      <!-- <h3
+      <h3
         v-else-if="!loading && chatRooms && !chatRooms.length"
         class="errorMessage"
       >
         No chat rooms.
-      </h3> -->
+      </h3>
       <div v-else-if="loading" class="lds-dual-ring" style="top: 35rem"></div>
     </div>
   </div>
