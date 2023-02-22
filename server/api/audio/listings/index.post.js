@@ -28,30 +28,30 @@ export default defineEventHandler(async (event) => {
   // }
 
   //body destructure'ı ile yapmak
-  const {
-    name,
-    price,
-    category,
-    processing,
-    description,
-    lister_id,
-    audio,
-    user_name,
-    producer_id,
-  } = body;
+  // const {
+  //   name,
+  //   price,
+  //   category,
+  //   processing,
+  //   description,
+  //   lister_id,
+  //   audio,
+  //   user_name,
+  //   producer_id,
+  // } = body;
 
   //database event
   const AudioListing = await prisma.AudioListings.create({
     data: {
-      name,
-      price,
-      category,
-      processing,
-      description,
-      lister_id,
-      audio,
-      user_name,
-      producer_id,
+      name: body.name,
+      price: body.price,
+      category: body.category,
+      processing: body.processing,
+      description: body.description,
+      lister_id: body.lister_id,
+      audio: body.audio,
+      user_name: body.user_name,
+      producer_id: body.producer_id,
     },
   });
 
