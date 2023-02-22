@@ -31,10 +31,13 @@ const loading = ref(true);
 //fetch messages according to selected chat
 const messages = ref();
 async function fetchMessages(chatroom) {
+  loading.value = true;
+
   const { data } = await useFetch("/api/chatroom/fetchMessages", {
     method: "post",
     body: chatroom.id,
   });
+  loading.value = false;
   messages.value = data.value;
   relatedRoomId.value = chatroom.id;
   chat.value = chatroom;
@@ -123,7 +126,7 @@ function goToAudio() {
 <template>
   <div>
     <div style="position: relative">
-      <div v-if="!loading && chatRooms && chatRooms.length" class="container">
+      <div v-if="chatRooms && chatRooms.length" class="container">
         <div class="left-part">
           <div
             @click="fetchMessages(chatroom)"

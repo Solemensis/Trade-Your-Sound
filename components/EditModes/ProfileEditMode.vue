@@ -48,20 +48,22 @@ async function handleSubmit() {
     };
 
     // http post request to send body object to backend
-    try {
-      await useFetch("/api/producerProfile/producerProfile", {
-        method: "put",
-        body,
-      });
 
-      closeEdit();
-      carryRefetchSignal.value = !carryRefetchSignal.value;
-    } catch (err) {
-      errorMessage.value = err.statusMessage;
+    const { error } = await useFetch("/api/producerProfile/producerProfile", {
+      method: "put",
+      body,
+    });
+
+    if (error.value) {
+      errorMessage.value = error.value.statusMessage;
       setTimeout(() => {
         errorMessage.value = "";
       }, 4000);
+      return;
     }
+
+    closeEdit();
+    carryRefetchSignal.value = !carryRefetchSignal.value;
   } else return;
 }
 
@@ -105,8 +107,8 @@ const carryRefetchSignal = useState("carryRefetchSignal", () => false);
         showProfileName="showProfile"
       />
     </div>
-    <label style="font-size: 1.8rem; color: #ddd"
-      >Show us what you got! <span style="color: #666">(optional)</span></label
+    <label style="font-size: 1.8rem; color: blueviolet; font-weight: 500"
+      >Show us what you got!</label
     >
     <div style="margin-top: 3.5rem" class="links-group">
       <InputsProducerProfileRelatedLink

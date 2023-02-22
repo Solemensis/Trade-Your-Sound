@@ -52,24 +52,29 @@ async function handleSubmit() {
     };
 
     // http post request to send body object to backend
-    try {
-      await useFetch(`/api/audio/listings/${route.params.id}/`, {
+
+    const { error } = await useFetch(
+      `/api/audio/listings/${route.params.id}/`,
+      {
         method: "put",
         body,
-      });
+      }
+    );
 
-      //as that put request was a pure edit and the audio file will always be uploaded,
-      //the old audio shall be eliminated:
-      await supabase.storage.from("audios").remove(props.audio.audio);
-
-      closeEdit();
-      listingEditRefetchSignal.value = !listingEditRefetchSignal.value;
-    } catch (err) {
-      errorMessage.value = err.statusMessage;
+    if (error.value) {
+      errorMessage.value = error.value.statusMessage;
 
       //if error, delete uploaded audio
       await supabase.storage.from("audios").remove(data.path);
+      return;
     }
+
+    //as that put request was a pure edit and the audio file will always be uploaded,
+    //the old audio shall be eliminated:
+    await supabase.storage.from("audios").remove(props.audio.audio);
+
+    closeEdit();
+    listingEditRefetchSignal.value = !listingEditRefetchSignal.value;
   } else return;
 }
 

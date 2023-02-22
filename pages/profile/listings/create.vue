@@ -21,12 +21,12 @@ const onChangeInput = (data, name) => {
   info[name] = data;
 };
 
-const isButtonDisabled = computed(() => {
-  for (let key in info) {
-    if (!info[key]) return true;
-  }
-  return false;
-});
+// const isButtonDisabled = computed(() => {
+//   for (let key in info) {
+//     if (!info[key]) return true;
+//   }
+//   return false;
+// });
 
 async function handleSubmit() {
   //audio bucket file creation logic
@@ -56,21 +56,29 @@ async function handleSubmit() {
 
   //http post request to send body object to backend
   try {
-    const { createListing } = await useFetch("/api/audio/listings", {
-      method: "post",
-      body,
-    });
+    const { data: createListing, error } = await useFetch(
+      "/api/audio/listings",
+      {
+        method: "post",
+        body,
+      }
+    );
+    if (error.value) {
+      errorMessage.value = error.value.statusMessage;
+      return;
+    }
 
-    const { error } = await supabase.storage
+    const { errorUpload } = await supabase.storage
       .from("audios")
       .upload(fileName, info.audio);
 
-    if (error) {
+    if (errorUpload) {
       //delete the newly uploaded row because file couldn't upload
       await useFetch(`/api/audio/listings/${createListing.value.id}`, {
         method: "delete",
       });
       errorMessage.value = "Cannot upload audio";
+      return;
     }
 
     navigateTo("/profile/listings");
