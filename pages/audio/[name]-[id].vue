@@ -7,15 +7,17 @@ useHead({
 
 const audio = ref({});
 onMounted(async () => {
-  const { data, error, refresh } = await useFetch(
-    `/api/audio/${route.params.id}`
-  );
+  setTimeout(async () => {
+    const { data, error, refresh } = await useFetch(
+      `/api/audio/${route.params.id}`
+    );
 
-  if (!data.value && error.value) {
-    error.value = null;
-    refresh();
-  }
-  audio.value = data.value;
+    if (!data.value && error.value) {
+      error.value = null;
+      refresh();
+    }
+    audio.value = data.value;
+  }, 1);
 });
 
 //edit penceresinde database'deki datanın güncellenmesinin ardından, orada dönen
