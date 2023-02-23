@@ -16,7 +16,7 @@ async function play() {
     player.value.play();
     return;
   } else {
-    const { error } = await supabase.storage
+    const { data, error } = await supabase.storage
       .from("audios")
       .download(`public/${getSubstring(props.src)}`);
 
