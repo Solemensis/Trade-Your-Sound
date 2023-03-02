@@ -26,26 +26,30 @@ const username = reactive({
   admin: false,
 });
 
-const onClick = async () => {
-  //instead of creating an object in here to get rid of proxy object;
-  //i'm just using "toRaw" built-in function of vue.js
-  const body = toRaw(username);
-  try {
-    await useFetch("/api/producerProfile/usernameEnter", {
-      method: "post",
-      body: body,
-    });
-    navigateTo(`/profile/${username.user_name}`);
-  } catch (error) {
-    errorMessage.value = error.statusMessage;
-    console.log(error);
-    setTimeout(() => {
-      errorMessage.value = "";
-    }, 6000);
-  }
-};
+async function onClick() {
+  //check if nickname is okay
+  if (validateNickname(username.user_name) == false) {
+    errorMessage.value = "Username contains non-English letters or characters.";
+    return;
+  } else {
+    const { data, error } = await useFetch(
+      "/api/producerProfile/usernameEnter",
+      {
+        method: "post",
+        body: username,
+      }
+    );
 
-function checkChange() {
+    if (data.value) {
+      navigateTo(`/profile/${username.user_name}`);
+    } else if (error.value) {
+      errorMessage.value = error.value.statusMessage;
+      return;
+    }
+  }
+}
+
+function changeTerms() {
   username.terms = Boolean(termsAccepted.value);
 }
 </script>
@@ -69,7 +73,7 @@ function checkChange() {
           <span style="color: #3fcf8e">*</span></label
         >
         <input
-          @change="checkChange"
+          @change="changeTerms"
           v-model="termsAccepted"
           class="checkbox"
           type="checkbox"

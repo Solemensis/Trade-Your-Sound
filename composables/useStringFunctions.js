@@ -92,3 +92,14 @@ export function addHttpsIfNeeded(str) {
   }
   return str;
 }
+
+export function validateNickname(nickname) {
+  // Only allow letters (uppercase and lowercase) and numbers
+  const regex = /^[a-zA-Z0-9]+$/;
+
+  if (!regex.test(nickname)) {
+    return false;
+  }
+
+  return true;
+}

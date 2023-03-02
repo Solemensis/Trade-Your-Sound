@@ -31,8 +31,8 @@ const loading = ref(true);
 //fetch messages according to selected chat
 const messages = ref();
 async function fetchMessages(chatroom) {
-  relatedRoomId.value = "";
-  loading.value = true;
+  // relatedRoomId.value = "";
+  // loading.value = true;
 
   const { data } = await useFetch("/api/chatroom/fetchMessages", {
     method: "post",
@@ -77,7 +77,7 @@ async function fetchMessages(chatroom) {
     )
     .subscribe();
 }
-const relatedRoomId = ref(null);
+const relatedRoomId = ref("");
 const chat = ref({});
 
 const userName = useState("userName");

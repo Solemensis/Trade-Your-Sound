@@ -6,7 +6,7 @@ const props = defineProps({
 const config = useRuntimeConfig();
 
 function landToListerPage() {
-  navigateTo(`/profile/${props.audio.user_name}`);
+  navigateTo(`/profile/${encodeURIComponent(props.audio.user_name)}`);
 }
 
 const reRenderComponent = ref(true);
