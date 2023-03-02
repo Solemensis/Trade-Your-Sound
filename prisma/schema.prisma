@@ -44,6 +44,7 @@ model AudioListings {
 model ChatRooms {
   id            Int        @id @default(autoincrement())
   created_at    DateTime   @default(now())
+  updated_at   DateTime        @updatedAt
   room_name     String
   user1_id      String
   user2_id      String
