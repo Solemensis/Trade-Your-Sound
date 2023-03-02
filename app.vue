@@ -50,7 +50,7 @@ body {
   background-color: #1c1c1c;
   user-select: none;
   background-image: linear-gradient(#0000006a, #0000008b),
-    url("@/assets/images/12.jpg");
+    url("@/assets/images/12.webp");
   /* background-image: linear-gradient(#000000d7, #000000d7),
     url("@/assets/images/13.jpg"); */
   background-position: center;
