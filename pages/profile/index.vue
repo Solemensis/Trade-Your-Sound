@@ -32,18 +32,23 @@ async function onClick() {
     errorMessage.value = "Username contains non-English letters or characters.";
     return;
   } else {
-    const { data, error } = await useFetch(
-      "/api/producerProfile/usernameEnter",
-      {
-        method: "post",
-        body: username,
-      }
-    );
+    if (termsAccepted.value == true) {
+      const { data, error } = await useFetch(
+        "/api/producerProfile/usernameEnter",
+        {
+          method: "post",
+          body: username,
+        }
+      );
 
-    if (data.value) {
-      navigateTo(`/profile/${username.user_name}`);
-    } else if (error.value) {
-      errorMessage.value = error.value.statusMessage;
+      if (data.value) {
+        navigateTo(`/profile/${username.user_name}`);
+      } else if (error.value) {
+        errorMessage.value = error.value.statusMessage;
+        return;
+      }
+    } else {
+      errorMessage.value = '"terms" contains an invalid value';
       return;
     }
   }
