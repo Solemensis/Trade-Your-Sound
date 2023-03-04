@@ -106,15 +106,12 @@ const menuOpenOpacity = ref(null);
           <p style="cursor: pointer" @click="goToProfile">My Profile</p>
           <p style="cursor: pointer" @click="logout">Logout</p>
         </div>
-        <div class="right-grouping2">
-          <p style="cursor: pointer">anan</p>
-        </div>
-        <!-- <img
+        <img
           @click="openMobileMenu"
           class="hamburger-menu-ico"
           src="@/assets/hamburger.svg"
           alt=""
-        /> -->
+        />
       </div>
       <div class="nav-link-container" v-else>
         <div class="left-grouping">
@@ -125,6 +122,12 @@ const menuOpenOpacity = ref(null);
         <div class="right-grouping">
           <NuxtLink class="login-button" to="/login">Login</NuxtLink>
         </div>
+        <img
+          @click="openMobileMenu"
+          class="hamburger-menu-ico"
+          src="@/assets/hamburger.svg"
+          alt=""
+        />
       </div>
     </header>
     <Teleport to="body">
