@@ -106,7 +106,7 @@ const menuOpenOpacity = ref(null);
           <p style="cursor: pointer" @click="goToProfile">My Profile</p>
           <p style="cursor: pointer" @click="logout">Logout</p>
         </div>
-        <div class="right-grouping">
+        <div class="right-grouping2">
           <p style="cursor: pointer">anan</p>
         </div>
         <!-- <img
@@ -243,9 +243,9 @@ a:active {
     list-style: none;
   }
 
-  /* .right-grouping {
+  .right-grouping {
     display: none;
-  } */
+  }
   header {
     padding: 0 3rem;
   }
