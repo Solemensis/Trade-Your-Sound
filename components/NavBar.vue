@@ -243,9 +243,9 @@ a:active {
     list-style: none;
   }
 
-  .right-grouping {
+  /* .right-grouping {
     display: none;
-  }
+  } */
   header {
     padding: 0 3rem;
   }
