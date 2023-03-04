@@ -244,7 +244,7 @@ a:active {
     display: none;
   }
   header {
-    padding: 0 5rem;
+    padding: 0 3rem;
   }
   .left-grouping *:first-child {
     margin-right: 4rem;
