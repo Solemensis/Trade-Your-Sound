@@ -48,13 +48,13 @@
 }
 body {
   background-color: #1c1c1c;
-  /* user-select: none;
+  user-select: none;
   background-image: linear-gradient(#0000006a, #0000008b),
     url("@/assets/images/12.webp");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 html {
   font-size: 62.5%;
@@ -277,7 +277,7 @@ label {
 
 @media (orientation: portrait) {
   html {
-    font-size: 37%;
+    font-size: 42%;
   }
 }
 

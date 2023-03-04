@@ -75,7 +75,7 @@
     height: 100vh;
   }
   .hero-text-box {
-    width: 80%;
+    width: 100%;
     text-align: center;
   }
   .hero-description {
