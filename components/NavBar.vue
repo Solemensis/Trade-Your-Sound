@@ -112,7 +112,17 @@ const menuOpenOpacity = ref(null);
           src="@/assets/hamburger.svg"
           alt=""
         /> -->
-        <p style="z-index: 9999999">anan</p>
+        <p
+          style="
+            margin-right: 3rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: 0.1s;
+            z-index: 9999999;
+          "
+        >
+          anan
+        </p>
       </div>
       <div class="nav-link-container" v-else>
         <div class="left-grouping">
