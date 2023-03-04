@@ -272,23 +272,27 @@ watch(
   }
   .profile-card {
     width: 27rem;
-    height: 18rem;
-    padding: 1.2rem 1.3rem;
+    height: 17.5rem;
+    padding: 1.1rem 1.3rem;
   }
   .profile-card h2 {
     font-size: 2rem;
   }
   .updated {
-    display: none;
+    bottom: 0.1rem;
+    right: 0.8rem;
+    font-size: 0.8rem;
   }
   .fire {
-    top: 1.2rem;
+    top: 1.1rem;
   }
   .description {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
   .profile-card ul {
     grid-row-gap: 0;
+    margin-bottom: 1rem;
   }
 
   .find-producer {
