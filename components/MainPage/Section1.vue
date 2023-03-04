@@ -28,7 +28,7 @@ function playAudio(name, audio) {
       data-aos-easing="ease-out-back"
     >
       <img src="@/assets/audios2/bow.svg" />
-      <h3>Create your producer profile</h3>
+      <h3>Create your profile</h3>
       <p>
         Fill your profile to display your producer profile on producer profiles
         page for potential opportunities!
@@ -125,5 +125,22 @@ function playAudio(name, audio) {
   bottom: 3rem;
   width: 90%;
   line-height: 1.3;
+}
+
+@media (orientation: portrait) {
+  .flex div {
+    height: 16rem;
+  }
+  .flex div img {
+    width: 9rem;
+  }
+  .flex div h3 {
+    bottom: 7.5rem;
+    font-size: 1.6rem;
+  }
+  .flex div p {
+    bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
 }
 </style>

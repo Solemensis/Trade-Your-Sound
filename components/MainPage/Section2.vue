@@ -346,4 +346,16 @@ const playing = reactive({
 img {
   height: 8rem;
 }
+
+@media (orientation: portrait) {
+  .ico-grid {
+    grid-column-gap: 2rem;
+  }
+  img {
+    height: 6rem;
+  }
+  .text-box ul li {
+    font-size: 1.5rem;
+  }
+}
 </style>

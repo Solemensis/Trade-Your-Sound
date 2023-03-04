@@ -64,4 +64,22 @@
     filter: hue-rotate(240deg);
   }
 }
+
+@media (orientation: portrait) {
+  .hero-img {
+    display: none;
+    order: -1;
+  }
+  .hero-section {
+    flex-direction: column;
+    height: 100vh;
+  }
+  .hero-text-box {
+    width: 80%;
+    text-align: center;
+  }
+  .hero-description {
+    width: 100%;
+  }
+}
 </style>

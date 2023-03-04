@@ -76,6 +76,16 @@ function goToProfile() {
 //     )
 //     .subscribe();
 // });
+
+//adding-removing opacity class from mobile-menu
+function openMobileMenu() {
+  if (menuOpenOpacity.value) {
+    menuOpenOpacity.value = null;
+  } else {
+    menuOpenOpacity.value = "opacity";
+  }
+}
+const menuOpenOpacity = ref(null);
 </script>
 
 <template>
@@ -96,6 +106,12 @@ function goToProfile() {
           <p style="cursor: pointer" @click="goToProfile">My Profile</p>
           <p style="cursor: pointer" @click="logout">Logout</p>
         </div>
+        <img
+          @click="openMobileMenu"
+          class="hamburger-menu-ico"
+          src="@/assets/hamburger.svg"
+          alt=""
+        />
       </div>
       <div class="nav-link-container" v-else>
         <div class="left-grouping">
@@ -108,6 +124,16 @@ function goToProfile() {
         </div>
       </div>
     </header>
+    <Teleport to="body">
+      <div :class="[menuOpenOpacity]" class="mobile-menu">
+        <ul>
+          <li>Messages</li>
+          <li>My Listings</li>
+          <li>My Profile</li>
+          <li>Logout</li>
+        </ul>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -179,5 +205,52 @@ a:active {
 .login-button:hover {
   background-position: right center;
   color: #ededed;
+}
+
+.hamburger-menu-ico {
+  width: 2rem;
+  display: none;
+}
+.mobile-menu {
+  display: none;
+}
+.opacity {
+  opacity: 1 !important;
+}
+
+@media (orientation: portrait) {
+  .hamburger-menu-ico {
+    display: block;
+  }
+  .mobile-menu {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 6rem;
+    background-color: #6036547f;
+    padding: 2rem 2rem;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    text-align: center;
+    border-bottom-left-radius: 1rem;
+    opacity: 0;
+    transition: 0.2s;
+  }
+  .mobile-menu ul {
+    list-style: none;
+  }
+
+  .right-grouping {
+    display: none;
+  }
+  header {
+    padding: 0 5rem;
+  }
+  .left-grouping *:first-child {
+    margin-right: 4rem;
+  }
+  .left-grouping * {
+    margin-right: 2rem;
+  }
 }
 </style>

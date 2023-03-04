@@ -62,4 +62,10 @@
   color: #ccc;
   line-height: 1.3;
 }
+
+@media (orientation: portrait) {
+  .text-container {
+    width: 80%;
+  }
+}
 </style>

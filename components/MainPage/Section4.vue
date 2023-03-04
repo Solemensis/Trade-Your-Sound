@@ -109,4 +109,13 @@ textarea {
   position: absolute;
   bottom: 11.5rem;
 }
+
+@media (orientation: portrait) {
+  .flex-left {
+    width: 80%;
+  }
+  .textarea-and-button {
+    width: 80%;
+  }
+}
 </style>

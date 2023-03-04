@@ -57,7 +57,6 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  overflow-x: hidden;
 }
 html {
   font-size: 62.5%;
@@ -278,11 +277,11 @@ label {
   }
 }
 
-/* @media (orientation: portrait) {
+@media (orientation: portrait) {
   html {
-    font-size: 30%;
+    font-size: 37%;
   }
-} */
+}
 
 /* loading animation */
 .lds-dual-ring {
