@@ -122,22 +122,17 @@ const menuOpenOpacity = ref(null);
         <div class="right-grouping">
           <NuxtLink class="login-button" to="/login">Login</NuxtLink>
         </div>
-        <img
-          @click="openMobileMenu"
-          class="hamburger-menu-ico"
-          src="@/assets/hamburger.svg"
-          alt=""
-        />
+        <div class="right-grouping-mobile">
+          <NuxtLink class="login-button" to="/login">Login</NuxtLink>
+        </div>
       </div>
     </header>
-    <Teleport to="body">
+    <Teleport v-if="user" to="body">
       <div :class="[menuOpenOpacity]" class="mobile-menu">
-        <ul>
-          <li>Messages</li>
-          <li>My Listings</li>
-          <li>My Profile</li>
-          <li>Logout</li>
-        </ul>
+        <NuxtLink to="/chat">Messages</NuxtLink>
+        <NuxtLink to="/profile/listings">My Listings</NuxtLink>
+        <p @click="goToProfile">My Profile</p>
+        <p style="z-index: 999999" @click="logout">Logout</p>
       </div>
     </Teleport>
   </div>
@@ -179,6 +174,10 @@ a:active {
   font-size: 1.4rem;
   font-weight: 500;
   transition: 0.1s;
+}
+.right-grouping-mobile * {
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 .right-grouping *:hover,
 .left-grouping *:hover {
@@ -235,15 +234,17 @@ a:active {
     top: 6rem;
     background-color: #6036547f;
     padding: 2rem 2rem;
-    font-size: 1.4rem;
-    line-height: 1.6;
     text-align: center;
     border-bottom-left-radius: 1rem;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     transition: 0.2s;
   }
-  .mobile-menu ul {
-    list-style: none;
+  .mobile-menu * {
+    font-size: 1.4rem;
+    font-weight: 500;
   }
 
   .right-grouping {
