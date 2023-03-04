@@ -86,6 +86,9 @@ function openMobileMenu() {
   }
 }
 const menuOpenOpacity = ref(null);
+function closeMobileMenu() {
+  menuOpenOpacity.value = null;
+}
 </script>
 
 <template>
@@ -93,9 +96,13 @@ const menuOpenOpacity = ref(null);
     <header>
       <div class="nav-link-container" v-if="user">
         <div class="left-grouping">
-          <NuxtLink class="logo" to="/">Sound Trader</NuxtLink>
-          <NuxtLink to="/find-producer/">Producers</NuxtLink>
-          <NuxtLink to="/shop">Shop</NuxtLink>
+          <NuxtLink class="logo" to="/" @click="closeMobileMenu"
+            >Sound Trader</NuxtLink
+          >
+          <NuxtLink to="/find-producer/" @click="closeMobileMenu"
+            >Producers</NuxtLink
+          >
+          <NuxtLink to="/shop" @click="closeMobileMenu">Shop</NuxtLink>
         </div>
         <div class="right-grouping">
           <NuxtLink to="/chat">
@@ -128,11 +135,15 @@ const menuOpenOpacity = ref(null);
       </div>
     </header>
     <Teleport v-if="user" to="body">
-      <div :class="[menuOpenOpacity]" class="mobile-menu">
+      <div
+        :class="[menuOpenOpacity]"
+        @click="closeMobileMenu"
+        class="mobile-menu"
+      >
         <NuxtLink to="/chat">Messages</NuxtLink>
         <NuxtLink to="/profile/listings">My Listings</NuxtLink>
         <p @click="goToProfile">My Profile</p>
-        <p style="z-index: 999999" @click="logout">Logout</p>
+        <p @click="logout">Logout</p>
       </div>
     </Teleport>
   </div>
@@ -143,7 +154,7 @@ header {
   border-bottom: #262626 1px solid;
   height: 6rem;
   width: 100%;
-  padding: 0 10rem;
+  padding: 0 8rem;
   position: fixed;
   backdrop-filter: blur(0.3rem);
   z-index: 10000;
@@ -178,6 +189,10 @@ a:active {
 .right-grouping-mobile * {
   font-size: 1.4rem;
   font-weight: 500;
+  z-index: 9999;
+}
+.right-grouping-mobile {
+  display: none;
 }
 .right-grouping *:hover,
 .left-grouping *:hover {
@@ -241,6 +256,7 @@ a:active {
     flex-direction: column;
     gap: 1rem;
     transition: 0.2s;
+    z-index: 9999;
   }
   .mobile-menu * {
     font-size: 1.4rem;
@@ -249,6 +265,9 @@ a:active {
 
   .right-grouping {
     display: none;
+  }
+  .right-grouping-mobile {
+    display: block;
   }
   header {
     padding: 0 3rem;

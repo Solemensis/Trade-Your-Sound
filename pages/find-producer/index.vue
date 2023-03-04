@@ -262,4 +262,38 @@ watch(
   color: #989898;
   font-size: 0.9rem;
 }
+
+@media (orientation: portrait) {
+  .cards {
+    grid-template-columns: 1fr;
+    padding-left: 8rem;
+    grid-row-gap: 2rem;
+    padding-top: 5rem;
+  }
+  .profile-card {
+    width: 27rem;
+    height: 18rem;
+    padding: 1.2rem 1.3rem;
+  }
+  .profile-card h2 {
+    font-size: 2rem;
+  }
+  .updated {
+    display: none;
+  }
+  .fire {
+    top: 1.2rem;
+  }
+  .description {
+    font-size: 1.2rem;
+  }
+  .profile-card ul {
+    grid-row-gap: 0;
+  }
+
+  .find-producer {
+    transform: translateX(-55%);
+    padding-left: 0;
+  }
+}
 </style>

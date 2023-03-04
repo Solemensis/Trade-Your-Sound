@@ -62,7 +62,7 @@ function removeAllFilters() {
       </ul>
     </div>
     <div>
-      <h3>Looking for Opportunity</h3>
+      <h3>Opportunity</h3>
       <ul>
         <li @click="onChangeOpportunity()">All</li>
         <li @click="onChangeOpportunity('looking')">Looking</li>
@@ -128,5 +128,21 @@ ul li:hover {
 }
 .filter-remove:hover {
   background-color: #852020;
+}
+
+@media (orientation: portrait) {
+  .search-bar {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-left: 1.5rem;
+  }
+  .search-bar h3 {
+    font-size: 1.5rem;
+    width: 90%;
+    padding-bottom: 0.2rem;
+  }
+  .filter-remove {
+    font-size: 1.1rem;
+  }
 }
 </style>

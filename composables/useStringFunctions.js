@@ -19,6 +19,10 @@ export function replaceSpacesAndTrChars(str) {
 }
 
 export function formatString(str) {
+  if (str === "environmental-sounds") {
+    return "Env. Sounds";
+  }
+
   let newStr = str[0].toUpperCase();
   for (let i = 1; i < str.length; i++) {
     if (str[i - 1] === "-") {
