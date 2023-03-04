@@ -106,23 +106,15 @@ const menuOpenOpacity = ref(null);
           <p style="cursor: pointer" @click="goToProfile">My Profile</p>
           <p style="cursor: pointer" @click="logout">Logout</p>
         </div>
+        <div class="right-grouping">
+          <p style="cursor: pointer">anan</p>
+        </div>
         <!-- <img
           @click="openMobileMenu"
           class="hamburger-menu-ico"
           src="@/assets/hamburger.svg"
           alt=""
         /> -->
-        <p
-          style="
-            margin-right: 3rem;
-            font-size: 1.4rem;
-            font-weight: 500;
-            transition: 0.1s;
-            z-index: 9999999;
-          "
-        >
-          anan
-        </p>
       </div>
       <div class="nav-link-container" v-else>
         <div class="left-grouping">
