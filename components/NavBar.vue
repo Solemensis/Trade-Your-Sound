@@ -112,7 +112,7 @@ const menuOpenOpacity = ref(null);
           src="@/assets/hamburger.svg"
           alt=""
         /> -->
-        <p>anan</p>
+        <p style="z-index: 9999999">anan</p>
       </div>
       <div class="nav-link-container" v-else>
         <div class="left-grouping">
