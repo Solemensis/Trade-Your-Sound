@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <div class="img"></div>
+    <div class="background-img"></div>
     <div class="opening-animation">
       <NuxtPage />
     </div>
@@ -51,10 +51,9 @@ body {
   background-color: #1c1c1c;
   user-select: none;
 }
-.img {
-  background-image: linear-gradient(#0000006a, #0000008b),
+.background-img {
+  background-image: linear-gradient(#00000049, #00000071),
     url("@/assets/images/14.webp");
-
   position: fixed;
   z-index: -9999999;
   width: 100%;
