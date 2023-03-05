@@ -51,11 +51,11 @@ body {
   user-select: none;
   background-image: linear-gradient(#0000003e, #0000004d),
     url("@/assets/images/14.webp");
-  background-position: center;
+  /* background-position: center;
   background-size: cover;
 
+  background-repeat: no-repeat; */
   background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 
 html {
