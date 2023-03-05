@@ -2,6 +2,7 @@
   <div>
     <NavBar />
     <div class="opening-animation">
+      <img src="@/assets/images/14.webp" alt="" class="background-image" />
       <NuxtPage />
     </div>
   </div>
@@ -49,15 +50,15 @@
 body {
   background-color: #1c1c1c;
   user-select: none;
-  background-image: linear-gradient(#0000003e, #0000004d),
-    url("@/assets/images/14.webp");
-  /* background-position: center;
-  background-size: cover;
-
-  background-repeat: no-repeat; */
-  background-attachment: fixed;
 }
-
+.background-image {
+  position: fixed;
+  z-index: -9999999;
+  width: 105%;
+  height: 110vh;
+  object-fit: cover;
+  opacity: 0.7;
+}
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
