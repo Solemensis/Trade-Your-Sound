@@ -229,13 +229,13 @@ label {
 
 @media (min-width: 2500px) {
   html {
-    font-size: 108%;
+    font-size: 114%;
   }
 }
 
 @media (max-width: 2499px) {
   html {
-    font-size: 98%;
+    font-size: 107%;
   }
 }
 
@@ -247,7 +247,7 @@ label {
 
 @media (max-width: 1920px) {
   html {
-    font-size: 77%;
+    font-size: 80%;
   }
 }
 

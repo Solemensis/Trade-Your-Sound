@@ -78,4 +78,10 @@ const listingEditToggle = ref(false);
   transform: translate(-50%, -44%);
   width: 55%;
 }
+
+@media (orientation: portrait) {
+  .container {
+    width: 90%;
+  }
+}
 </style>

@@ -119,4 +119,23 @@ const reRenderComponent = ref(true);
   color: #ccc;
   line-height: 1.3;
 }
+
+@media (orientation: portrait) {
+  .listing-name {
+    font-size: 2.4rem;
+  }
+  .category-processing {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+  .creator-tag {
+    top: -10rem;
+    right: 50%;
+    transform: translateX(50%);
+    width: 60%;
+  }
+  .creator-box {
+    font-size: 1.5rem;
+  }
+}
 </style>
