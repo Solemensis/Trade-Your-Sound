@@ -17,4 +17,10 @@ const props = defineProps({
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
 }
+
+@media (orientation: portrait) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

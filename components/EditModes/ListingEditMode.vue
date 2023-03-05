@@ -207,4 +207,10 @@ const listingEditRefetchSignal = useState(
   justify-content: center;
   gap: 2rem;
 }
+
+@media (orientation: portrait) {
+  .box {
+    width: 90vw;
+  }
+}
 </style>

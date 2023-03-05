@@ -78,7 +78,7 @@ async function onIntersectionObserver([{ isIntersecting }]) {
       <h2 class="scroll-audios">
         Scroll <span class="green-span">Audios</span>
       </h2>
-      <div v-if="!loading && audios && audios.length">
+      <div class="audios" v-if="!loading && audios && audios.length">
         <AudioSearchCards :audios="audios" />
 
         <div
@@ -127,5 +127,15 @@ async function onIntersectionObserver([{ isIntersecting }]) {
   font-weight: 500;
   font-size: 3.7rem;
   color: #bbb;
+}
+
+@media (orientation: portrait) {
+  .scroll-audios {
+    padding-left: 0;
+  }
+  .audios {
+    margin-right: 5rem;
+    padding-top: 1rem;
+  }
 }
 </style>

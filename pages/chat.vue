@@ -237,7 +237,6 @@ function goToAudio() {
   position: fixed;
   display: flex;
   flex-direction: column;
-  height: 70%;
   align-items: center;
   height: 100vh;
   justify-content: center;
@@ -387,5 +386,25 @@ function goToAudio() {
   align-items: center;
   width: 100%;
   height: 100vh;
+}
+
+@media (orientation: portrait) {
+  .right-part {
+    width: 85%;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    top: 50%;
+  }
+  .message-box {
+    height: 30vh;
+  }
+  .heading-box h2 {
+    font-size: 2.2rem;
+  }
+
+  .left-part {
+    height: 90vh;
+    justify-content: flex-end;
+  }
 }
 </style>

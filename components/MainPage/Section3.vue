@@ -67,5 +67,8 @@
   .text-container {
     width: 80%;
   }
+  .paragraphs {
+    font-size: 1.7rem;
+  }
 }
 </style>

@@ -112,4 +112,11 @@ const errorMessage = ref("");
 .loading {
   top: 30rem;
 }
+
+@media (orientation: portrait) {
+  .listings {
+    grid-template-columns: 1fr;
+    grid-gap: 3rem;
+  }
+}
 </style>

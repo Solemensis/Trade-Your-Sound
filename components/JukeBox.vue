@@ -134,4 +134,7 @@ function onMetadata() {
   border-radius: 50%;
   border: none;
 }
+
+@media (orientation: portrait) {
+}
 </style>

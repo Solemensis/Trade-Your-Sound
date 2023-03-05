@@ -138,4 +138,20 @@ ul li:hover {
 .filter-remove:hover {
   background-color: #852020;
 }
+
+@media (orientation: portrait) {
+  .search-bar {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-left: 1.5rem;
+  }
+  .search-bar h3 {
+    font-size: 1.5rem;
+    width: 90%;
+    padding-bottom: 0.2rem;
+  }
+  .filter-remove {
+    font-size: 1.1rem;
+  }
+}
 </style>

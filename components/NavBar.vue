@@ -92,7 +92,7 @@ function closeMobileMenu() {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <header>
       <div class="nav-link-container" v-if="user">
         <div class="left-grouping">
@@ -272,6 +272,7 @@ a:active {
   header {
     padding: 0 3rem;
   }
+
   .left-grouping *:first-child {
     margin-right: 4rem;
   }

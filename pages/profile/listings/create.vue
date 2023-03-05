@@ -209,4 +209,10 @@ async function handleSubmit() {
   /* slk slk şey */
   padding: 0;
 }
+
+@media (orientation: portrait) {
+  .container {
+    width: 90%;
+  }
+}
 </style>

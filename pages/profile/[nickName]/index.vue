@@ -109,7 +109,7 @@ const errorMessage = ref("");
           data-aos-offset="-2000"
           data-aos-duration="1500"
           v-else
-          style="margin-top: 80rem; margin-bottom: 8rem; font-size: 4rem"
+          class="edit-heading"
         >
           You're editing <span style="color: #3fcf8e">your profile</span>
         </h2>
@@ -126,10 +126,10 @@ const errorMessage = ref("");
       </div>
 
       <div v-if="!profileEditToggle">
-        <p v-if="profile.description" class="description">
+        <article v-if="profile.description" class="description">
           <span style="color: #3fcf8e">"&nbsp;</span>{{ profile.description
           }}<span style="color: #3fcf8e">&nbsp;"</span>
-        </p>
+        </article>
 
         <div class="user-data">
           <div class="category-equipment">
@@ -318,5 +318,24 @@ const errorMessage = ref("");
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.2rem;
+}
+
+@media (orientation: portrait) {
+  .container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -45%);
+    text-align: center;
+    width: 90%;
+  }
+  .category-equipment {
+    gap: 2rem;
+  }
+  .edit-heading {
+    margin-top: 55rem;
+    margin-bottom: 8rem;
+    font-size: 4rem;
+  }
 }
 </style>

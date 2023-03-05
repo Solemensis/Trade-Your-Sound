@@ -30,8 +30,8 @@ function playAudio(name, audio) {
       <img src="@/assets/audios2/bow.svg" />
       <h3>Create your profile</h3>
       <p>
-        Fill your profile to display your producer profile on producer profiles
-        page for potential opportunities!
+        Fill your profile to display it on "producer profiles" page for
+        potential opportunities!
       </p>
     </div>
 
@@ -78,11 +78,11 @@ function playAudio(name, audio) {
 .flex {
   margin-top: 20rem;
   margin-bottom: 27rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  width: 70%;
+  margin-inline: auto;
 }
 .flex div {
   width: 28rem;
@@ -128,14 +128,28 @@ function playAudio(name, audio) {
 }
 
 @media (orientation: portrait) {
+  .flex {
+    margin-top: 20rem;
+    margin-bottom: 27rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 8rem;
+    width: 100vw;
+  }
+  .flex div:last-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 24rem;
+  }
   .flex div {
-    height: 16rem;
+    height: 15rem;
+    width: 23rem;
   }
   .flex div img {
     width: 9rem;
   }
   .flex div h3 {
-    bottom: 7.5rem;
+    bottom: 6rem;
     font-size: 1.6rem;
   }
   .flex div p {

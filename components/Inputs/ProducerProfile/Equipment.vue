@@ -33,7 +33,6 @@ const handleDelete = (value) => {
     <label class="heading" for=""
       >Add your physical equipments <span class="green-span">*</span></label
     >
-
     <div class="input-and-items">
       <div class="items">
         <p
@@ -73,6 +72,7 @@ const handleDelete = (value) => {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   align-items: center;
+  width: 50%;
 }
 .item {
   font-size: 1.3rem;

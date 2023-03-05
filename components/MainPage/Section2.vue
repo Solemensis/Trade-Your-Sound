@@ -348,6 +348,9 @@ img {
 }
 
 @media (orientation: portrait) {
+  .general-grid {
+    width: 90%;
+  }
   .ico-grid {
     grid-column-gap: 2rem;
   }
