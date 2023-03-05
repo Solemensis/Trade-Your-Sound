@@ -49,13 +49,15 @@
 body {
   background-color: #1c1c1c;
   user-select: none;
-  background-image: linear-gradient(#0000006a, #0000008b),
-    url("@/assets/images/12.webp");
+  background-image: linear-gradient(#0000003e, #0000004d),
+    url("@/assets/images/14.webp");
   background-position: center;
   background-size: cover;
+
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
+
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
