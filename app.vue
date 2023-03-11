@@ -52,13 +52,14 @@ body {
   user-select: none;
 }
 .background-img {
-  background-image: linear-gradient(#00000049, #00000071),
+  background-image: linear-gradient(#00000098, #000000c2),
     url("@/assets/images/14.webp");
   position: fixed;
   z-index: -9999999;
   width: 100%;
   height: 110vh;
-  object-fit: cover;
+  background-position: center;
+  background-size: cover;
 }
 
 html {
