@@ -94,6 +94,17 @@ function closeMobileMenu() {
 <template>
   <div class="container">
     <header>
+      <h4
+        style="
+          position: absolute;
+          left: 0.5rem;
+          bottom: 0.3rem;
+          font-size: 0.9rem;
+          color: rgb(81, 81, 81);
+        "
+      >
+        @2023 Solemensis
+      </h4>
       <div class="nav-link-container" v-if="user">
         <div class="left-grouping">
           <NuxtLink class="logo" to="/" @click="closeMobileMenu"
