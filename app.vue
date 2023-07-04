@@ -55,6 +55,8 @@ body {
   background-image: linear-gradient(#00000098, #000000c2),
     url("@/assets/images/14.webp");
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: -9999999;
   width: 100%;
   height: 110vh;
