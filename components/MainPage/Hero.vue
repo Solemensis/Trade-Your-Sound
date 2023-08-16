@@ -14,7 +14,11 @@
         ><button class="hero-button">What is This?</button></a
       >
     </div>
-    <img class="hero-img" src="@/assets/images/2.webp" alt="" />
+    <img
+      class="hero-img"
+      src="@/assets/images/2.webp"
+      alt="an image of a sound wave"
+    />
   </div>
 </template>
 

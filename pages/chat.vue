@@ -145,7 +145,7 @@ function goToAudio() {
             <img
               @click="deleteChatroom(chatroom)"
               src="@/assets/delete-but.svg"
-              alt=""
+              alt="delete button"
             />
           </div>
         </div>

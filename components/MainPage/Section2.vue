@@ -69,7 +69,7 @@ const playing = reactive({
           :class="{ playing: playing.eggCrack }"
           @click="play(eggCrack, 'eggCrack')"
         >
-          <img src="@/assets/audios2/eggCrack.svg" alt="" />
+          <img src="@/assets/audios2/eggCrack.svg" alt="egg image" />
           <span v-if="playing.eggCrack == null" class="lds-dual-ring"></span>
 
           <audio
@@ -83,7 +83,7 @@ const playing = reactive({
           :class="{ playing: playing.cauldron }"
           @click="play(cauldron, 'cauldron')"
         >
-          <img src="@/assets/audios2/cauldron.svg" alt="" />
+          <img src="@/assets/audios2/cauldron.svg" alt="cauldron image" />
           <span v-if="playing.cauldron == null" class="lds-dual-ring"></span>
 
           <audio
@@ -94,7 +94,7 @@ const playing = reactive({
           />
         </div>
         <div :class="{ playing: playing.axe }" @click="play(axe, 'axe')">
-          <img src="@/assets/audios2/axe.svg" alt="" />
+          <img src="@/assets/audios2/axe.svg" alt="axe image" />
           <span v-if="playing.axe == null" class="lds-dual-ring"></span>
 
           <audio
@@ -125,7 +125,7 @@ const playing = reactive({
       </div>
       <div data-aos="zoom-out" data-aos-duration="700" class="ico-grid">
         <div :class="{ playing: playing.man }" @click="play(man, 'man')">
-          <img src="@/assets/audios2/man.svg" alt="" />
+          <img src="@/assets/audios2/man.svg" alt="man image" />
           <span v-if="playing.man == null" class="lds-dual-ring"></span>
 
           <audio
@@ -136,7 +136,7 @@ const playing = reactive({
           />
         </div>
         <div :class="{ playing: playing.woman }" @click="play(woman, 'woman')">
-          <img src="@/assets/audios2/woman.svg" alt="" />
+          <img src="@/assets/audios2/woman.svg" alt="woman image" />
           <span v-if="playing.woman == null" class="lds-dual-ring"></span>
 
           <audio
@@ -150,7 +150,7 @@ const playing = reactive({
           :class="{ playing: playing.grimReaper }"
           @click="play(grimReaper, 'grimReaper')"
         >
-          <img src="@/assets/audios2/grimReaper.svg" alt="" />
+          <img src="@/assets/audios2/grimReaper.svg" alt="grim reaper image" />
           <span v-if="playing.grimReaper == null" class="lds-dual-ring"></span>
 
           <audio
@@ -163,7 +163,7 @@ const playing = reactive({
       </div>
       <div data-aos="zoom-out" data-aos-duration="700" class="ico-grid">
         <div :class="{ playing: playing.ui1 }" @click="play(ui1, 'ui1')">
-          <img src="@/assets/audios2/ui1.svg" alt="" />
+          <img src="@/assets/audios2/ui1.svg" alt="pocket image" />
           <span v-if="playing.ui1 == null" class="lds-dual-ring"></span>
 
           <audio
@@ -174,7 +174,7 @@ const playing = reactive({
           />
         </div>
         <div :class="{ playing: playing.ui2 }" @click="play(ui2, 'ui2')">
-          <img src="@/assets/audios2/ui2.svg" alt="" />
+          <img src="@/assets/audios2/ui2.svg" alt="crystal image" />
           <span v-if="playing.ui2 == null" class="lds-dual-ring"></span>
 
           <audio
@@ -185,7 +185,7 @@ const playing = reactive({
           />
         </div>
         <div :class="{ playing: playing.ui3 }" @click="play(ui3, 'ui3')">
-          <img src="@/assets/audios2/ui3.svg" alt="" />
+          <img src="@/assets/audios2/ui3.svg" alt="user interface image" />
           <span v-if="playing.ui3 == null" class="lds-dual-ring"></span>
 
           <audio
@@ -221,7 +221,7 @@ const playing = reactive({
           :class="{ playing: playing.fireSpell }"
           @click="play(fireSpell, 'fireSpell')"
         >
-          <img src="@/assets/audios2/fireSpell.svg" alt="" />
+          <img src="@/assets/audios2/fireSpell.svg" alt="fireball image" />
           <span v-if="playing.fireSpell == null" class="lds-dual-ring"></span>
 
           <audio
@@ -235,7 +235,7 @@ const playing = reactive({
           :class="{ playing: playing.windyScroll }"
           @click="play(windyScroll, 'windyScroll')"
         >
-          <img src="@/assets/audios2/windyScroll.svg" alt="" />
+          <img src="@/assets/audios2/windyScroll.svg" alt="scroll image" />
           <span v-if="playing.windyScroll == null" class="lds-dual-ring"></span>
 
           <audio
@@ -249,7 +249,7 @@ const playing = reactive({
           :class="{ playing: playing.spellBook }"
           @click="play(spellBook, 'spellBook')"
         >
-          <img src="@/assets/audios2/spellBook.svg" alt="" />
+          <img src="@/assets/audios2/spellBook.svg" alt="spell book image" />
           <span v-if="playing.spellBook == null" class="lds-dual-ring"></span>
 
           <audio

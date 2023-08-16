@@ -68,12 +68,12 @@ function clearError() {
       </p>
 
       <button class="google" @click="oauthLogin('google')">
-        <img src="@/assets/google-ico.svg" alt="" /><span
+        <img src="@/assets/google-ico.svg" alt="google logo" /><span
           >Sign in with Google</span
         >
       </button>
       <button class="discord" @click="oauthLogin('discord')">
-        <img src="@/assets/dc-ico.svg" alt="" /><span
+        <img src="@/assets/dc-ico.svg" alt="discord logo" /><span
           >Sign in with Discord</span
         >
       </button>

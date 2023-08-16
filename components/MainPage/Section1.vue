@@ -27,7 +27,7 @@ function playAudio(name, audio) {
       data-aos-duration="2200"
       data-aos-easing="ease-out-back"
     >
-      <img src="@/assets/audios2/bow.svg" />
+      <img src="@/assets/audios2/bow.svg" alt="bow image" />
       <h3>Create your profile</h3>
       <p>
         Fill your profile to display it on "producer profiles" page for
@@ -42,7 +42,7 @@ function playAudio(name, audio) {
       data-aos-easing="ease-out-back"
       data-aos-delay="300"
     >
-      <img src="@/assets/audios2/potion.svg" alt="" />
+      <img src="@/assets/audios2/potion.svg" alt="potion image" />
 
       <h3>Sell your audios</h3>
       <p>
@@ -57,7 +57,7 @@ function playAudio(name, audio) {
       data-aos-easing="ease-out-back"
       data-aos-delay="600"
     >
-      <img src="@/assets/audios2/shuriken.svg" alt="" />
+      <img src="@/assets/audios2/shuriken.svg" alt="shuriken image" />
       <h3>Get inspirations</h3>
       <p>
         Instead scrolling general social media; scroll here to get audial

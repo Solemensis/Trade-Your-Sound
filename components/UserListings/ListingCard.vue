@@ -24,10 +24,10 @@ const config = useRuntimeConfig();
 
       <div class="buttons">
         <NuxtLink class="edit-but" :to="`/audio/${listing.name}-${listing.id}`"
-          ><img src="@/assets/edit-but.svg" alt=""
+          ><img src="@/assets/edit-but.svg" alt="edit button"
         /></NuxtLink>
         <p class="delete-but" @click="emits('deleteClick', listing.id)">
-          <img src="@/assets/delete-but.svg" alt="" />
+          <img src="@/assets/delete-but.svg" alt="delete button" />
         </p>
       </div>
     </div>

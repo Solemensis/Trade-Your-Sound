@@ -128,7 +128,7 @@ function closeMobileMenu() {
           @click="openMobileMenu"
           class="hamburger-menu-ico"
           src="@/assets/hamburger.svg"
-          alt=""
+          alt="menu button"
         />
       </div>
       <div class="nav-link-container" v-else>

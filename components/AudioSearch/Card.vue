@@ -26,6 +26,9 @@ const config = useRuntimeConfig();
         <NuxtLink :to="`/audio/${audio.name}-${audio.id}`"
           ><p class="go-to-listing">→</p></NuxtLink
         >
+
+
+  
       </div>
     </div>
 

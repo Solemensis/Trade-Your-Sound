@@ -57,10 +57,10 @@ function onMetadata() {
     <div class="jukebox">
       <div class="buttons">
         <button :class="{ invis: player && !player.paused }" @click="play">
-          <img src="@/assets/play-but.svg" alt="" />
+          <img src="@/assets/play-but.svg" alt="play button" />
         </button>
         <button :class="{ invis: player && player.paused }" @click="play">
-          <img src="@/assets/pause-but.svg" alt="" />
+          <img src="@/assets/pause-but.svg" alt="pause button" />
         </button>
       </div>
 
