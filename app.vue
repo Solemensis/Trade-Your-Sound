@@ -237,19 +237,19 @@ label {
 
 @media (min-width: 2500px) {
   html {
-    font-size: 114%;
+    font-size: 100%;
   }
 }
 
 @media (max-width: 2499px) {
   html {
-    font-size: 107%;
+    font-size: 100%;
   }
 }
 
 @media (max-width: 2300px) {
   html {
-    font-size: 93%;
+    font-size: 90%;
   }
 }
 
