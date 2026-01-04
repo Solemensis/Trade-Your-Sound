@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="app-shell">
     <NavBar />
     <div class="background-img"></div>
-    <div class="opening-animation">
+    <div class="app-content opening-animation">
       <NuxtPage />
     </div>
+    <SiteFooter />
   </div>
 </template>
 
@@ -15,6 +16,16 @@
   opacity: 0;
   animation: opacity-grow 1.5s ease-in;
   animation-fill-mode: forwards;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
 }
 
 @keyframes opacity-grow {
