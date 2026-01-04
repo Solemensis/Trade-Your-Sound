@@ -1,0 +1,1 @@
+import{W as t,i as a,X as i,n as o}from"./Czqr_EBs.js";const p=t(async(u,c)=>{let e,r;if(!a().value)return;const s=([e,r]=i(()=>$fetch("/api/producerProfile/specificUser")),e=await e,r(),e);if(!s||!s.user_name)return o("/profile")});export{p as default};

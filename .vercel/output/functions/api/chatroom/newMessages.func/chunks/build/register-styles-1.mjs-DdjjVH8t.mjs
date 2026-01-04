@@ -1,0 +1,4 @@
+const register_vue_vue_type_style_index_0_scoped_a499cea4_lang = ".container[data-v-a499cea4]{left:50%;position:absolute;top:50%;transform:translate(-50%,-38%)}h2[data-v-a499cea4]{margin-bottom:4rem;text-align:center}input[data-v-a499cea4]{width:20rem}.inputs[data-v-a499cea4]{align-items:center;flex-direction:column;gap:.7rem;margin-bottom:2rem}.buttons[data-v-a499cea4],.inputs[data-v-a499cea4]{display:flex;justify-content:center}.buttons[data-v-a499cea4]{gap:2rem;position:relative}.buttons p[data-v-a499cea4]{bottom:-2.5rem;color:#ff4500;font-size:1.2rem;position:absolute}.buttons button[data-v-a499cea4]{padding:1rem 1.5rem}";
+
+export { register_vue_vue_type_style_index_0_scoped_a499cea4_lang as r };
+//# sourceMappingURL=register-styles-1.mjs-DdjjVH8t.mjs.map
