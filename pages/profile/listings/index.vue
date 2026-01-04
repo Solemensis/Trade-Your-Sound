@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  middleware: ["auth", "require-profile"],
+});
+
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 
