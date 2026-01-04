@@ -3,7 +3,7 @@ definePageMeta({
   middleware: ["no-auth"],
 });
 
-const client = useSupabaseAuthClient();
+const client = useSupabaseClient();
 
 const email = ref("");
 const password = ref("");

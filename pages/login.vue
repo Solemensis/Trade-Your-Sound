@@ -3,7 +3,7 @@ definePageMeta({
   middleware: ["no-auth"],
 });
 
-const client = useSupabaseAuthClient();
+const client = useSupabaseClient();
 
 //oauth
 async function oauthLogin(provider) {
