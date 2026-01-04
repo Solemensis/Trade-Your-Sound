@@ -4,7 +4,10 @@ import { serverSupabaseUser } from "#supabase/server";
 export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event);
 
-  if (!user) {
+  // Get user ID (Supabase returns it as 'sub' in JWT or 'id' in user object)
+  const userId = user?.id || user?.sub;
+
+  if (!userId) {
     throw createError({
       statusCode: 401,
       statusMessage: "Unauthorized",
@@ -12,10 +15,10 @@ export default defineEventHandler(async (event) => {
   }
 
   //control if there's new message
-  const newMessage = await prisma.Messages.findFirst({
+  const newMessage = await prisma.messages.findFirst({
     where: {
       lister_id: {
-        not: user.id,
+        not: userId,
       },
       read: false,
     },

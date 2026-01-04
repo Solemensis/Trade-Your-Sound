@@ -4,7 +4,10 @@ import { serverSupabaseUser } from "#supabase/server";
 export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event);
 
-  if (!user) {
+  // Get user ID (Supabase returns it as 'sub' in JWT or 'id' in user object)
+  const userId = user?.id || user?.sub;
+
+  if (!userId) {
     throw createError({
       statusCode: 401,
       statusMessage: "Unauthorized",
@@ -12,11 +15,11 @@ export default defineEventHandler(async (event) => {
   }
 
   //database event
-  const userRelatedChatRooms = await prisma.ChatRooms.findMany({
+  const userRelatedChatRooms = await prisma.chatRooms.findMany({
     where: {
       OR: [
-        { user1_deleted: { equals: { userId: user.id, deleted: false } } },
-        { user2_deleted: { equals: { userId: user.id, deleted: false } } },
+        { user1_deleted: { equals: { userId: userId, deleted: false } } },
+        { user2_deleted: { equals: { userId: userId, deleted: false } } },
       ],
     },
   });

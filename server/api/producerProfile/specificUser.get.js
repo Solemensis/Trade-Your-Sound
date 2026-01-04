@@ -4,15 +4,18 @@ import { serverSupabaseUser } from "#supabase/server";
 export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event);
 
-  // Return null if user is not authenticated (allows pages to handle unauthenticated state)
-  if (!user?.id) {
+  // Get user ID (Supabase returns it as 'sub' in JWT or 'id' in user object)
+  const userId = user?.id || user?.sub;
+
+  // Return null if user is not authenticated
+  if (!userId) {
     return null;
   }
 
   //database event
   const producerProfile = await prisma.producerProfile.findUnique({
     where: {
-      lister_id: user.id,
+      lister_id: userId,
     },
   });
 

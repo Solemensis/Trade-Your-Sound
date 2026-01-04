@@ -7,8 +7,11 @@ const user = useSupabaseUser();
 const errorMessage = ref("");
 const termsAccepted = ref(true);
 
+// Helper to get user ID (Supabase returns it as 'sub' in JWT or 'id' in user object)
+const getUserId = (u) => u?.id || u?.sub;
+
 const username = reactive({
-  lister_id: user.value?.id || "",
+  lister_id: getUserId(user.value) || "",
   user_name: "",
   terms: termsAccepted.value,
   relatedLinks: [
@@ -26,6 +29,14 @@ const username = reactive({
   admin: false,
 });
 
+// Watch for user changes and update lister_id
+watch(user, (newUser) => {
+  const userId = getUserId(newUser);
+  if (userId) {
+    username.lister_id = userId;
+  }
+});
+
 async function onClick() {
   //check if nickname is okay
   if (validateNickname(username.user_name) == false) {
@@ -33,11 +44,12 @@ async function onClick() {
     return;
   } else {
     // Ensure lister_id is set from current user
-    if (!user.value?.id) {
+    const userId = getUserId(user.value);
+    if (!userId) {
       errorMessage.value = "You must be logged in to create a profile.";
       return;
     }
-    username.lister_id = user.value.id;
+    username.lister_id = userId;
 
     if (termsAccepted.value == true) {
       const { data, error } = await useFetch(
