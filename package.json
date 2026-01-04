@@ -1,7 +1,7 @@
 {
   "private": true,
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   },
   "scripts": {
     "build": "nuxt build",
@@ -11,17 +11,19 @@
     "postinstall": "prisma generate && nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/image": "^1.8.0",
-    "@nuxtjs/supabase": "^1.4.0",
-    "@prisma/client": "^5.22.0",
-    "@supabase/supabase-js": "^2.46.0",
-    "@vueuse/components": "^11.2.0",
-    "@vueuse/nuxt": "^11.2.0",
+    "@nuxt/image": "^2.0.0",
+    "@nuxtjs/supabase": "^2.0.3",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@supabase/supabase-js": "^2.89.0",
+    "@vueuse/components": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
     "aos": "^2.3.4",
-    "joi": "^17.13.0",
-    "nuxt": "3.13.2"
+    "dotenv": "^16.4.5",
+    "joi": "^18.0.2",
+    "nuxt": "4.2.2"
   },
   "devDependencies": {
-    "prisma": "^5.22.0"
+    "prisma": "^7.2.0"
   }
 }
