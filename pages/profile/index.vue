@@ -5,10 +5,10 @@ definePageMeta({
 const user = useSupabaseUser();
 
 const errorMessage = ref("");
-const termsAccepted = ref(false);
+const termsAccepted = ref(true);
 
 const username = reactive({
-  lister_id: user.value.id,
+  lister_id: user.value?.id || "",
   user_name: "",
   terms: termsAccepted.value,
   relatedLinks: [
@@ -32,6 +32,13 @@ async function onClick() {
     errorMessage.value = "Username contains non-English letters or characters.";
     return;
   } else {
+    // Ensure lister_id is set from current user
+    if (!user.value?.id) {
+      errorMessage.value = "You must be logged in to create a profile.";
+      return;
+    }
+    username.lister_id = user.value.id;
+
     if (termsAccepted.value == true) {
       const { data, error } = await useFetch(
         "/api/producerProfile/usernameEnter",
@@ -73,16 +80,16 @@ function changeTerms() {
     </div>
     <div class="terms-button">
       <div class="terms">
-        <label for=""
+        <!-- <label for=""
           >Do you accept our terms of concern?
           <span style="color: #3fcf8e">*</span></label
-        >
-        <input
+        > -->
+        <!-- <input
           @change="changeTerms"
           v-model="termsAccepted"
           class="checkbox"
           type="checkbox"
-        />
+        /> -->
       </div>
       <button style="margin-bottom: 1rem" class="hero-button" @click="onClick">
         Initiate Profile
