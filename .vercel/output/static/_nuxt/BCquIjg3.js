@@ -1,1 +1,0 @@
-const s=["sound-effects","environmental-sounds","ui-sounds","foley-sounds","dialogue","soundscapes"],e=["0-3","4-10","11-20","21>"],o=["raw","edited","mastered"];function n(){return{categories:s,prices:e,processing:o}}export{n as u};

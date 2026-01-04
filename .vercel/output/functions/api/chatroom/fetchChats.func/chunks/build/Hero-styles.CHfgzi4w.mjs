@@ -1,6 +1,0 @@
-import { H as Hero_vue_vue_type_style_index_0_scoped_41bd7e61_lang } from './Hero-styles-1.mjs-O5KPxB8S.mjs';
-
-const HeroStyles_CHfgzi4w = [Hero_vue_vue_type_style_index_0_scoped_41bd7e61_lang, Hero_vue_vue_type_style_index_0_scoped_41bd7e61_lang];
-
-export { HeroStyles_CHfgzi4w as default };
-//# sourceMappingURL=Hero-styles.CHfgzi4w.mjs.map

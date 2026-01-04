@@ -1,4 +1,0 @@
-const Card_vue_vue_type_style_index_0_scoped_6823e0dd_lang = ".heading[data-v-6823e0dd]{color:#c3c3c3;font-size:1.3rem;font-weight:500;left:1.5rem;position:absolute;top:1.3rem;transition:.1s}.heading[data-v-6823e0dd]:hover{color:#3fcf8e}.listing-boxy[data-v-6823e0dd]{background-color:#25252587;border-radius:.8rem;box-shadow:0 3px 8px rgba(0,0,0,.24);display:flex;flex-direction:column;padding:6.5rem 1.5rem 2.5rem 3rem;position:relative;text-align:center}.listing-content[data-v-6823e0dd]{align-items:center;border-radius:.5rem;display:flex;gap:1rem;justify-content:center}.go-to-listing[data-v-6823e0dd]{color:#3fcf8e;font-size:3rem;position:absolute;right:3rem;top:.2rem;transition:.1s}.go-to-listing[data-v-6823e0dd]:hover{filter:brightness(1.3)}";
-
-export { Card_vue_vue_type_style_index_0_scoped_6823e0dd_lang as C };
-//# sourceMappingURL=Card-styles-1.mjs-BwLOZwgs.mjs.map
