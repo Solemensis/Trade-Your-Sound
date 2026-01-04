@@ -4,8 +4,15 @@ import { serverSupabaseUser } from "#supabase/server";
 export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event);
 
+  if (!user) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Unauthorized",
+    });
+  }
+
   //database event
-  const producerProfile = await prisma.producerProfile.findUnique({
+  const producerProfile = await prisma.ProducerProfile.findUnique({
     where: {
       lister_id: user.id,
     },

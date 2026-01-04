@@ -4,6 +4,13 @@ import { serverSupabaseUser } from "#supabase/server";
 export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event);
 
+  if (!user) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Unauthorized",
+    });
+  }
+
   //control if there's new message
   const newMessage = await prisma.Messages.findFirst({
     where: {
